@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		255E160C1581B572002B9EBC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 255E160B1581B572002B9EBC /* .gitignore */; };
 		2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975915817CD300F79A1A /* UIKit.framework */; };
 		2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975B15817CD300F79A1A /* Foundation.framework */; };
 		2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975D15817CD300F79A1A /* CoreGraphics.framework */; };
@@ -20,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		255E160B1581B572002B9EBC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		255E160E1581B8FA002B9EBC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		2586975515817CD300F79A1A /* CampusNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2586975915817CD300F79A1A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2586975B15817CD300F79A1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,6 +55,7 @@
 				2586976115817CD300F79A1A /* CampusNav */,
 				2586975815817CD300F79A1A /* Frameworks */,
 				2586975615817CD300F79A1A /* Products */,
+				255E160E1581B8FA002B9EBC /* README.md */,
 				255E160B1581B572002B9EBC /* .gitignore */,
 			);
 			sourceTree = "<group>";
@@ -152,7 +153,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2586976615817CD300F79A1A /* InfoPlist.strings in Resources */,
-				255E160C1581B572002B9EBC /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
