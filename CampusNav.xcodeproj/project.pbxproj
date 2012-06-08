@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975915817CD300F79A1A /* UIKit.framework */; };
+		2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975B15817CD300F79A1A /* Foundation.framework */; };
+		2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975D15817CD300F79A1A /* CoreGraphics.framework */; };
+		2586976015817CD300F79A1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975F15817CD300F79A1A /* CoreData.framework */; };
+		2586976615817CD300F79A1A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2586976415817CD300F79A1A /* InfoPlist.strings */; };
+		2586976815817CD300F79A1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2586976715817CD300F79A1A /* main.m */; };
+		2586976C15817CD300F79A1A /* CNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2586976B15817CD300F79A1A /* CNAppDelegate.m */; };
+		2586976F15817CD300F79A1A /* CampusNav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2586976D15817CD300F79A1A /* CampusNav.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2586975515817CD300F79A1A /* CampusNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2586975915817CD300F79A1A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2586975B15817CD300F79A1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2586975D15817CD300F79A1A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2586975F15817CD300F79A1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2586976315817CD300F79A1A /* CampusNav-Info.plist */ = {isa = PBXFileReference; path = "CampusNav-Info.plist"; sourceTree = "<group>"; };
+		2586976515817CD300F79A1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2586976715817CD300F79A1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2586976915817CD300F79A1A /* CampusNav-Prefix.pch */ = {isa = PBXFileReference; path = "CampusNav-Prefix.pch"; sourceTree = "<group>"; };
+		2586976A15817CD300F79A1A /* CNAppDelegate.h */ = {isa = PBXFileReference; path = CNAppDelegate.h; sourceTree = "<group>"; };
+		2586976B15817CD300F79A1A /* CNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNAppDelegate.m; sourceTree = "<group>"; };
+		2586976E15817CD300F79A1A /* CampusNav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CampusNav.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2586975215817CD300F79A1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */,
+				2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */,
+				2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */,
+				2586976015817CD300F79A1A /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2586974A15817CD300F79A1A = {
+			isa = PBXGroup;
+			children = (
+				2586976115817CD300F79A1A /* CampusNav */,
+				2586975815817CD300F79A1A /* Frameworks */,
+				2586975615817CD300F79A1A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2586975615817CD300F79A1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2586975515817CD300F79A1A /* CampusNav.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2586975815817CD300F79A1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2586975915817CD300F79A1A /* UIKit.framework */,
+				2586975B15817CD300F79A1A /* Foundation.framework */,
+				2586975D15817CD300F79A1A /* CoreGraphics.framework */,
+				2586975F15817CD300F79A1A /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2586976115817CD300F79A1A /* CampusNav */ = {
+			isa = PBXGroup;
+			children = (
+				2586976A15817CD300F79A1A /* CNAppDelegate.h */,
+				2586976B15817CD300F79A1A /* CNAppDelegate.m */,
+				2586976D15817CD300F79A1A /* CampusNav.xcdatamodeld */,
+				2586976215817CD300F79A1A /* Supporting Files */,
+			);
+			path = CampusNav;
+			sourceTree = "<group>";
+		};
+		2586976215817CD300F79A1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2586976315817CD300F79A1A /* CampusNav-Info.plist */,
+				2586976415817CD300F79A1A /* InfoPlist.strings */,
+				2586976715817CD300F79A1A /* main.m */,
+				2586976915817CD300F79A1A /* CampusNav-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2586975415817CD300F79A1A /* CampusNav */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2586977215817CD300F79A1A /* Build configuration list for PBXNativeTarget "CampusNav" */;
+			buildPhases = (
+				2586975115817CD300F79A1A /* Sources */,
+				2586975215817CD300F79A1A /* Frameworks */,
+				2586975315817CD300F79A1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CampusNav;
+			productName = CampusNav;
+			productReference = 2586975515817CD300F79A1A /* CampusNav.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2586974C15817CD300F79A1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CN;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 2586974F15817CD300F79A1A /* Build configuration list for PBXProject "CampusNav" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2586974A15817CD300F79A1A;
+			productRefGroup = 2586975615817CD300F79A1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2586975415817CD300F79A1A /* CampusNav */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2586975315817CD300F79A1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2586976615817CD300F79A1A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2586975115817CD300F79A1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2586976815817CD300F79A1A /* main.m in Sources */,
+				2586976C15817CD300F79A1A /* CNAppDelegate.m in Sources */,
+				2586976F15817CD300F79A1A /* CampusNav.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2586976415817CD300F79A1A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2586976515817CD300F79A1A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2586977015817CD300F79A1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2586977115817CD300F79A1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2586977315817CD300F79A1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CampusNav/CampusNav-Prefix.pch";
+				INFOPLIST_FILE = "CampusNav/CampusNav-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2586977415817CD300F79A1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CampusNav/CampusNav-Prefix.pch";
+				INFOPLIST_FILE = "CampusNav/CampusNav-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2586974F15817CD300F79A1A /* Build configuration list for PBXProject "CampusNav" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2586977015817CD300F79A1A /* Debug */,
+				2586977115817CD300F79A1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2586977215817CD300F79A1A /* Build configuration list for PBXNativeTarget "CampusNav" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2586977315817CD300F79A1A /* Debug */,
+				2586977415817CD300F79A1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2586976D15817CD300F79A1A /* CampusNav.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2586976E15817CD300F79A1A /* CampusNav.xcdatamodel */,
+			);
+			currentVersion = 2586976E15817CD300F79A1A /* CampusNav.xcdatamodel */;
+			path = CampusNav.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2586974C15817CD300F79A1A /* Project object */;
+}
