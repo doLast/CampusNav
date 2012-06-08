@@ -23,11 +23,11 @@
 		2586975B15817CD300F79A1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2586975D15817CD300F79A1A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2586975F15817CD300F79A1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		2586976315817CD300F79A1A /* CampusNav-Info.plist */ = {isa = PBXFileReference; path = "CampusNav-Info.plist"; sourceTree = "<group>"; };
+		2586976315817CD300F79A1A /* CampusNav-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CampusNav-Info.plist"; sourceTree = "<group>"; };
 		2586976515817CD300F79A1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2586976715817CD300F79A1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2586976915817CD300F79A1A /* CampusNav-Prefix.pch */ = {isa = PBXFileReference; path = "CampusNav-Prefix.pch"; sourceTree = "<group>"; };
-		2586976A15817CD300F79A1A /* CNAppDelegate.h */ = {isa = PBXFileReference; path = CNAppDelegate.h; sourceTree = "<group>"; };
+		2586976915817CD300F79A1A /* CampusNav-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CampusNav-Prefix.pch"; sourceTree = "<group>"; };
+		2586976A15817CD300F79A1A /* CNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CNAppDelegate.h; sourceTree = "<group>"; };
 		2586976B15817CD300F79A1A /* CNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNAppDelegate.m; sourceTree = "<group>"; };
 		2586976E15817CD300F79A1A /* CampusNav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CampusNav.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
