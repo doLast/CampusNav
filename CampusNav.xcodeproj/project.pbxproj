@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250B882B15B6006000332392 /* GGFloorPlanPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B882A15B6006000332392 /* GGFloorPlanPool.m */; };
+		250B883215B610AF00332392 /* CNPOITabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883115B610AF00332392 /* CNPOITabBarViewController.m */; };
+		250B883515B615B200332392 /* CNPOITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883415B615B200332392 /* CNPOITableViewController.m */; };
 		2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975915817CD300F79A1A /* UIKit.framework */; };
 		2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975B15817CD300F79A1A /* Foundation.framework */; };
 		2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975D15817CD300F79A1A /* CoreGraphics.framework */; };
@@ -16,9 +19,32 @@
 		2586976C15817CD300F79A1A /* CNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2586976B15817CD300F79A1A /* CNAppDelegate.m */; };
 		2586976F15817CD300F79A1A /* CampusNav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2586976D15817CD300F79A1A /* CampusNav.xcdatamodeld */; };
 		25936C921582683D005D8924 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25936C911582683D005D8924 /* Storyboard.storyboard */; };
+		25E7944215B5C5D800E7B58C /* GGSystem+GGInternalSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E7944115B5C5D800E7B58C /* GGSystem+GGInternalSystem.m */; };
+		25FF0BAE15B4A6FC00F5EE73 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BA915B4A6FC00F5EE73 /* FMDatabase.m */; };
+		25FF0BAF15B4A6FC00F5EE73 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BAB15B4A6FC00F5EE73 /* FMDatabaseAdditions.m */; };
+		25FF0BB015B4A6FC00F5EE73 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BAD15B4A6FC00F5EE73 /* FMResultSet.m */; };
+		25FF0BB315B4A71900F5EE73 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BB215B4A71900F5EE73 /* FMDatabasePool.m */; };
+		25FF0BB515B4A73500F5EE73 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FF0BB415B4A73500F5EE73 /* libsqlite3.dylib */; };
+		25FF0BB915B4A89C00F5EE73 /* CNCategoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BB815B4A89C00F5EE73 /* CNCategoryTableViewController.m */; };
+		25FF0BBD15B4BA4100F5EE73 /* GGFloorPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BBC15B4BA4100F5EE73 /* GGFloorPlan.m */; };
+		25FF0BC015B4BE4400F5EE73 /* GGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BBF15B4BE4400F5EE73 /* GGPoint.m */; };
+		25FF0BC315B4C10300F5EE73 /* GGElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BC215B4C10300F5EE73 /* GGElement.m */; };
+		25FF0BC615B4C31F00F5EE73 /* GGPOI.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BC515B4C31F00F5EE73 /* GGPOI.m */; };
+		25FF0BC915B4C97000F5EE73 /* GGEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BC815B4C97000F5EE73 /* GGEdge.m */; };
+		25FF0BCC15B4E6EA00F5EE73 /* GGGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BCB15B4E6EA00F5EE73 /* GGGraph.m */; };
+		25FF0BD015B4EDE400F5EE73 /* GGPOIPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BCF15B4EDE400F5EE73 /* GGPOIPool.m */; };
+		25FF0BD615B5038600F5EE73 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25FF0BD515B5038600F5EE73 /* CoreLocation.framework */; };
+		25FF0BDD15B519D400F5EE73 /* GGSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BDC15B519D300F5EE73 /* GGSystem.m */; };
+		25FF0BE315B5342600F5EE73 /* GG_DATA.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 25FF0BE215B5341E00F5EE73 /* GG_DATA.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		250B882915B6006000332392 /* GGFloorPlanPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFloorPlanPool.h; sourceTree = "<group>"; };
+		250B882A15B6006000332392 /* GGFloorPlanPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFloorPlanPool.m; sourceTree = "<group>"; };
+		250B883015B610AF00332392 /* CNPOITabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOITabBarViewController.h; sourceTree = "<group>"; };
+		250B883115B610AF00332392 /* CNPOITabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOITabBarViewController.m; sourceTree = "<group>"; };
+		250B883315B615B200332392 /* CNPOITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOITableViewController.h; sourceTree = "<group>"; };
+		250B883415B615B200332392 /* CNPOITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOITableViewController.m; sourceTree = "<group>"; };
 		255E160B1581B572002B9EBC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		255E160E1581B8FA002B9EBC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		2586975515817CD300F79A1A /* CampusNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +60,37 @@
 		2586976B15817CD300F79A1A /* CNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNAppDelegate.m; sourceTree = "<group>"; };
 		2586976E15817CD300F79A1A /* CampusNav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CampusNav.xcdatamodel; sourceTree = "<group>"; };
 		25936C911582683D005D8924 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		25E7944015B5C5D800E7B58C /* GGSystem+GGInternalSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGSystem+GGInternalSystem.h"; sourceTree = "<group>"; };
+		25E7944115B5C5D800E7B58C /* GGSystem+GGInternalSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGSystem+GGInternalSystem.m"; sourceTree = "<group>"; };
+		25FF0BA815B4A6FC00F5EE73 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FMDatabase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BA915B4A6FC00F5EE73 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		25FF0BAA15B4A6FC00F5EE73 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		25FF0BAB15B4A6FC00F5EE73 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		25FF0BAC15B4A6FC00F5EE73 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		25FF0BAD15B4A6FC00F5EE73 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		25FF0BB115B4A71900F5EE73 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FMDatabasePool.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BB215B4A71900F5EE73 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		25FF0BB415B4A73500F5EE73 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		25FF0BB715B4A89C00F5EE73 /* CNCategoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNCategoryTableViewController.h; sourceTree = "<group>"; };
+		25FF0BB815B4A89C00F5EE73 /* CNCategoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CNCategoryTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BBB15B4BA4100F5EE73 /* GGFloorPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGFloorPlan.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BBC15B4BA4100F5EE73 /* GGFloorPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGFloorPlan.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BBE15B4BE4400F5EE73 /* GGPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGPoint.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BBF15B4BE4400F5EE73 /* GGPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPoint.m; sourceTree = "<group>"; };
+		25FF0BC115B4C10300F5EE73 /* GGElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGElement.h; sourceTree = "<group>"; };
+		25FF0BC215B4C10300F5EE73 /* GGElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGElement.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BC415B4C31F00F5EE73 /* GGPOI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGPOI.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BC515B4C31F00F5EE73 /* GGPOI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGPOI.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BC715B4C97000F5EE73 /* GGEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGEdge.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BC815B4C97000F5EE73 /* GGEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGEdge.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BCA15B4E6E900F5EE73 /* GGGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGGraph.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BCB15B4E6EA00F5EE73 /* GGGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGGraph.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BCE15B4EDE400F5EE73 /* GGPOIPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = GGPOIPool.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		25FF0BCF15B4EDE400F5EE73 /* GGPOIPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGPOIPool.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BD515B5038600F5EE73 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		25FF0BDB15B519D200F5EE73 /* GGSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGSystem.h; sourceTree = "<group>"; };
+		25FF0BDC15B519D300F5EE73 /* GGSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = GGSystem.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		25FF0BE215B5341E00F5EE73 /* GG_DATA.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = GG_DATA.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +102,8 @@
 				2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */,
 				2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */,
 				2586976015817CD300F79A1A /* CoreData.framework in Frameworks */,
+				25FF0BD615B5038600F5EE73 /* CoreLocation.framework in Frameworks */,
+				25FF0BB515B4A73500F5EE73 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +136,8 @@
 				2586975B15817CD300F79A1A /* Foundation.framework */,
 				2586975D15817CD300F79A1A /* CoreGraphics.framework */,
 				2586975F15817CD300F79A1A /* CoreData.framework */,
+				25FF0BD515B5038600F5EE73 /* CoreLocation.framework */,
+				25FF0BB415B4A73500F5EE73 /* libsqlite3.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,9 +145,13 @@
 		2586976115817CD300F79A1A /* CampusNav */ = {
 			isa = PBXGroup;
 			children = (
+				25FF0BB615B4A84000F5EE73 /* View Controllers */,
+				25FF0BCD15B4ED9E00F5EE73 /* GeoGraph Utilities */,
+				25FF0BBA15B4B6CB00F5EE73 /* GeoGraph System */,
 				2586976A15817CD300F79A1A /* CNAppDelegate.h */,
 				2586976B15817CD300F79A1A /* CNAppDelegate.m */,
 				2586976D15817CD300F79A1A /* CampusNav.xcdatamodeld */,
+				25FF0BA615B4A49B00F5EE73 /* FMDB */,
 				2586976215817CD300F79A1A /* Supporting Files */,
 			);
 			path = CampusNav;
@@ -95,6 +160,7 @@
 		2586976215817CD300F79A1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				25FF0BE215B5341E00F5EE73 /* GG_DATA.sqlite */,
 				25936C911582683D005D8924 /* Storyboard.storyboard */,
 				2586976315817CD300F79A1A /* CampusNav-Info.plist */,
 				2586976415817CD300F79A1A /* InfoPlist.strings */,
@@ -102,6 +168,68 @@
 				2586976915817CD300F79A1A /* CampusNav-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25FF0BA615B4A49B00F5EE73 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				25FF0BB115B4A71900F5EE73 /* FMDatabasePool.h */,
+				25FF0BB215B4A71900F5EE73 /* FMDatabasePool.m */,
+				25FF0BA815B4A6FC00F5EE73 /* FMDatabase.h */,
+				25FF0BA915B4A6FC00F5EE73 /* FMDatabase.m */,
+				25FF0BAA15B4A6FC00F5EE73 /* FMDatabaseAdditions.h */,
+				25FF0BAB15B4A6FC00F5EE73 /* FMDatabaseAdditions.m */,
+				25FF0BAC15B4A6FC00F5EE73 /* FMResultSet.h */,
+				25FF0BAD15B4A6FC00F5EE73 /* FMResultSet.m */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
+		25FF0BB615B4A84000F5EE73 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				250B883015B610AF00332392 /* CNPOITabBarViewController.h */,
+				250B883115B610AF00332392 /* CNPOITabBarViewController.m */,
+				25FF0BB715B4A89C00F5EE73 /* CNCategoryTableViewController.h */,
+				25FF0BB815B4A89C00F5EE73 /* CNCategoryTableViewController.m */,
+				250B883315B615B200332392 /* CNPOITableViewController.h */,
+				250B883415B615B200332392 /* CNPOITableViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		25FF0BBA15B4B6CB00F5EE73 /* GeoGraph System */ = {
+			isa = PBXGroup;
+			children = (
+				25FF0BBB15B4BA4100F5EE73 /* GGFloorPlan.h */,
+				25FF0BBC15B4BA4100F5EE73 /* GGFloorPlan.m */,
+				25FF0BBE15B4BE4400F5EE73 /* GGPoint.h */,
+				25FF0BBF15B4BE4400F5EE73 /* GGPoint.m */,
+				25FF0BC115B4C10300F5EE73 /* GGElement.h */,
+				25FF0BC215B4C10300F5EE73 /* GGElement.m */,
+				25FF0BC415B4C31F00F5EE73 /* GGPOI.h */,
+				25FF0BC515B4C31F00F5EE73 /* GGPOI.m */,
+				25FF0BC715B4C97000F5EE73 /* GGEdge.h */,
+				25FF0BC815B4C97000F5EE73 /* GGEdge.m */,
+				25FF0BCA15B4E6E900F5EE73 /* GGGraph.h */,
+				25FF0BCB15B4E6EA00F5EE73 /* GGGraph.m */,
+				25FF0BDB15B519D200F5EE73 /* GGSystem.h */,
+				25FF0BDC15B519D300F5EE73 /* GGSystem.m */,
+				25E7944015B5C5D800E7B58C /* GGSystem+GGInternalSystem.h */,
+				25E7944115B5C5D800E7B58C /* GGSystem+GGInternalSystem.m */,
+			);
+			path = "GeoGraph System";
+			sourceTree = "<group>";
+		};
+		25FF0BCD15B4ED9E00F5EE73 /* GeoGraph Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				250B882915B6006000332392 /* GGFloorPlanPool.h */,
+				250B882A15B6006000332392 /* GGFloorPlanPool.m */,
+				25FF0BCE15B4EDE400F5EE73 /* GGPOIPool.h */,
+				25FF0BCF15B4EDE400F5EE73 /* GGPOIPool.m */,
+			);
+			path = "GeoGraph Utilities";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +285,7 @@
 			files = (
 				2586976615817CD300F79A1A /* InfoPlist.strings in Resources */,
 				25936C921582683D005D8924 /* Storyboard.storyboard in Resources */,
+				25FF0BE315B5342600F5EE73 /* GG_DATA.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +299,23 @@
 				2586976815817CD300F79A1A /* main.m in Sources */,
 				2586976C15817CD300F79A1A /* CNAppDelegate.m in Sources */,
 				2586976F15817CD300F79A1A /* CampusNav.xcdatamodeld in Sources */,
+				25FF0BAE15B4A6FC00F5EE73 /* FMDatabase.m in Sources */,
+				25FF0BAF15B4A6FC00F5EE73 /* FMDatabaseAdditions.m in Sources */,
+				25FF0BB015B4A6FC00F5EE73 /* FMResultSet.m in Sources */,
+				25FF0BB315B4A71900F5EE73 /* FMDatabasePool.m in Sources */,
+				25FF0BB915B4A89C00F5EE73 /* CNCategoryTableViewController.m in Sources */,
+				25FF0BBD15B4BA4100F5EE73 /* GGFloorPlan.m in Sources */,
+				25FF0BC015B4BE4400F5EE73 /* GGPoint.m in Sources */,
+				25FF0BC315B4C10300F5EE73 /* GGElement.m in Sources */,
+				25FF0BC615B4C31F00F5EE73 /* GGPOI.m in Sources */,
+				25FF0BC915B4C97000F5EE73 /* GGEdge.m in Sources */,
+				25FF0BCC15B4E6EA00F5EE73 /* GGGraph.m in Sources */,
+				25FF0BD015B4EDE400F5EE73 /* GGPOIPool.m in Sources */,
+				25FF0BDD15B519D400F5EE73 /* GGSystem.m in Sources */,
+				25E7944215B5C5D800E7B58C /* GGSystem+GGInternalSystem.m in Sources */,
+				250B882B15B6006000332392 /* GGFloorPlanPool.m in Sources */,
+				250B883215B610AF00332392 /* CNPOITabBarViewController.m in Sources */,
+				250B883515B615B200332392 /* CNPOITableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
