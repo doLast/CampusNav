@@ -12,9 +12,9 @@
 
 @interface GGEdge : NSObject
 
-@property (nonatomic, assign, readonly) NSInteger eId;
-@property (nonatomic, retain, readonly) GGPoint *vertexA;
-@property (nonatomic, retain, readonly) GGPoint *vertexB;
-@property (nonatomic, assign, readonly) NSInteger weight;
+@property (nonatomic, strong, readonly) NSNumber *eId;
+@property (nonatomic, weak, readonly) GGPoint *vertexA;
+@property (nonatomic, weak, readonly) GGPoint *vertexB;
+@property (nonatomic, readonly) NSInteger weight;
 
 @end

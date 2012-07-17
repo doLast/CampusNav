@@ -10,16 +10,21 @@
 
 @interface GGElement ()
 
-@property (nonatomic, assign) NSInteger pId;
-@property (nonatomic, assign) GGCoordinate coordinate;
-@property (assign, nonatomic) GGElementType elementType;
+@property (nonatomic) NSNumber *pId;
+@property (nonatomic, strong) NSNumber * fId;
+@property (nonatomic) GGCoordinate coordinate;
+
+
+@property (nonatomic) GGElementType elementType;
 
 @end
 
 @implementation GGElement
 
 @synthesize pId = _pId;
+@synthesize fId = _fId;
 @synthesize coordinate = _coordinate;
+
 @synthesize elementType = _elementType;
 
 

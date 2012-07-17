@@ -16,6 +16,6 @@ typedef enum {
 
 @interface GGElement : GGPoint
 
-@property (assign, nonatomic, readonly) GGElementType elementType;
+@property (nonatomic, readonly) GGElementType elementType;
 
 @end

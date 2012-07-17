@@ -9,13 +9,18 @@
 #import <Foundation/Foundation.h>
 
 typedef struct {
-	double x;
-	double y;
+	NSInteger x;
+	NSInteger y;
 } GGCoordinate;
+
+@class GGFloorPlan;
 
 @interface GGPoint : NSObject
 
-@property (nonatomic, assign, readonly) NSInteger pId;
-@property (nonatomic, assign, readonly) GGCoordinate coordinate;
+@property (nonatomic, readonly) NSNumber *pId;
+@property (nonatomic, weak, readonly) GGFloorPlan *floorPlan;
+@property (nonatomic, readonly) GGCoordinate coordinate;
+
++ (GGCoordinate)coordinateAtX:(NSInteger)x andY:(NSInteger)y;
 
 @end

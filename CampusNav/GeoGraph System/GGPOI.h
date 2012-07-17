@@ -37,9 +37,19 @@ static NSString *GGPOICategoryNames[kGGPOICategoryEnd] = {
 
 @interface GGPOI : GGPoint
 
-@property (nonatomic, assign, readonly) GGPOICategory category;
-@property (nonatomic, retain, readonly) GGEdge *edge;
-@property (nonatomic, retain, readonly) NSString *roomNum;
-@property (nonatomic, retain, readonly) NSString *description;
+@property (nonatomic, readonly) GGPOICategory category;
+@property (nonatomic, weak, readonly) GGEdge *edge;
+@property (nonatomic, strong, readonly) NSString *roomNum;
+@property (nonatomic, strong, readonly) NSString *description;
+
++ (GGPOI *)poiWithPId:(NSNumber *)pId 
+			  onFloor:(NSNumber *)fId 
+		 atCoordinate:(GGCoordinate)coordinate 
+	   withinCategory:(GGPOICategory)category 
+			   onEdge:(NSNumber *)eId 
+		  withRoomNum:(NSString *)roomNum 
+	   andDescription:(NSString *)description;
+
++ (GGPOICategory)categoryOfAbbreviation:(NSString *)abbr;
 
 @end

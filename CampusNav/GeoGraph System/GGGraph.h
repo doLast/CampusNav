@@ -13,10 +13,10 @@
 
 @interface GGGraph : NSObject
 
-@property (nonatomic, retain) GGPOI *source;
-@property (nonatomic, retain) GGPOI *destination;
-@property (nonatomic, retain, readonly) NSArray *edges;
-@property (nonatomic, retain, readonly) NSArray *elements;
+@property (nonatomic, copy) GGPOI *source;
+@property (nonatomic, copy) GGPOI *destination;
+@property (nonatomic, strong, readonly) NSArray *edges;
+@property (nonatomic, strong, readonly) NSArray *elements;
 
 - (BOOL)addEdge:(GGEdge *)edge;
 

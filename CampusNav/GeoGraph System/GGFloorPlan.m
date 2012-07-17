@@ -11,11 +11,11 @@
 
 @interface GGFloorPlan ()
 
-@property (nonatomic, assign) NSInteger fId;
-@property (nonatomic, retain) NSString *building;
-@property (nonatomic, assign) NSInteger floor;
-@property (nonatomic, retain) CLLocation *location;
-@property (nonatomic, retain) NSString *abbreviation;
+@property (nonatomic, strong) NSNumber *fId;
+@property (nonatomic, strong) NSString *building;
+@property (nonatomic) NSInteger floor;
+@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) NSString *abbreviation;
 
 @end
 
@@ -29,7 +29,7 @@
 @synthesize abbreviation = _abbreviation;
 
 #pragma mark - Convenicent Constructor
-+ (GGFloorPlan *)floorPlanWithFid:(NSInteger)fId 
++ (GGFloorPlan *)floorPlanWithFid:(NSNumber *)fId 
 					   inBuilding:(NSString *)building 
 						  onFloor:(NSInteger)floor 
 					   atLocation:(CLLocation *)location 

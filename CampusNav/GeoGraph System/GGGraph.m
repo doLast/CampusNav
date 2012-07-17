@@ -10,8 +10,8 @@
 
 @interface GGGraph ()
 
-@property (nonatomic, retain) NSArray *edges;
-@property (nonatomic, retain) NSArray *elements;
+@property (nonatomic, strong) NSArray *edges;
+@property (nonatomic, strong) NSArray *elements;
 
 @end
 

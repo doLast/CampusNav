@@ -9,16 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-
 @interface GGFloorPlan : NSObject
 
-@property (nonatomic, assign, readonly) NSInteger fId;
-@property (nonatomic, retain, readonly) NSString *building;
-@property (nonatomic, assign, readonly) NSInteger floor;
-@property (nonatomic, retain, readonly) CLLocation *location;
-@property (nonatomic, retain, readonly) NSString *abbreviation;
+@property (nonatomic, strong, readonly) NSNumber *fId;
+@property (nonatomic, strong, readonly) NSString *building;
+@property (nonatomic, readonly) NSInteger floor;
+@property (nonatomic, strong, readonly) CLLocation *location;
+@property (nonatomic, strong, readonly) NSString *abbreviation;
 
-+ (GGFloorPlan *)floorPlanWithFid:(NSInteger)fId 
++ (GGFloorPlan *)floorPlanWithFid:(NSNumber *)fId 
 					   inBuilding:(NSString *)building 
 						  onFloor:(NSInteger)floor
 					   atLocation:(CLLocation *)location 

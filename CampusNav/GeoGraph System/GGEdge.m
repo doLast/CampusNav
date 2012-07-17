@@ -7,21 +7,32 @@
 //
 
 #import "GGEdge.h"
+#import "GGSystem+GGInternalSystem.h"
 
 @interface GGEdge ()
 
-@property (nonatomic, assign) NSInteger eId;
-@property (nonatomic, retain) GGPoint *vertexA;
-@property (nonatomic, retain) GGPoint *vertexB;
-@property (nonatomic, assign) NSInteger weight;
+@property (nonatomic, strong) NSNumber *eId;
+@property (nonatomic, strong) NSNumber *pIdA;
+@property (nonatomic, strong) NSNumber *pIdB;
+@property (nonatomic) NSInteger weight;
 
 @end
 
 @implementation GGEdge
 
 @synthesize eId = _eId;
-@synthesize vertexA = _vertexA;
-@synthesize vertexB = _vertexB;
+@synthesize pIdA = _pIdA;
+@synthesize pIdB = _pIdB;
 @synthesize weight = _weight;
+
+- (GGPoint *)vertexA
+{
+	return [[GGSystem sharedGeoGraphSystem] getPoint:self.pIdA];
+}
+
+- (GGPoint *)vertexB
+{
+	return [[GGSystem sharedGeoGraphSystem] getPoint:self.pIdB];
+}
 
 @end
