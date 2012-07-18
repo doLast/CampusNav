@@ -7,14 +7,13 @@
 //
 
 #import "GGFloorPlan.h"
+#import "GGSystem+GGInternalSystem.h"
 
 @interface GGFloorPlan ()
 
 @property (nonatomic, strong) NSNumber *fId;
-@property (nonatomic, strong) NSString *building;
+@property (nonatomic, strong) NSString *buildingName;
 @property (nonatomic) NSInteger floor;
-@property (nonatomic, strong) CLLocation *location;
-@property (nonatomic, strong) NSString *abbreviation;
 
 @end
 
@@ -22,31 +21,25 @@
 
 #pragma mark - Getter & Setter
 @synthesize fId = _fId;
-@synthesize building = _building;
+@synthesize buildingName = _buildingName;
 @synthesize floor = _floor;
-@synthesize location = _location;
-@synthesize abbreviation = _abbreviation;
+
+- (GGBuilding *)building
+{
+	return [[GGSystem sharedGeoGraphSystem] getBuilding:self.buildingName];
+}
 
 #pragma mark - Convenicent Constructor
 + (GGFloorPlan *)floorPlanWithFid:(NSNumber *)fId 
-					   inBuilding:(NSString *)building 
+					   inBuilding:(NSString *)buildingName 
 						  onFloor:(NSInteger)floor 
-					   atLocation:(CLLocation *)location 
-				 withAbbreviation:(NSString *)abbreviation
 {
 	GGFloorPlan *floorPlan = [[GGFloorPlan alloc] init];
 	floorPlan.fId = fId;
-	floorPlan.building = building;
+	floorPlan.buildingName = buildingName;
 	floorPlan.floor = floor;
-	floorPlan.location = location;
-	floorPlan.abbreviation = abbreviation;
 	return floorPlan;
 }
 
-#pragma mark - methods
-- (CLLocationDistance)distanceFromLocation:(CLLocation *)location
-{
-	return [self.location distanceFromLocation:location];
-}
 
 @end

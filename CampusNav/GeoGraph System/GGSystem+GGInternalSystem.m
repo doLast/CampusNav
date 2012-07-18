@@ -20,6 +20,7 @@
 // Private declarations
 @interface GGSystem ()
 //@property (nonatomic, strong, readonly) FMDatabase *dataSource;
+@property (nonatomic, strong, readonly) NSDictionary *buildingCache;
 @property (nonatomic, strong, readonly) NSDictionary *floorPlanCache;
 @property (nonatomic, strong, readonly) NSDictionary *pointCache;
 @property (nonatomic, strong, readonly) NSDictionary *edgeCache;
@@ -27,6 +28,11 @@
 @end
 
 @implementation GGSystem (GGInternalSystem)
+
+- (GGBuilding *)getBuilding:(NSString *)name
+{
+	return [self.buildingCache objectForKey:name];
+}
 
 - (GGFloorPlan *)getFloorPlan:(NSNumber *)fId
 {

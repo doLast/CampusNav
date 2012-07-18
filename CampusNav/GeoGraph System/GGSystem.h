@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "GGBuilding.h"
 #import "GGFloorPlan.h"
 #import "GGPoint.h"
 #import "GGElement.h"
@@ -19,9 +20,19 @@
 
 + (GGSystem *)sharedGeoGraphSystem;
 
-- (NSArray *)floorPlansOfBuilding:(NSString *)building;
-- (NSArray *)poisInBuilding:(NSString *)building;
+// Data fetching methods
+// Buildings
+- (NSArray *)buildingInCampus:(NSString *)campus;
+
+// FloorPlans
+- (NSArray *)floorPlansOfCampus:(NSString *)campus;
+- (NSArray *)floorPlansOfBuilding:(GGBuilding *)building;
+
+// POIs
+- (NSArray *)poisInBuilding:(GGBuilding *)building;
 - (NSArray *)poisOnFloorPlan:(GGFloorPlan *)floorPlan;
+
+// Graph Generation
 - (GGGraph *)graphOfFloorPlan:(GGFloorPlan *)floorPlan;
 - (GGGraph *)graphFrom:(GGPoint *)source to:(GGPoint *)destination;
 

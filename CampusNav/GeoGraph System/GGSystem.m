@@ -9,6 +9,7 @@
 #import "GGSystem.h"
 #import "FMDatabase.h"
 
+#import "GGBuilding.h"
 #import "GGFloorPlan.h"
 #import "GGPoint.h"
 #import "GGElement.h"
@@ -22,6 +23,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 // Private declarations
 @interface GGSystem ()
 @property (nonatomic, strong) FMDatabase *dataSource;
+@property (nonatomic, strong) NSMutableDictionary *buildingCache;
 @property (nonatomic, strong) NSMutableDictionary *floorPlanCache;
 @property (nonatomic, strong) NSMutableDictionary *pointCache;
 @property (nonatomic, strong) NSMutableDictionary *edgeCache;
@@ -33,6 +35,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 
 #pragma mark - Getter & Setter
 @synthesize dataSource = _dataSource;
+@synthesize buildingCache = _buildingCache;
 @synthesize floorPlanCache = _floorPlanCache;
 @synthesize pointCache = _pointCache;
 @synthesize edgeCache = _edgeCache;
@@ -55,6 +58,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 		}
 		
 		// Initialize the cache containers
+		self.buildingCache = [NSMutableDictionary dictionary];
 		self.floorPlanCache = [NSMutableDictionary dictionary];
 		self.pointCache = [NSMutableDictionary dictionary];
 		self.edgeCache = [NSMutableDictionary dictionary]; 
@@ -71,21 +75,51 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	return system;
 }
 
-#pragma mark - 
+#pragma mark - Data fetching methods
 
-- (NSArray *)floorPlansOfBuilding:(NSString *)building
+// Buildings
+- (NSArray *)buildingInCampus:(NSString *)campus
+{
+	// Currently, campus does not do anything
+	
+	// Get buildings from cache if exists
+	if ([self.buildingCache count] > 0) {
+		return [self.buildingCache allValues];
+	}
+	
+	GGBuilding *building = [GGBuilding buildingWithName:@"Mathmetics & Computer" withAbbreviation:@"MC" atLocation:[[CLLocation alloc] initWithLatitude:43.472113 longitude:-80.543912]];
+	[self.buildingCache setObject:building forKey:building.name];
+	NSArray *buildings = [NSArray arrayWithObject:building];
+	return buildings;
+}
+
+// FloorPlans
+- (NSArray *)floorPlansOfCampus:(NSString *)campus
+{
+	// Get buildings in the campus
+	NSArray *buildings = [self buildingInCampus:campus];
+	NSMutableArray *floorPlans = [NSMutableArray array];
+	
+	for (GGBuilding *building in buildings) {
+		[floorPlans addObjectsFromArray:[self floorPlansOfBuilding:building]];
+	}
+	
+	return floorPlans;
+}
+
+- (NSArray *)floorPlansOfBuilding:(GGBuilding *)building
 {
 	// Get floor plans from cache if exists
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:
 							  @"building = %@", building];
 	NSArray *filtered = [[self.floorPlanCache allValues] 
 						 filteredArrayUsingPredicate:predicate];
-	if (filtered.count > 0) {
+	if ([filtered count] > 0) {
 		NSSortDescriptor *sortDescriptor = [NSSortDescriptor 
 											sortDescriptorWithKey:@"floor" ascending:YES];
 		NSArray *sorted = [filtered sortedArrayUsingDescriptors:
 						   [NSArray arrayWithObject:sortDescriptor]];
-		NSLog(@"Found %d floor plans from cache", sorted.count);
+		NSLog(@"Found %d floor plans from cache", [sorted count]);
 		return sorted;
 	}
 	
@@ -97,29 +131,26 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
 							  @"SELECT * FROM floor_plan AS f \
 							  WHERE f.building = %@ \
-							  ORDER BY f.floor ASC;", building];
+							  ORDER BY f.floor ASC;", building.name];
 	NSMutableArray *floorPlans = [NSMutableArray array];
 	
 	// Build data
 	while ([resultSet next]) {
 		NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"f_id"]];
-		CLLocation *location = [[CLLocation alloc] initWithLatitude:[resultSet doubleForColumn:@"latitude"] longitude:[resultSet doubleForColumn:@"longitude"]];
 		GGFloorPlan *floorPlan = [GGFloorPlan 
 								  floorPlanWithFid:fId
 								  inBuilding:[resultSet stringForColumn:@"building"] 
-								  onFloor:[resultSet intForColumn:@"floor"] 
-								  atLocation:location 
-								  withAbbreviation:[resultSet stringForColumn:@"abbr"]];
-		// TODO Add location
+								  onFloor:[resultSet intForColumn:@"floor"]];
 		[floorPlans addObject:floorPlan];
 		[self.floorPlanCache setObject:floorPlan forKey:floorPlan.fId];
 	}
 	
-	NSLog(@"Found %d floor plans from data source", floorPlans.count);
+	NSLog(@"Found %d floor plans from data source", [floorPlans count]);
 	return floorPlans;
 }
 
-- (NSArray *)poisInBuilding:(NSString *)building
+// POIs
+- (NSArray *)poisInBuilding:(GGBuilding *)building
 {
 	// Get floor plans for the building
 	NSArray *floorPlans = [self floorPlansOfBuilding:building];
@@ -139,7 +170,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 							  @"SELF isKindOfClass:%@ && floorPlan = %@", [GGPOI class], floorPlan];
 	NSArray *filtered = [[self.pointCache allValues] 
 						 filteredArrayUsingPredicate:predicate];
-	if (filtered.count > 0) {
+	if ([filtered count] > 0) {
 		NSLog(@"Found %d POIs from cache", filtered.count);
 		return filtered;
 	}
@@ -185,6 +216,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	return pois;
 }
 
+// Graph Generation
 - (GGGraph *)graphOfFloorPlan:(GGFloorPlan *)floorPlan
 {
 	return nil;

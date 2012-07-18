@@ -8,6 +8,7 @@
 
 #import "GGSystem.h"
 
+@class GGBuilding;
 @class GGFloorPlan;
 @class GGElement;
 @class GGPOI;
@@ -15,7 +16,7 @@
 
 @interface GGSystem (GGInternalSystem)
 
-
+- (GGBuilding *)getBuilding:(NSString *)name;
 - (GGFloorPlan *)getFloorPlan:(NSNumber *)fId;
 - (GGEdge *)getEdge:(NSNumber *)eId;
 - (GGPoint *)getPoint:(NSNumber *)pId;

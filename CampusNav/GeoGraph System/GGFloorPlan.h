@@ -8,19 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class GGBuilding;
+
 @interface GGFloorPlan : NSObject
 
 @property (nonatomic, strong, readonly) NSNumber *fId;
-@property (nonatomic, strong, readonly) NSString *building;
+@property (nonatomic, strong, readonly) GGBuilding *building;
 @property (nonatomic, readonly) NSInteger floor;
-@property (nonatomic, strong, readonly) CLLocation *location;
-@property (nonatomic, strong, readonly) NSString *abbreviation;
 
 + (GGFloorPlan *)floorPlanWithFid:(NSNumber *)fId 
-					   inBuilding:(NSString *)building 
-						  onFloor:(NSInteger)floor
-					   atLocation:(CLLocation *)location 
-				 withAbbreviation:(NSString *)abbreviation;
-- (CLLocationDistance)distanceFromLocation:(CLLocation *)location;
+					   inBuilding:(NSString *)buildingName 
+						  onFloor:(NSInteger)floor;
 
 @end
