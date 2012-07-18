@@ -14,6 +14,7 @@
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize locationManager = _locationManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -147,6 +148,17 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma mark - CoreLocation
+
+- (CLLocationManager *)locationManager
+{
+	if (_locationManager == nil) {
+		_locationManager = [[CLLocationManager alloc] init];
+//		_locationManager.distanceFilter = 5.0;
+	}
+	return _locationManager;
 }
 
 @end

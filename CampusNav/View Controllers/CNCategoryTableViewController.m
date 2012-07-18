@@ -7,18 +7,34 @@
 //
 
 #import "CNCategoryTableViewController.h"
+#import "CNPOITableViewController.h"
+#import "CNGeoGraphSelectionViewController.h"
+
 #import "GGFloorPlanPool.h"
 #import "GGPOIPool.h"
-#import "CNPOITableViewController.h"
 
 @interface CNCategoryTableViewController ()
 // private attributes
+@property (nonatomic, strong) GGPOIPool *poiPool;
+@property (nonatomic, strong) CNGeoGraphSelectionViewController *selectionViewController;
+
 @end
 
 @implementation CNCategoryTableViewController
 
 #pragma mark - getter & setter
 @synthesize poiPool = _poiPool;
+@synthesize selectionViewController = _selectionViewController;
+
+@synthesize locateButton = _locateButton;
+
+- (void)setPoiPool:(GGPOIPool *)poiPool
+{
+	_poiPool = poiPool;
+	if ([self isViewLoaded]) {
+		[self.tableView reloadData];
+	}
+}
 
 #pragma makr - View controller events
 
@@ -31,7 +47,11 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-//	[self.tableView reloadData];
+	
+	self.selectionViewController = [[CNGeoGraphSelectionViewController alloc] init];
+	self.selectionViewController.locateButton = self.locateButton;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewPOIPoolNotification:) name:kNewPOIPoolNotification object:self.selectionViewController];
 }
 
 - (void)viewDidUnload
@@ -41,9 +61,37 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	[self.selectionViewController updateSelection:self];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)handleNewPOIPoolNotification:(NSNotification *)notification
+{
+	NSString *title = [notification.userInfo objectForKey:kNewPOIPoolNotificationTitle];
+	self.title = title;
+	
+	GGPOIPool *pool = [notification.userInfo objectForKey:kNewPOIPoolNotificationData];
+	self.poiPool = pool;
+	[self.tableView reloadData];
+}
+
+#pragma mark - Actions
+- (IBAction)startLocating:(id)sender
+{
+	[self.selectionViewController startLocating:sender];
+}
+
+- (IBAction)chooseFloorPlan:(id)sender
+{
+	[self.selectionViewController chooseFloorPlan:sender];
 }
 
 #pragma mark - Table view data source
@@ -68,8 +116,13 @@
     
     // Configure the cell...
 	cell.textLabel.text = GGPOICategoryNames[indexPath.row];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", 
-								 [self.poiPool poisWithinCategory:indexPath.row].count];
+	if (self.poiPool == nil) {
+		cell.detailTextLabel.text = @"0";								
+	}
+	else {
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", 
+									 [[self.poiPool poisWithinCategory:indexPath.row] count]];
+	}
     
     return cell;
 }
@@ -136,6 +189,7 @@
 		CNPOITableViewController *vc = segue.destinationViewController;
 		
 		vc.pois = [self.poiPool poisWithinCategory:indexPath.row];
+		vc.title = cell.textLabel.text;
 	}
 }
 

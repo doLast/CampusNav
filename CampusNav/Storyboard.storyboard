@@ -1,34 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Ni3-dD-hSw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="u29-vm-gjm">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="rOa-nb-eXq">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oor-GD-IkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController definesPresentationContext="YES" id="Ni3-dD-hSw" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="dZ2-6S-Sau">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="u29-vm-gjm" kind="relationship" relationship="rootViewController" id="UV8-pE-plx"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="7" y="146"/>
-        </scene>
-        <!--Tab Bar View Controller - APP_NAME-->
+        <!--Tab Bar Controller-->
         <scene sceneID="qmo-bC-Ukw">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJP-yf-CzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController definesPresentationContext="YES" id="u29-vm-gjm" customClass="CNPOITabBarViewController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="APP_NAME" id="HSM-IX-Fgz">
-                        <barButtonItem key="rightBarButtonItem" title="I'm not here!" id="JoZ-QE-CMz"/>
-                    </navigationItem>
+                <tabBarController definesPresentationContext="YES" id="u29-vm-gjm" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HSM-IX-Fgz"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Hp0-Mb-epU">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -36,14 +19,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="tgu-h6-ogu" kind="relationship" relationship="viewControllers" id="5uh-db-Rts"/>
-                        <segue destination="gB8-Wd-Z1p" kind="relationship" relationship="viewControllers" id="BOB-rT-W60"/>
+                        <segue destination="MBO-mb-Jnt" kind="relationship" relationship="viewControllers" id="5uh-db-Rts"/>
+                        <segue destination="Tn4-gB-gbx" kind="relationship" relationship="viewControllers" id="BOB-rT-W60"/>
                     </connections>
                 </tabBarController>
             </objects>
             <point key="canvasLocation" x="453" y="146"/>
         </scene>
-        <!--Category Table View Controller - POI_TAB-->
+        <!--Category Table View Controller - BUILDING_AND_FLOOR-->
         <scene sceneID="zSf-jU-6ZN">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLw-pt-OiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,10 +70,24 @@
                             <outlet property="delegate" destination="gB8-Wd-Z1p" id="Qad-fM-mWY"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="POI_TAB" id="STz-rA-7Ie"/>
+                    <navigationItem key="navigationItem" title="BUILDING_AND_FLOOR" id="XmA-YP-7Vh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="TG3-OQ-1Sl">
+                            <connections>
+                                <action selector="startLocating:" destination="gB8-Wd-Z1p" id="HmZ-ik-xLY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Choose" id="4Fa-P1-IWf">
+                            <connections>
+                                <action selector="chooseFloorPlan:" destination="gB8-Wd-Z1p" id="Syq-nX-0Ze"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="locateButton" destination="TG3-OQ-1Sl" id="uWK-JC-n5Q"/>
+                    </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="993" y="468"/>
+            <point key="canvasLocation" x="1519" y="468"/>
         </scene>
         <!--Table View Controller - POI_CATEGORY_NAME-->
         <scene sceneID="Lnm-Gw-rGM">
@@ -139,7 +136,7 @@
                     <navigationItem key="navigationItem" title="POI_CATEGORY_NAME" id="Py1-Bf-oJn"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1476" y="468"/>
+            <point key="canvasLocation" x="2045" y="468"/>
         </scene>
         <!--Table View Controller - POI_NAME-->
         <scene sceneID="nLx-an-ofC">
@@ -244,9 +241,9 @@
                     <navigationItem key="navigationItem" title="POI_NAME" id="2WN-FT-dWx"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2016" y="136"/>
+            <point key="canvasLocation" x="2584" y="158"/>
         </scene>
-        <!--Table View Controller - DESTINATIONS_TAB-->
+        <!--Table View Controller - FAV_AND_HISTORY-->
         <scene sceneID="eDJ-pn-BZ2">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xG3-GZ-V47" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -274,18 +271,69 @@
                             <outlet property="delegate" destination="tgu-h6-ogu" id="1VS-HW-1FJ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="DESTINATIONS_TAB" id="ehw-6s-u7Y"/>
+                    <navigationItem key="navigationItem" title="FAV_AND_HISTORY" id="Jhg-mh-weB"/>
                 </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1519" y="-150"/>
+        </scene>
+        <!--Navigation Controller - DESTINATIONS_TAB-->
+        <scene sceneID="Tfm-M9-h5C">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LRy-y1-qn8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="MBO-mb-Jnt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="DESTINATIONS_TAB" id="ehw-6s-u7Y"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LoQ-mq-HI7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tgu-h6-ogu" kind="relationship" relationship="rootViewController" id="C9G-jK-7dd"/>
+                    </connections>
+                </navigationController>
             </objects>
             <point key="canvasLocation" x="993" y="-150"/>
         </scene>
+        <!--Navigation Controller - POI_TAB-->
+        <scene sceneID="KVj-tg-fcA">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NIN-PM-O0x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="Tn4-gB-gbx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="POI_TAB" id="STz-rA-7Ie"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pBQ-34-YM9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gB8-Wd-Z1p" kind="relationship" relationship="rootViewController" id="1Sm-1C-EA2"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="993" y="468"/>
+        </scene>
     </scenes>
+    <classes>
+        <class className="CNCategoryTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNCategoryTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chooseFloorPlan:"/>
+                <relationship kind="action" name="startLocating:"/>
+                <relationship kind="outlet" name="locateButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="CNPOITableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOITableViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0dy-GZ-aDq"/>
+        <segue reference="1PZ-2n-1yH"/>
     </inferredMetricsTieBreakers>
 </document>

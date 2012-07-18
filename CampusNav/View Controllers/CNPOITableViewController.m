@@ -71,7 +71,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
 	GGPOI *poi = [self.pois objectAtIndex:indexPath.row];
-	cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", poi.floorPlan.abbreviation, poi.roomNum];
+	cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", poi.floorPlan.building.abbreviation, poi.roomNum];
     
     return cell;
 }
@@ -126,6 +126,19 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([sender isKindOfClass:[UITableViewCell class]]) {
+		UITableViewCell *cell = (UITableViewCell *)sender;
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+		UITableViewController *vc = segue.destinationViewController;
+		
+		vc.title = cell.textLabel.text;
+	}
 }
 
 @end

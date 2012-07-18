@@ -11,6 +11,8 @@
 @class GGPOIPool;
 
 @interface CNCategoryTableViewController : UITableViewController
-@property (nonatomic, strong) GGPOIPool *poiPool;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem *locateButton;
 
+- (IBAction)startLocating:(id)sender;
+- (IBAction)chooseFloorPlan:(id)sender;
 @end
