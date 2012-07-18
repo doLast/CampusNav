@@ -7,7 +7,6 @@
 //
 
 #import "GGFloorPlan.h"
-#import <CoreLocation/CoreLocation.h>
 
 @interface GGFloorPlan ()
 

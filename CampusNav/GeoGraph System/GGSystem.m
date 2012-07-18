@@ -102,11 +102,13 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	
 	// Build data
 	while ([resultSet next]) {
+		NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"f_id"]];
+		CLLocation *location = [[CLLocation alloc] initWithLatitude:[resultSet doubleForColumn:@"latitude"] longitude:[resultSet doubleForColumn:@"longitude"]];
 		GGFloorPlan *floorPlan = [GGFloorPlan 
-								  floorPlanWithFid:[NSNumber numberWithInt:[resultSet intForColumn:@"f_id"]]
+								  floorPlanWithFid:fId
 								  inBuilding:[resultSet stringForColumn:@"building"] 
 								  onFloor:[resultSet intForColumn:@"floor"] 
-								  atLocation:nil 
+								  atLocation:location 
 								  withAbbreviation:[resultSet stringForColumn:@"abbr"]];
 		// TODO Add location
 		[floorPlans addObject:floorPlan];
