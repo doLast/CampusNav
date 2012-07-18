@@ -20,6 +20,7 @@
 
 @implementation GGEdge
 
+#pragma mark - Getter & Setter
 @synthesize eId = _eId;
 @synthesize pIdA = _pIdA;
 @synthesize pIdB = _pIdB;
@@ -33,6 +34,20 @@
 - (GGPoint *)vertexB
 {
 	return [[GGSystem sharedGeoGraphSystem] getPoint:self.pIdB];
+}
+
+#pragma mark - Convenicent Constructor
++ (GGEdge *)edgeWithEId:(NSNumber *)eId 
+		  connectsPoint:(NSNumber *)pIdA 
+			   andPoint:(NSNumber *)pIdB 
+			 haveWeight:(NSInteger)weight
+{
+	GGEdge *edge = [[GGEdge alloc] init];
+	edge.eId = eId;
+	edge.pIdA = pIdA;
+	edge.pIdB = pIdB;
+	edge.weight = weight;
+	return edge;
 }
 
 @end

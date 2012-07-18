@@ -18,4 +18,9 @@ typedef enum {
 
 @property (nonatomic, readonly) GGElementType elementType;
 
++ (GGElement *)elementWithPId:(NSNumber *)pId 
+					  onFloor:(NSNumber *)fId 
+				 atCoordinate:(GGCoordinate)coordinate 
+					   isType:(GGElementType)elementType;
+
 @end

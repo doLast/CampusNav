@@ -16,6 +16,7 @@
 
 @implementation GGPoint
 
+#pragma mark - Getter & Setter
 @synthesize pId = _pId;
 @synthesize fId = _fId;
 @synthesize coordinate = _coordinate;
@@ -25,6 +26,7 @@
 	return [[GGSystem sharedGeoGraphSystem] getFloorPlan:self.fId];
 }
 
+#pragma mark - Coordinate Constructor
 + (GGCoordinate)coordinateAtX:(NSInteger)x andY:(NSInteger)y
 {
 	GGCoordinate coordinate;

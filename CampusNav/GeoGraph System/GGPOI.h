@@ -21,17 +21,8 @@ typedef enum {
 	kGGPOICategoryEnd
 } GGPOICategory;
 
-static NSString *GGPOICategoryNames[kGGPOICategoryEnd] = {
-	@"Woman's Washroom", 
-	@"Man's Washroom", 
-	@"Elevator", 
-	@"Classroom", 
-	@"Common Room", 
-	@"Office", 
-	@"Lab", 
-	@"Printer", 
-	@"Secret", 
-};
+extern NSString *GGPOICategoryNames[kGGPOICategoryEnd];
+extern NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd];
 
 @class GGEdge;
 

@@ -9,7 +9,19 @@
 #import "GGPOI.h"
 #import "GGSystem+GGInternalSystem.h"
 
-static NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
+NSString *GGPOICategoryNames[kGGPOICategoryEnd] = {
+	@"Woman's Washroom", 
+	@"Man's Washroom", 
+	@"Elevator", 
+	@"Classroom", 
+	@"Common Room", 
+	@"Office", 
+	@"Lab", 
+	@"Printer", 
+	@"Secret", 
+};
+
+NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
 	@"W", 
 	@"M", 
 	@"E", 
@@ -72,6 +84,7 @@ static NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
 	return poi;
 }
 
+#pragma mark - Convenicent Constructor
 + (GGPOICategory)categoryOfAbbreviation:(NSString *)abbr
 {
 	NSArray *array = [NSArray arrayWithObjects:GGPOICategoryAbbreviations count:kGGPOICategoryEnd];

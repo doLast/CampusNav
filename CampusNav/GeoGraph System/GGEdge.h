@@ -17,4 +17,9 @@
 @property (nonatomic, weak, readonly) GGPoint *vertexB;
 @property (nonatomic, readonly) NSInteger weight;
 
++ (GGEdge *)edgeWithEId:(NSNumber *)eId 
+		  connectsPoint:(NSNumber *)pIdA 
+			   andPoint:(NSNumber *)pIdB 
+			 haveWeight:(NSInteger)weight;
+
 @end

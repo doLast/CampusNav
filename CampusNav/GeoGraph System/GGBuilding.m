@@ -18,10 +18,12 @@
 
 @implementation GGBuilding
 
+#pragma mark - Getter & Setter
 @synthesize name = _name;
 @synthesize location = _location;
 @synthesize abbreviation = _abbreviation;
 
+#pragma mark - Convenicent Constructor
 + (GGBuilding *)buildingWithName:(NSString *)name withAbbreviation:(NSString *)abbreviation atLocation:(CLLocation *)location
 {
 	GGBuilding *building = [[GGBuilding alloc] init];
