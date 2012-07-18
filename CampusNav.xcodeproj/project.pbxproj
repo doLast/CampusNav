@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		250B882B15B6006000332392 /* GGFloorPlanPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B882A15B6006000332392 /* GGFloorPlanPool.m */; };
-		250B883215B610AF00332392 /* CNPOITabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883115B610AF00332392 /* CNPOITabBarViewController.m */; };
+		250B883215B610AF00332392 /* CNGeoGraphSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */; };
 		250B883515B615B200332392 /* CNPOITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883415B615B200332392 /* CNPOITableViewController.m */; };
+		250B883C15B6EC6100332392 /* GGBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883B15B6EC6000332392 /* GGBuilding.m */; };
+		250B883F15B6F06D00332392 /* GGPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883E15B6F06D00332392 /* GGPool.m */; };
+		250B884215B6F28B00332392 /* GGBuildingPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B884115B6F28B00332392 /* GGBuildingPool.m */; };
 		2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975915817CD300F79A1A /* UIKit.framework */; };
 		2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975B15817CD300F79A1A /* Foundation.framework */; };
 		2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975D15817CD300F79A1A /* CoreGraphics.framework */; };
@@ -41,10 +44,16 @@
 /* Begin PBXFileReference section */
 		250B882915B6006000332392 /* GGFloorPlanPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFloorPlanPool.h; sourceTree = "<group>"; };
 		250B882A15B6006000332392 /* GGFloorPlanPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFloorPlanPool.m; sourceTree = "<group>"; };
-		250B883015B610AF00332392 /* CNPOITabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOITabBarViewController.h; sourceTree = "<group>"; };
-		250B883115B610AF00332392 /* CNPOITabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOITabBarViewController.m; sourceTree = "<group>"; };
+		250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CNGeoGraphSelectionViewController.h; sourceTree = "<group>"; };
+		250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNGeoGraphSelectionViewController.m; sourceTree = "<group>"; };
 		250B883315B615B200332392 /* CNPOITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOITableViewController.h; sourceTree = "<group>"; };
 		250B883415B615B200332392 /* CNPOITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOITableViewController.m; sourceTree = "<group>"; };
+		250B883A15B6EC5F00332392 /* GGBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBuilding.h; sourceTree = "<group>"; };
+		250B883B15B6EC6000332392 /* GGBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBuilding.m; sourceTree = "<group>"; };
+		250B883D15B6F06D00332392 /* GGPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGPool.h; sourceTree = "<group>"; };
+		250B883E15B6F06D00332392 /* GGPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPool.m; sourceTree = "<group>"; };
+		250B884015B6F28B00332392 /* GGBuildingPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBuildingPool.h; sourceTree = "<group>"; };
+		250B884115B6F28B00332392 /* GGBuildingPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBuildingPool.m; sourceTree = "<group>"; };
 		255E160B1581B572002B9EBC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		255E160E1581B8FA002B9EBC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		2586975515817CD300F79A1A /* CampusNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +119,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		250B884315B6FD0C00332392 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				250B883A15B6EC5F00332392 /* GGBuilding.h */,
+				250B883B15B6EC6000332392 /* GGBuilding.m */,
+				25FF0BBB15B4BA4100F5EE73 /* GGFloorPlan.h */,
+				25FF0BBC15B4BA4100F5EE73 /* GGFloorPlan.m */,
+				25FF0BBE15B4BE4400F5EE73 /* GGPoint.h */,
+				25FF0BBF15B4BE4400F5EE73 /* GGPoint.m */,
+				25FF0BC115B4C10300F5EE73 /* GGElement.h */,
+				25FF0BC215B4C10300F5EE73 /* GGElement.m */,
+				25FF0BC415B4C31F00F5EE73 /* GGPOI.h */,
+				25FF0BC515B4C31F00F5EE73 /* GGPOI.m */,
+				25FF0BC715B4C97000F5EE73 /* GGEdge.h */,
+				25FF0BC815B4C97000F5EE73 /* GGEdge.m */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
 		2586974A15817CD300F79A1A = {
 			isa = PBXGroup;
 			children = (
@@ -188,8 +216,8 @@
 		25FF0BB615B4A84000F5EE73 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				250B883015B610AF00332392 /* CNPOITabBarViewController.h */,
-				250B883115B610AF00332392 /* CNPOITabBarViewController.m */,
+				250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */,
+				250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */,
 				25FF0BB715B4A89C00F5EE73 /* CNCategoryTableViewController.h */,
 				25FF0BB815B4A89C00F5EE73 /* CNCategoryTableViewController.m */,
 				250B883315B615B200332392 /* CNPOITableViewController.h */,
@@ -201,16 +229,7 @@
 		25FF0BBA15B4B6CB00F5EE73 /* GeoGraph System */ = {
 			isa = PBXGroup;
 			children = (
-				25FF0BBB15B4BA4100F5EE73 /* GGFloorPlan.h */,
-				25FF0BBC15B4BA4100F5EE73 /* GGFloorPlan.m */,
-				25FF0BBE15B4BE4400F5EE73 /* GGPoint.h */,
-				25FF0BBF15B4BE4400F5EE73 /* GGPoint.m */,
-				25FF0BC115B4C10300F5EE73 /* GGElement.h */,
-				25FF0BC215B4C10300F5EE73 /* GGElement.m */,
-				25FF0BC415B4C31F00F5EE73 /* GGPOI.h */,
-				25FF0BC515B4C31F00F5EE73 /* GGPOI.m */,
-				25FF0BC715B4C97000F5EE73 /* GGEdge.h */,
-				25FF0BC815B4C97000F5EE73 /* GGEdge.m */,
+				250B884315B6FD0C00332392 /* Components */,
 				25FF0BCA15B4E6E900F5EE73 /* GGGraph.h */,
 				25FF0BCB15B4E6EA00F5EE73 /* GGGraph.m */,
 				25FF0BDB15B519D200F5EE73 /* GGSystem.h */,
@@ -224,6 +243,10 @@
 		25FF0BCD15B4ED9E00F5EE73 /* GeoGraph Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				250B883D15B6F06D00332392 /* GGPool.h */,
+				250B883E15B6F06D00332392 /* GGPool.m */,
+				250B884015B6F28B00332392 /* GGBuildingPool.h */,
+				250B884115B6F28B00332392 /* GGBuildingPool.m */,
 				250B882915B6006000332392 /* GGFloorPlanPool.h */,
 				250B882A15B6006000332392 /* GGFloorPlanPool.m */,
 				25FF0BCE15B4EDE400F5EE73 /* GGPOIPool.h */,
@@ -314,8 +337,11 @@
 				25FF0BDD15B519D400F5EE73 /* GGSystem.m in Sources */,
 				25E7944215B5C5D800E7B58C /* GGSystem+GGInternalSystem.m in Sources */,
 				250B882B15B6006000332392 /* GGFloorPlanPool.m in Sources */,
-				250B883215B610AF00332392 /* CNPOITabBarViewController.m in Sources */,
+				250B883215B610AF00332392 /* CNGeoGraphSelectionViewController.m in Sources */,
 				250B883515B615B200332392 /* CNPOITableViewController.m in Sources */,
+				250B883C15B6EC6100332392 /* GGBuilding.m in Sources */,
+				250B883F15B6F06D00332392 /* GGPool.m in Sources */,
+				250B884215B6F28B00332392 /* GGBuildingPool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
