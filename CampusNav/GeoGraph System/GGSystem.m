@@ -26,7 +26,12 @@ static NSString * const kDataSourceName = @"GG_DATA";
 @property (nonatomic, strong) NSMutableDictionary *buildingCache;
 @property (nonatomic, strong) NSMutableDictionary *floorPlanCache;
 @property (nonatomic, strong) NSMutableDictionary *pointCache;
-@property (nonatomic, strong) NSMutableDictionary *edgeCache;
+//@property (nonatomic, strong) NSMutableDictionary *edgeCache;
+
+@property (nonatomic, strong) NSMutableSet *buildingCacheIndicator;
+@property (nonatomic, strong) NSMutableSet *floorCacheIndicator;
+@property (nonatomic, strong) NSMutableSet *poiCacheIndicator;
+//@property (nonatomic, strong) NSMutableSet *edgeCacheIndicator;
 
 @end
 
@@ -35,10 +40,16 @@ static NSString * const kDataSourceName = @"GG_DATA";
 
 #pragma mark - Getter & Setter
 @synthesize dataSource = _dataSource;
+
 @synthesize buildingCache = _buildingCache;
 @synthesize floorPlanCache = _floorPlanCache;
 @synthesize pointCache = _pointCache;
-@synthesize edgeCache = _edgeCache;
+//@synthesize edgeCache = _edgeCache;
+
+@synthesize buildingCacheIndicator = _buildingCacheIndicator;
+@synthesize floorCacheIndicator = _floorCacheIndicator;
+@synthesize poiCacheIndicator = _poiCacheIndicator;
+//@synthesize edgeCacheIndicator = _edgeCacheIndicator;
 
 #pragma mark - System Initialization
 - (GGSystem *)initWithSqliteResource:(NSString *)resource
@@ -61,7 +72,12 @@ static NSString * const kDataSourceName = @"GG_DATA";
 		self.buildingCache = [NSMutableDictionary dictionary];
 		self.floorPlanCache = [NSMutableDictionary dictionary];
 		self.pointCache = [NSMutableDictionary dictionary];
-		self.edgeCache = [NSMutableDictionary dictionary]; 
+//		self.edgeCache = [NSMutableDictionary dictionary]; 
+		
+		self.buildingCacheIndicator = [NSMutableSet set];
+		self.floorCacheIndicator = [NSMutableSet set];
+		self.poiCacheIndicator = [NSMutableSet set];
+//		self.edgeCacheIndicator = [NSMutableSet set];
 	}
 	return self;
 }
@@ -90,6 +106,8 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	GGBuilding *building = [GGBuilding buildingWithName:@"Mathmetics & Computer" withAbbreviation:@"MC" atLocation:[[CLLocation alloc] initWithLatitude:43.472113 longitude:-80.543912]];
 	[self.buildingCache setObject:building forKey:building.name];
 	NSArray *buildings = [NSArray arrayWithObject:building];
+	
+	[self.buildingCacheIndicator addObject:campus];
 	return buildings;
 }
 
@@ -110,11 +128,11 @@ static NSString * const kDataSourceName = @"GG_DATA";
 - (NSArray *)floorPlansOfBuilding:(GGBuilding *)building
 {
 	// Get floor plans from cache if exists
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"building = %@", building];
-	NSArray *filtered = [[self.floorPlanCache allValues] 
-						 filteredArrayUsingPredicate:predicate];
-	if ([filtered count] > 0) {
+	if ([self.floorCacheIndicator containsObject:building]) {
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:
+								  @"building.name = %@", building.name];
+		NSArray *filtered = [[self.floorPlanCache allValues] 
+							 filteredArrayUsingPredicate:predicate];
 		NSSortDescriptor *sortDescriptor = [NSSortDescriptor 
 											sortDescriptorWithKey:@"floor" ascending:YES];
 		NSArray *sorted = [filtered sortedArrayUsingDescriptors:
@@ -145,6 +163,9 @@ static NSString * const kDataSourceName = @"GG_DATA";
 		[self.floorPlanCache setObject:floorPlan forKey:floorPlan.fId];
 	}
 	
+	// Add current building to cache indicator
+	[self.floorCacheIndicator addObject:building];
+	
 	NSLog(@"Found %d floor plans from data source", [floorPlans count]);
 	return floorPlans;
 }
@@ -166,11 +187,11 @@ static NSString * const kDataSourceName = @"GG_DATA";
 - (NSArray *)poisOnFloorPlan:(GGFloorPlan *)floorPlan
 {
 	// Get pois from cache if exists
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:
-							  @"SELF isKindOfClass:%@ && floorPlan = %@", [GGPOI class], floorPlan];
-	NSArray *filtered = [[self.pointCache allValues] 
-						 filteredArrayUsingPredicate:predicate];
-	if ([filtered count] > 0) {
+	if ([self.poiCacheIndicator containsObject:floorPlan]) {
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:
+								  @"SELF isKindOfClass:%@ && floorPlan.fId = %@", [GGPOI class], floorPlan.fId];
+		NSArray *filtered = [[self.pointCache allValues] 
+							 filteredArrayUsingPredicate:predicate];
 		NSLog(@"Found %d POIs from cache", filtered.count);
 		return filtered;
 	}
@@ -211,6 +232,9 @@ static NSString * const kDataSourceName = @"GG_DATA";
 		[pois addObject:poi];
 		[self.pointCache setObject:poi forKey:poi.pId];
 	}
+	
+	// Add current floor plan to cache indicator
+	[self.poiCacheIndicator addObject:floorPlan];
 	
 	NSLog(@"Found %d POIs from data source", pois.count);
 	return pois;
