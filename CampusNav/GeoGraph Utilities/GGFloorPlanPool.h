@@ -7,16 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GGPool.h"
 #import "GGSystem.h"
 
-@class CLLocation;
-@class GGPOIPool;
+@class GGBuilding;
 
-@interface GGFloorPlanPool : NSObject
+@interface GGFloorPlanPool : GGPool
 
-@property (nonatomic, strong, readonly) NSArray *floorPlans;
-
-+ (GGFloorPlanPool *)floorPlanPoolOfBuilding:(NSString *)building;
-+ (GGFloorPlanPool *)floorPlanPoolAtLocation:(CLLocation *)location;
++ (GGFloorPlanPool *)floorPlanPoolOfBuilding:(GGBuilding *)building;
 
 @end

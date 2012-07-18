@@ -1,5 +1,5 @@
 //
-//  CNPOIPool.m
+//  GGFloorPlan.m
 //  CampusNav
 //
 //  Created by Greg Wang on 12-7-16.
@@ -11,32 +11,33 @@
 
 @interface GGPOIPool ()
 
-@property (nonatomic, strong) NSArray *pois;
+@property (nonatomic, strong) NSArray *items;
 
 @end
 
 @implementation GGPOIPool
 
-@synthesize pois = _pois;
+@synthesize items = _items;
 
-//+ (GGPOIPool *)poiPoolWithBuilding:(NSString *)building andFloor:(NSInteger)floor
-//{
-//	GGPOIPool *poiPool = [[GGPOIPool alloc] init];
-//	// TODO Initialize the pool
-//	return poiPool;
-//}
++ (GGPOIPool *)poiPoolOfBuilding:(GGBuilding *)building
+{
+	GGPOIPool *pool = [[GGPOIPool alloc] init];
+	pool.items = [[GGSystem sharedGeoGraphSystem] poisInBuilding:building];
+	return pool;
+}
 
 + (GGPOIPool *)poiPoolOfFloorPlan:(GGFloorPlan *)floorPlan
 {
 	GGPOIPool *pool = [[GGPOIPool alloc] init];
-	pool.pois = [[GGSystem sharedGeoGraphSystem] poisOnFloorPlan:floorPlan];
+	NSLog(@"Creating poi pool from floor plan %@", floorPlan.fId);
+	pool.items = [[GGSystem sharedGeoGraphSystem] poisOnFloorPlan:floorPlan];
 	return pool;
 }
 
 - (NSArray *)poisWithinCategory:(GGPOICategory)category
 {
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"category=%d", category];
-	NSArray *result = [self.pois filteredArrayUsingPredicate:predicate];
+	NSArray *result = [self.items filteredArrayUsingPredicate:predicate];
 	return result;
 }
 

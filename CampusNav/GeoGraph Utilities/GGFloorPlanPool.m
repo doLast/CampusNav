@@ -11,18 +11,27 @@
 
 @interface GGFloorPlanPool ()
 
-@property (nonatomic, strong) NSArray *floorPlans;
+@property (nonatomic, strong) NSArray *items;
 
 @end
 
 @implementation GGFloorPlanPool
 
-@synthesize floorPlans;
+#pragma mark - getter & setter
+@synthesize items = _items;
 
-+ (GGFloorPlanPool *)floorPlanPoolOfBuilding:(NSString *)building
+#pragma mark - convenient constructors
++ (GGFloorPlanPool *)floorPlanPoolOfCampus:(NSString *)campus
 {
 	GGFloorPlanPool *pool = [[GGFloorPlanPool alloc] init];
-	pool.floorPlans = [[GGSystem sharedGeoGraphSystem] floorPlansOfBuilding:building];
+	pool.items = [[GGSystem sharedGeoGraphSystem] floorPlansOfCampus:campus];
+	return pool;
+}
+
++ (GGFloorPlanPool *)floorPlanPoolOfBuilding:(GGBuilding *)building
+{
+	GGFloorPlanPool *pool = [[GGFloorPlanPool alloc] init];
+	pool.items = [[GGSystem sharedGeoGraphSystem] floorPlansOfBuilding:building];
 	return pool;
 }
 

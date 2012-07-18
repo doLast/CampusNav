@@ -1,5 +1,5 @@
 //
-//  CNPOIPool.h
+//  GGFloorPlan.h
 //  CampusNav
 //
 //  Created by Greg Wang on 12-7-16.
@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GGPool.h"
 #import "GGSystem.h"
 
-@interface GGPOIPool : NSObject
+@class GGFloorPlan;
 
-@property (nonatomic, strong, readonly) NSArray *pois;
+@interface GGPOIPool : GGPool
 
-//+ (GGPOIPool *)poiPoolWithBuilding:(NSString *)building andFloor:(NSInteger)floor;
++ (GGPOIPool *)poiPoolOfBuilding:(GGBuilding *)building;
 + (GGPOIPool *)poiPoolOfFloorPlan:(GGFloorPlan *)floorPlan;
+
 - (NSArray *)poisWithinCategory:(GGPOICategory)category;
 
 @end
