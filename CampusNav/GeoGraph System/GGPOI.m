@@ -49,7 +49,7 @@ NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
 
 @implementation GGPOI
 
-#pragma mark - setter & getter
+#pragma mark - Getter & Setter
 @synthesize pId = _pId;
 @synthesize coordinate = _coordinate;
 @synthesize fId = _fId;
@@ -84,7 +84,7 @@ NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
 	return poi;
 }
 
-#pragma mark - Convenicent Constructor
+#pragma mark - Category Helper
 + (GGPOICategory)categoryOfAbbreviation:(NSString *)abbr
 {
 	NSArray *array = [NSArray arrayWithObjects:GGPOICategoryAbbreviations count:kGGPOICategoryEnd];

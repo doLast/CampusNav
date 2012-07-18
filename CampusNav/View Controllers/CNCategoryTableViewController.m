@@ -22,7 +22,7 @@
 
 @implementation CNCategoryTableViewController
 
-#pragma mark - getter & setter
+#pragma mark - Getter & Setter
 @synthesize poiPool = _poiPool;
 @synthesize selectionViewController = _selectionViewController;
 
