@@ -51,7 +51,7 @@
 	self.selectionViewController = [[CNGeoGraphSelectionViewController alloc] init];
 	self.selectionViewController.locateButton = self.locateButton;
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewPOIPoolNotification:) name:kNewPOIPoolNotification object:self.selectionViewController];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewPOIPoolNotification:) name:kCNNewPOIPoolNotification object:self.selectionViewController];
 }
 
 - (void)viewDidUnload
@@ -75,10 +75,10 @@
 
 - (void)handleNewPOIPoolNotification:(NSNotification *)notification
 {
-	NSString *title = [notification.userInfo objectForKey:kNewPOIPoolNotificationTitle];
+	NSString *title = [notification.userInfo objectForKey:kCNNewPOIPoolNotificationTitle];
 	self.title = title;
 	
-	GGPOIPool *pool = [notification.userInfo objectForKey:kNewPOIPoolNotificationData];
+	GGPOIPool *pool = [notification.userInfo objectForKey:kCNNewPOIPoolNotificationData];
 	self.poiPool = pool;
 	[self.tableView reloadData];
 }

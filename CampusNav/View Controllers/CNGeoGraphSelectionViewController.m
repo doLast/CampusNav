@@ -14,9 +14,9 @@
 #import "GGFloorPlanPool.h"
 #import "GGPOIPool.h"
 
-NSString * const kNewPOIPoolNotification = @"NewPOIPoolNotification";
-NSString * const kNewPOIPoolNotificationTitle = @"NewPOIPoolNotificationTitle";
-NSString * const kNewPOIPoolNotificationData = @"NewPOIPoolNotificationData";
+NSString * const kCNNewPOIPoolNotification = @"CNNewPOIPoolNotification";
+NSString * const kCNNewPOIPoolNotificationTitle = @"CNNewPOIPoolNotificationTitle";
+NSString * const kCNNewPOIPoolNotificationData = @"CNNewPOIPoolNotificationData";
 
 enum FloorPlanPickerViewComponents {
 	kFloorPlanPickerViewBuilding = 0,
@@ -128,7 +128,7 @@ enum FloorPlanPickerViewComponents {
 					   ((GGBuilding *)[self.buildingPool.items objectAtIndex:self.selectedBuilding]).abbreviation, floor];
 	
 	// Boradcase the update
-	[[NSNotificationCenter defaultCenter] postNotificationName:kNewPOIPoolNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:title, kNewPOIPoolNotificationTitle, poiPool, kNewPOIPoolNotificationData, nil]];
+	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNewPOIPoolNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:title, kCNNewPOIPoolNotificationTitle, poiPool, kCNNewPOIPoolNotificationData, nil]];
 }
 
 - (IBAction)startLocating:(id)sender

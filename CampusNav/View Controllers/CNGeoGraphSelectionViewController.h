@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const kNewPOIPoolNotification;
-extern NSString * const kNewPOIPoolNotificationTitle;
-extern NSString * const kNewPOIPoolNotificationData;
+extern NSString * const kCNNewPOIPoolNotification;
+extern NSString * const kCNNewPOIPoolNotificationTitle;
+extern NSString * const kCNNewPOIPoolNotificationData;
 
 @interface CNGeoGraphSelectionViewController : NSObject 
 <CLLocationManagerDelegate, UIActionSheetDelegate, 
