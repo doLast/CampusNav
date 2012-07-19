@@ -20,10 +20,10 @@
 // Private declarations
 @interface GGSystem ()
 @property (nonatomic, strong, readonly) FMDatabase *dataSource;
-@property (nonatomic, strong, readonly) NSDictionary *buildingCache;
-@property (nonatomic, strong, readonly) NSDictionary *floorPlanCache;
-@property (nonatomic, strong, readonly) NSDictionary *pointCache;
-@property (nonatomic, strong, readonly) NSDictionary *edgeCache;
+@property (nonatomic, strong, readonly) NSMutableDictionary *buildingCache;
+@property (nonatomic, strong, readonly) NSMutableDictionary *floorPlanCache;
+@property (nonatomic, strong, readonly) NSMutableDictionary *pointCache;
+@property (nonatomic, strong, readonly) NSMutableDictionary *edgeCache;
 
 @end
 
@@ -35,6 +35,8 @@
 	if (building == nil) {
 		building = [GGBuilding buildingWithName:@"Mathmetics & Computer" withAbbreviation:@"MC" atLocation:[[CLLocation alloc] initWithLatitude:43.472113 longitude:-80.543912]];
 		NSLog(@"No cached building, fetched");
+		
+		[self.buildingCache setObject:building forKey:name];
 	}
 	return building;
 }
@@ -60,6 +62,8 @@
 						 onFloor:[resultSet intForColumn:@"floor"]];
 		}
 		NSLog(@"No cached floor plan, fetched");
+		
+		[self.floorPlanCache setObject:floorPlan forKey:fId];
 	}
 	return floorPlan;
 }
@@ -120,6 +124,8 @@
 		}
 		
 		NSLog(@"No cached POI, fetched");
+		
+		[self.pointCache setObject:point forKey:pId];
 	}
 	if ([point isKindOfClass:[GGPOI class]]) {
 		return point;
