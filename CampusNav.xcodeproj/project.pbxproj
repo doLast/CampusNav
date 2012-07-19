@@ -13,6 +13,10 @@
 		250B883C15B6EC6100332392 /* GGBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883B15B6EC6000332392 /* GGBuilding.m */; };
 		250B883F15B6F06D00332392 /* GGPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B883E15B6F06D00332392 /* GGPool.m */; };
 		250B884215B6F28B00332392 /* GGBuildingPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B884115B6F28B00332392 /* GGBuildingPool.m */; };
+		250B885315B74A7900332392 /* CNUserPOIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250B885215B74A7900332392 /* CNUserPOIViewController.m */; };
+		255FF02615B7959E0033C98B /* CNPOIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF02515B7959E0033C98B /* CNPOIDetailViewController.m */; };
+		255FF02915B796D00033C98B /* UserPOI.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF02815B796D00033C98B /* UserPOI.m */; };
+		255FF03015B7A3A60033C98B /* CNUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF02F15B7A3A60033C98B /* CNUserProfile.m */; };
 		2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975915817CD300F79A1A /* UIKit.framework */; };
 		2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975B15817CD300F79A1A /* Foundation.framework */; };
 		2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975D15817CD300F79A1A /* CoreGraphics.framework */; };
@@ -44,7 +48,7 @@
 /* Begin PBXFileReference section */
 		250B882915B6006000332392 /* GGFloorPlanPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGFloorPlanPool.h; sourceTree = "<group>"; };
 		250B882A15B6006000332392 /* GGFloorPlanPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGFloorPlanPool.m; sourceTree = "<group>"; };
-		250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CNGeoGraphSelectionViewController.h; sourceTree = "<group>"; };
+		250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNGeoGraphSelectionViewController.h; sourceTree = "<group>"; };
 		250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNGeoGraphSelectionViewController.m; sourceTree = "<group>"; };
 		250B883315B615B200332392 /* CNPOITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOITableViewController.h; sourceTree = "<group>"; };
 		250B883415B615B200332392 /* CNPOITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOITableViewController.m; sourceTree = "<group>"; };
@@ -54,8 +58,16 @@
 		250B883E15B6F06D00332392 /* GGPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGPool.m; sourceTree = "<group>"; };
 		250B884015B6F28B00332392 /* GGBuildingPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGBuildingPool.h; sourceTree = "<group>"; };
 		250B884115B6F28B00332392 /* GGBuildingPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGBuildingPool.m; sourceTree = "<group>"; };
+		250B885115B74A7900332392 /* CNUserPOIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNUserPOIViewController.h; sourceTree = "<group>"; };
+		250B885215B74A7900332392 /* CNUserPOIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNUserPOIViewController.m; sourceTree = "<group>"; };
 		255E160B1581B572002B9EBC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		255E160E1581B8FA002B9EBC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		255FF02415B7959E0033C98B /* CNPOIDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOIDetailViewController.h; sourceTree = "<group>"; };
+		255FF02515B7959E0033C98B /* CNPOIDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOIDetailViewController.m; sourceTree = "<group>"; };
+		255FF02715B796D00033C98B /* UserPOI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPOI.h; sourceTree = "<group>"; };
+		255FF02815B796D00033C98B /* UserPOI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPOI.m; sourceTree = "<group>"; };
+		255FF02E15B7A3A60033C98B /* CNUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNUserProfile.h; sourceTree = "<group>"; };
+		255FF02F15B7A3A60033C98B /* CNUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNUserProfile.m; sourceTree = "<group>"; };
 		2586975515817CD300F79A1A /* CampusNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2586975915817CD300F79A1A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2586975B15817CD300F79A1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -138,6 +150,26 @@
 			name = Components;
 			sourceTree = "<group>";
 		};
+		250B885515B74ABA00332392 /* Behind the Scene */ = {
+			isa = PBXGroup;
+			children = (
+				250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */,
+				250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */,
+			);
+			name = "Behind the Scene";
+			sourceTree = "<group>";
+		};
+		255FF01C15B789C50033C98B /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				255FF02715B796D00033C98B /* UserPOI.h */,
+				255FF02815B796D00033C98B /* UserPOI.m */,
+				255FF02E15B7A3A60033C98B /* CNUserProfile.h */,
+				255FF02F15B7A3A60033C98B /* CNUserProfile.m */,
+			);
+			path = "User Profile";
+			sourceTree = "<group>";
+		};
 		2586974A15817CD300F79A1A = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +208,7 @@
 				25FF0BB615B4A84000F5EE73 /* View Controllers */,
 				25FF0BCD15B4ED9E00F5EE73 /* GeoGraph Utilities */,
 				25FF0BBA15B4B6CB00F5EE73 /* GeoGraph System */,
+				255FF01C15B789C50033C98B /* User Profile */,
 				2586976A15817CD300F79A1A /* CNAppDelegate.h */,
 				2586976B15817CD300F79A1A /* CNAppDelegate.m */,
 				2586976D15817CD300F79A1A /* CampusNav.xcdatamodeld */,
@@ -216,12 +249,15 @@
 		25FF0BB615B4A84000F5EE73 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */,
-				250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */,
+				250B885515B74ABA00332392 /* Behind the Scene */,
 				25FF0BB715B4A89C00F5EE73 /* CNCategoryTableViewController.h */,
 				25FF0BB815B4A89C00F5EE73 /* CNCategoryTableViewController.m */,
 				250B883315B615B200332392 /* CNPOITableViewController.h */,
 				250B883415B615B200332392 /* CNPOITableViewController.m */,
+				250B885115B74A7900332392 /* CNUserPOIViewController.h */,
+				250B885215B74A7900332392 /* CNUserPOIViewController.m */,
+				255FF02415B7959E0033C98B /* CNPOIDetailViewController.h */,
+				255FF02515B7959E0033C98B /* CNPOIDetailViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -342,6 +378,10 @@
 				250B883C15B6EC6100332392 /* GGBuilding.m in Sources */,
 				250B883F15B6F06D00332392 /* GGPool.m in Sources */,
 				250B884215B6F28B00332392 /* GGBuildingPool.m in Sources */,
+				250B885315B74A7900332392 /* CNUserPOIViewController.m in Sources */,
+				255FF02615B7959E0033C98B /* CNPOIDetailViewController.m in Sources */,
+				255FF02915B796D00033C98B /* UserPOI.m in Sources */,
+				255FF03015B7A3A60033C98B /* CNUserProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
