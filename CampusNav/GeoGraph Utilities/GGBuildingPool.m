@@ -22,7 +22,7 @@
 + (GGBuildingPool *)buildingPoolOfCampus:(NSString *)campus
 {
 	GGBuildingPool *pool = [[GGBuildingPool alloc] init];
-	pool.items = [[GGSystem sharedGeoGraphSystem] buildingInCampus:campus];
+	pool.items = [[GGSystem sharedGeoGraphSystem] buildingsInCampus:campus];
 	return pool;
 }
 
