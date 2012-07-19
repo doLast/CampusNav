@@ -84,6 +84,11 @@ NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
 	return poi;
 }
 
++ (GGPOI *)poiWithPId:(NSNumber *)pId
+{
+	return [[GGSystem sharedGeoGraphSystem] getPOI:pId];
+}
+
 #pragma mark - Category Helper
 + (GGPOICategory)categoryOfAbbreviation:(NSString *)abbr
 {

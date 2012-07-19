@@ -13,7 +13,7 @@
 @interface GGFloorPlan : NSObject
 
 @property (nonatomic, strong, readonly) NSNumber *fId;
-@property (nonatomic, strong, readonly) GGBuilding *building;
+@property (nonatomic, readonly) GGBuilding *building;
 @property (nonatomic, readonly) NSInteger floor;
 
 + (GGFloorPlan *)floorPlanWithFid:(NSNumber *)fId 

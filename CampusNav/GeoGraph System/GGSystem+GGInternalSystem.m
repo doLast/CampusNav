@@ -7,8 +7,8 @@
 //
 
 #import "GGSystem+GGInternalSystem.h"
-//#import "FMDatabase.h"
-//#import "FMResultSet.h"
+#import "FMDatabase.h"
+
 #import "GGFloorPlan.h"
 #import "GGPoint.h"
 #import "GGElement.h"
@@ -19,7 +19,7 @@
 
 // Private declarations
 @interface GGSystem ()
-//@property (nonatomic, strong, readonly) FMDatabase *dataSource;
+@property (nonatomic, strong, readonly) FMDatabase *dataSource;
 @property (nonatomic, strong, readonly) NSDictionary *buildingCache;
 @property (nonatomic, strong, readonly) NSDictionary *floorPlanCache;
 @property (nonatomic, strong, readonly) NSDictionary *pointCache;
@@ -31,12 +31,37 @@
 
 - (GGBuilding *)getBuilding:(NSString *)name
 {
-	return [self.buildingCache objectForKey:name];
+	GGBuilding *building = [self.buildingCache objectForKey:name];
+	if (building == nil) {
+		building = [GGBuilding buildingWithName:@"Mathmetics & Computer" withAbbreviation:@"MC" atLocation:[[CLLocation alloc] initWithLatitude:43.472113 longitude:-80.543912]];
+		NSLog(@"No cached building, fetched");
+	}
+	return building;
 }
 
 - (GGFloorPlan *)getFloorPlan:(NSNumber *)fId
 {
-	return [self.floorPlanCache objectForKey:fId];
+	GGFloorPlan *floorPlan = [self.floorPlanCache objectForKey:fId];
+	if (floorPlan == nil) {
+		// data source must be valid
+		assert(self.dataSource);
+		
+		// Create result set and data container
+		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+								  @"SELECT * FROM floor_plan AS f \
+								  WHERE f.f_id = %@ \
+								  ORDER BY f.floor ASC;", fId];		
+		// Build data
+		if ([resultSet next]) {
+			NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"f_id"]];
+			floorPlan = [GGFloorPlan 
+						 floorPlanWithFid:fId
+						 inBuilding:[resultSet stringForColumn:@"building"] 
+						 onFloor:[resultSet intForColumn:@"floor"]];
+		}
+		NSLog(@"No cached floor plan, fetched");
+	}
+	return floorPlan;
 }
 
 - (GGEdge *)getEdge:(NSNumber *)eId
@@ -61,6 +86,41 @@
 - (GGPOI *)getPOI:(NSNumber *)pId
 {
 	GGPOI *point = [self.pointCache objectForKey:pId];
+	if (point == nil) {
+		// data source must be valid
+		assert(self.dataSource);
+		
+		// Create result set and data container
+		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+								  @"SELECT p.p_id, p.floor_plan, p.x, p.y, \
+								  i.room_number, i.category, i.edge \
+								  FROM point AS p, point_poi AS i  \
+								  WHERE p.p_id = %@ \
+								  AND i.p_id = p.p_id;", pId];
+		
+		// Build data
+		if ([resultSet next]) {
+			NSNumber *pId = [NSNumber numberWithInt:[resultSet intForColumn:@"p_id"]];
+			NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"floor_plan"]];
+			GGCoordinate coordinate = [GGPoint coordinateAtX:[resultSet intForColumn:@"x"]
+														andY:[resultSet intForColumn:@"y"]];
+			GGPOICategory category = [GGPOI categoryOfAbbreviation:
+									  [resultSet stringForColumn:@"category"]];
+			NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"edge"]];
+			NSString *roomNum = [resultSet stringForColumn:@"room_number"];
+			NSString *description = nil; // [resultSet stringForColumn:@"description"];
+			
+			point = [GGPOI poiWithPId:pId 
+							  onFloor:fId 
+						 atCoordinate:coordinate 
+					   withinCategory:category 
+							   onEdge:eId 
+						  withRoomNum:roomNum 
+					   andDescription:description];
+		}
+		
+		NSLog(@"No cached POI, fetched");
+	}
 	if ([point isKindOfClass:[GGPOI class]]) {
 		return point;
 	}

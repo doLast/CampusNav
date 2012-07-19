@@ -93,8 +93,28 @@ static NSString * const kDataSourceName = @"GG_DATA";
 
 #pragma mark - Data fetching methods
 
+//- (void) executeQuery:(NSString *)query 
+//		withArguments:(NSArray *)arguments 
+//  andSaveEachByMethod:(SEL)method
+//{
+//	// data source must be valid
+//	assert(self.dataSource);
+//	
+//	// Create result set and data container
+//	FMResultSet *resultSet = [self.dataSource executeQuery:query withArgumentsInArray:arguments];
+//	
+//	// Build data
+//	while ([resultSet next]) {
+//		NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:method]];
+//		invocation.target = self;
+//		invocation.selector = method;
+//		[invocation setArgument:&resultSet atIndex:0];
+//		[invocation invoke];
+//	}
+//}
+
 // Buildings
-- (NSArray *)buildingInCampus:(NSString *)campus
+- (NSArray *)buildingsInCampus:(NSString *)campus
 {
 	// Currently, campus does not do anything
 	
@@ -115,7 +135,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 - (NSArray *)floorPlansOfCampus:(NSString *)campus
 {
 	// Get buildings in the campus
-	NSArray *buildings = [self buildingInCampus:campus];
+	NSArray *buildings = [self buildingsInCampus:campus];
 	NSMutableArray *floorPlans = [NSMutableArray array];
 	
 	for (GGBuilding *building in buildings) {
@@ -128,7 +148,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 - (NSArray *)floorPlansOfBuilding:(GGBuilding *)building
 {
 	// Get floor plans from cache if exists
-	if ([self.floorCacheIndicator containsObject:building]) {
+	if ([self.floorCacheIndicator containsObject:building.name]) {
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:
 								  @"building.name = %@", building.name];
 		NSArray *filtered = [[self.floorPlanCache allValues] 
@@ -164,7 +184,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	}
 	
 	// Add current building to cache indicator
-	[self.floorCacheIndicator addObject:building];
+	[self.floorCacheIndicator addObject:building.name];
 	
 	NSLog(@"Found %d floor plans from data source", [floorPlans count]);
 	return floorPlans;
@@ -187,9 +207,10 @@ static NSString * const kDataSourceName = @"GG_DATA";
 - (NSArray *)poisOnFloorPlan:(GGFloorPlan *)floorPlan
 {
 	// Get pois from cache if exists
-	if ([self.poiCacheIndicator containsObject:floorPlan]) {
+	if ([self.poiCacheIndicator containsObject:floorPlan.fId]) {
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:
-								  @"SELF isKindOfClass:%@ && floorPlan.fId = %@", [GGPOI class], floorPlan.fId];
+								  @"SELF isKindOfClass:%@ && floorPlan.fId = %@", 
+								  [GGPOI class], floorPlan.fId];
 		NSArray *filtered = [[self.pointCache allValues] 
 							 filteredArrayUsingPredicate:predicate];
 		NSLog(@"Found %d POIs from cache", filtered.count);
@@ -234,7 +255,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	}
 	
 	// Add current floor plan to cache indicator
-	[self.poiCacheIndicator addObject:floorPlan];
+	[self.poiCacheIndicator addObject:floorPlan.fId];
 	
 	NSLog(@"Found %d POIs from data source", pois.count);
 	return pois;

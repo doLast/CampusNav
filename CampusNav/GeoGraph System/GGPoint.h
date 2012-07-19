@@ -18,7 +18,7 @@ typedef struct {
 @interface GGPoint : NSObject
 
 @property (nonatomic, readonly) NSNumber *pId;
-@property (nonatomic, weak, readonly) GGFloorPlan *floorPlan;
+@property (nonatomic, readonly) GGFloorPlan *floorPlan;
 @property (nonatomic, readonly) GGCoordinate coordinate;
 
 + (GGCoordinate)coordinateAtX:(NSInteger)x andY:(NSInteger)y;

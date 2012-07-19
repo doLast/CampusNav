@@ -22,7 +22,7 @@
 
 // Data fetching methods
 // Buildings
-- (NSArray *)buildingInCampus:(NSString *)campus;
+- (NSArray *)buildingsInCampus:(NSString *)campus;
 
 // FloorPlans
 - (NSArray *)floorPlansOfCampus:(NSString *)campus;

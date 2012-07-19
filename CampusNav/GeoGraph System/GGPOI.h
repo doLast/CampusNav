@@ -29,7 +29,7 @@ extern NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd];
 @interface GGPOI : GGPoint
 
 @property (nonatomic, readonly) GGPOICategory category;
-@property (nonatomic, weak, readonly) GGEdge *edge;
+@property (nonatomic, readonly) GGEdge *edge;
 @property (nonatomic, strong, readonly) NSString *roomNum;
 @property (nonatomic, strong, readonly) NSString *description;
 
@@ -40,6 +40,7 @@ extern NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd];
 			   onEdge:(NSNumber *)eId 
 		  withRoomNum:(NSString *)roomNum 
 	   andDescription:(NSString *)description;
++ (GGPOI *)poiWithPId:(NSNumber *)pId;
 
 + (GGPOICategory)categoryOfAbbreviation:(NSString *)abbr;
 
