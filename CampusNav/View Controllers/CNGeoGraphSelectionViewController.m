@@ -112,7 +112,7 @@ enum FloorPlanPickerViewComponents {
 
 - (IBAction)updateSelection:(id)sender
 {	
-	// Boradcase the update
+	// Prepare the notification data
 	GGPOIPool *poiPool;
 	NSString *floor;
 	if (self.selectedFloorPlan == -1) {
@@ -126,22 +126,35 @@ enum FloorPlanPickerViewComponents {
 	}
 	NSString *title = [NSString stringWithFormat:@"%@ %@ floor", 
 					   ((GGBuilding *)[self.buildingPool.items objectAtIndex:self.selectedBuilding]).abbreviation, floor];
+	
+	// Boradcase the update
 	[[NSNotificationCenter defaultCenter] postNotificationName:kNewPOIPoolNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:title, kNewPOIPoolNotificationTitle, poiPool, kNewPOIPoolNotificationData, nil]];
 }
 
 - (IBAction)startLocating:(id)sender
 {
-	// Temporarily disabled
-//	return;
-	
+	// Setup the activity indicator
 	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 	[activityIndicatorView startAnimating];
 	
 	self.locateButton.customView = activityIndicatorView;
-	self.locateButton.customView.frame = CGRectMake(5, 0, 25, 25);
+	self.locateButton.customView.frame = CGRectMake(10, 0, 25, 25);
 	self.locateButton.customView.hidden = NO;
 	
+	// Start locating, may prompt the user for previlege if is the first time
 	[self.locationManager startUpdatingLocation];
+	
+	// If denied
+	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+		[self stopLocating:self];
+		
+		// TODO: prompt the user to turn on location service
+	}
+	else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+		[self stopLocating:self];
+		self.locateButton.enabled = NO;
+	}
+	
 }
 
 - (IBAction)stopLocating:(id)sender

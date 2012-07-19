@@ -61,9 +61,9 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
+	[super viewWillAppear:animated];
 	
 	[self.selectionViewController updateSelection:self];
 }
