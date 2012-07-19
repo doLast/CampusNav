@@ -95,7 +95,7 @@
 		return NO;
 	}
 	
-	NSLog(@"Added pId: %@ name:%@ to user profile", pId, displayName);
+	NSLog(@"Added pId:%@ name:%@ to user profile", pId, displayName);
 	[self updateUserPOIs];
 	
 	return YES;
@@ -130,7 +130,7 @@
 		return NO;
 	}
 	
-	NSLog(@"Changed display name for user POI: %@ in user profile", userPOI.pId);
+	NSLog(@"Changed display name for user POI:%@ in user profile", userPOI.pId);
 	[self updateUserPOIs];
 	return YES;
 }
