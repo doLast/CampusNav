@@ -12,8 +12,8 @@
 
 @interface CNUserPOIViewController ()
 
-@property (nonatomic, strong) NSArray *pois;
-@property (nonatomic, retain) CNUserProfile *userProfile;
+@property (nonatomic, strong, readonly) NSArray *pois;
+@property (nonatomic, weak) NSArray *userPOIs;
 
 @end
 
@@ -21,7 +21,28 @@
 
 #pragma mark - Getter & Setter
 @synthesize pois = _pois;
-@synthesize userProfile = _userProfile;
+@synthesize userPOIs = _userPOIs;
+
+- (NSArray *)pois
+{
+	// If user POI didn't change, return the last one
+	if (self.userPOIs == [CNUserProfile sharedUserProfile].userPOIs) {
+		return _pois;
+	}
+	
+	// Otherwise, reconstruct the pois
+	self.userPOIs = [CNUserProfile sharedUserProfile].userPOIs;
+	NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[self.userPOIs count]];
+	for (UserPOI *userPOI in self.userPOIs) {
+		GGPOI *poi = [GGPOI poiWithPId:userPOI.pId];
+		[pois addObject:poi];
+	}
+	
+	// Set it and return
+	_pois = pois;
+	return _pois;
+}
+
 
 #pragma mark - View controller events
 
@@ -31,32 +52,13 @@
 	// Do any additional setup after loading the view.
 	
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	self.userProfile = [CNUserProfile sharedUserProfile];
 }
 
-- (void)viewDidUnload
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
+	[super viewWillAppear:animated];
 	
-	self.pois = [CNUserPOIViewController poisFromUserPOIs:self.userProfile.userPOIs];
-	NSLog(@"#Favs %d", [self.pois count]);
 	[self.tableView reloadData];
-}
-
-+ (NSArray *)poisFromUserPOIs:(NSArray *)userPOIs
-{
-	NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[userPOIs count]];
-	for (UserPOI *userPOI in userPOIs) {
-		GGPOI *poi = [GGPOI poiWithPId:userPOI.pId];
-		[pois addObject:poi];
-	}
-	return pois;
 }
 
 #pragma mark - Table view delegate
@@ -65,6 +67,8 @@
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		// Delete the row from the data source
+		[[CNUserProfile sharedUserProfile] removeUserPOI:[self.userPOIs objectAtIndex:indexPath.row]];
+		// Delete the row from table
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	}   
 	else if (editingStyle == UITableViewCellEditingStyleInsert) {
