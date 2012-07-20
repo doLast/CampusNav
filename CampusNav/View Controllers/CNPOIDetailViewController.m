@@ -7,8 +7,12 @@
 //
 
 #import "CNPOIDetailViewController.h"
+#import "CNNavConfigViewController.h"
+
 #import "GGSystem.h"
 #import "CNUserProfile.h"
+
+#import <QuartzCore/QuartzCore.h>
 
 @interface CNPOIDetailViewController ()
 
@@ -42,7 +46,9 @@
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 	
-	self.title = [NSString stringWithFormat:@"%@", self.poi.roomNum];
+	self.title = [NSString stringWithFormat:@"%@ %@", 
+				  self.poi.floorPlan.building.abbreviation, self.poi.roomNum];
+	self.mapImageView.layer.cornerRadius = 10;
 }
 
 - (void)viewDidUnload
@@ -71,7 +77,7 @@
 	if (self.userPOI != nil) {
 		self.favToggleCell.textLabel.text = @"REMOVE_POI_FROM_FAV";
 		
-		self.favNameCell.textLabel.text = self.userPOI.displayName;
+		self.favNameCell.detailTextLabel.text = self.userPOI.displayName;
 		self.favNameCell.hidden = NO;
 	}
 	else {
@@ -98,15 +104,31 @@
 	}
 }
 
+- (void)setAsSource:(UITableViewCell *)sender
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNavConfigNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:kCNNavConfigTypeSource, kCNNavConfigNotificationType, self.poi, kCNNavConfigNotificationData, nil]];
+}
+
+- (void)setAsDestination:(UITableViewCell *)sender
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNavConfigNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:kCNNavConfigTypeDestination, kCNNavConfigNotificationType, self.poi, kCNNavConfigNotificationData, nil]];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 1 && indexPath.row == 1) {
-		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	if (indexPath.section == 1 && indexPath.row == 2) {
 		[self toggleFav:cell];
-		cell.selected = NO;
 	}
+	else if (indexPath.section == 1 && indexPath.row == 0) {
+		[self setAsSource:cell];
+	}
+	else if (indexPath.section == 1 && indexPath.row == 1) {
+		[self setAsDestination:cell];
+	}
+	cell.selected = NO;
 }
 
 @end

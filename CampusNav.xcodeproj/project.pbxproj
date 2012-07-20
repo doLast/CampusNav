@@ -17,6 +17,8 @@
 		255FF02615B7959E0033C98B /* CNPOIDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF02515B7959E0033C98B /* CNPOIDetailViewController.m */; };
 		255FF02915B796D00033C98B /* UserPOI.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF02815B796D00033C98B /* UserPOI.m */; };
 		255FF03015B7A3A60033C98B /* CNUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF02F15B7A3A60033C98B /* CNUserProfile.m */; };
+		255FF03F15B89A1C0033C98B /* CNNavConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF03E15B89A1B0033C98B /* CNNavConfigViewController.m */; };
+		255FF04315B89C0D0033C98B /* CNPOICell.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF04215B89C0D0033C98B /* CNPOICell.m */; };
 		2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975915817CD300F79A1A /* UIKit.framework */; };
 		2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975B15817CD300F79A1A /* Foundation.framework */; };
 		2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975D15817CD300F79A1A /* CoreGraphics.framework */; };
@@ -68,6 +70,10 @@
 		255FF02815B796D00033C98B /* UserPOI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPOI.m; sourceTree = "<group>"; };
 		255FF02E15B7A3A60033C98B /* CNUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNUserProfile.h; sourceTree = "<group>"; };
 		255FF02F15B7A3A60033C98B /* CNUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNUserProfile.m; sourceTree = "<group>"; };
+		255FF03D15B89A1B0033C98B /* CNNavConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNNavConfigViewController.h; sourceTree = "<group>"; };
+		255FF03E15B89A1B0033C98B /* CNNavConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNavConfigViewController.m; sourceTree = "<group>"; };
+		255FF04115B89C0D0033C98B /* CNPOICell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOICell.h; sourceTree = "<group>"; };
+		255FF04215B89C0D0033C98B /* CNPOICell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOICell.m; sourceTree = "<group>"; };
 		2586975515817CD300F79A1A /* CampusNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2586975915817CD300F79A1A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2586975B15817CD300F79A1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -170,6 +176,15 @@
 			path = "User Profile";
 			sourceTree = "<group>";
 		};
+		255FF04015B89BCC0033C98B /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				255FF04115B89C0D0033C98B /* CNPOICell.h */,
+				255FF04215B89C0D0033C98B /* CNPOICell.m */,
+			);
+			name = "UI Components";
+			sourceTree = "<group>";
+		};
 		2586974A15817CD300F79A1A = {
 			isa = PBXGroup;
 			children = (
@@ -249,15 +264,18 @@
 		25FF0BB615B4A84000F5EE73 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				255FF04015B89BCC0033C98B /* UI Components */,
+				250B885115B74A7900332392 /* CNUserPOIViewController.h */,
+				250B885215B74A7900332392 /* CNUserPOIViewController.m */,
 				250B885515B74ABA00332392 /* Behind the Scene */,
 				25FF0BB715B4A89C00F5EE73 /* CNCategoryTableViewController.h */,
 				25FF0BB815B4A89C00F5EE73 /* CNCategoryTableViewController.m */,
 				250B883315B615B200332392 /* CNPOITableViewController.h */,
 				250B883415B615B200332392 /* CNPOITableViewController.m */,
-				250B885115B74A7900332392 /* CNUserPOIViewController.h */,
-				250B885215B74A7900332392 /* CNUserPOIViewController.m */,
 				255FF02415B7959E0033C98B /* CNPOIDetailViewController.h */,
 				255FF02515B7959E0033C98B /* CNPOIDetailViewController.m */,
+				255FF03D15B89A1B0033C98B /* CNNavConfigViewController.h */,
+				255FF03E15B89A1B0033C98B /* CNNavConfigViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -382,6 +400,8 @@
 				255FF02615B7959E0033C98B /* CNPOIDetailViewController.m in Sources */,
 				255FF02915B796D00033C98B /* UserPOI.m in Sources */,
 				255FF03015B7A3A60033C98B /* CNUserProfile.m in Sources */,
+				255FF03F15B89A1C0033C98B /* CNNavConfigViewController.m in Sources */,
+				255FF04315B89C0D0033C98B /* CNPOICell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
