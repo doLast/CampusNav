@@ -8,6 +8,8 @@
 
 #import "CNAppDelegate.h"
 
+#import "CNUICustomize.h"
+
 @implementation CNAppDelegate
 
 @synthesize window = _window;
@@ -23,7 +25,8 @@
 //    self.window.backgroundColor = [UIColor whiteColor];
 //    [self.window makeKeyAndVisible];
 	
-	// Do nothing and return YES to use Storyboard
+	[CNUICustomize customizeTheme];
+	
     return YES;
 }
 

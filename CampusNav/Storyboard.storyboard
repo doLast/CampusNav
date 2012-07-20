@@ -264,7 +264,7 @@
             </objects>
             <point key="canvasLocation" x="2584" y="158"/>
         </scene>
-        <!--UserPOI View Controller - FAV_AND_HISTORY-->
+        <!--UserPOI View Controller - FAV_TITLE-->
         <scene sceneID="eDJ-pn-BZ2">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xG3-GZ-V47" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -308,17 +308,17 @@
                             <outlet property="delegate" destination="tgu-h6-ogu" id="1VS-HW-1FJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="FAV_AND_HISTORY" id="Jhg-mh-weB"/>
+                    <navigationItem key="navigationItem" title="FAV_TITLE" id="Jhg-mh-weB"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1519" y="-150"/>
         </scene>
-        <!--Navigation Controller - DESTINATIONS_TAB-->
+        <!--Navigation Controller - FAV_TAB-->
         <scene sceneID="Tfm-M9-h5C">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRy-y1-qn8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController storyboardIdentifier="FavNavigation" id="MBO-mb-Jnt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="DESTINATIONS_TAB" id="ehw-6s-u7Y"/>
+                <navigationController storyboardIdentifier="FavNavigation" id="MBO-mb-Jnt" customClass="CNNavigationController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="FAV_TAB" id="ehw-6s-u7Y"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LoQ-mq-HI7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -336,7 +336,7 @@
         <scene sceneID="sJV-i8-Uel">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKg-EX-oZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController storyboardIdentifier="NavNavigation" definesPresentationContext="YES" id="R4i-VL-i4F" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavNavigation" definesPresentationContext="YES" id="R4i-VL-i4F" customClass="CNNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="NAV_TAB" id="Te8-sp-6FA"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="5oV-Gc-5ZY">
                         <autoresizingMask key="autoresizingMask"/>
@@ -494,7 +494,7 @@
         <scene sceneID="KVj-tg-fcA">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIN-PM-O0x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController storyboardIdentifier="BrowseNavigation" id="Tn4-gB-gbx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BrowseNavigation" id="Tn4-gB-gbx" customClass="CNNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="POI_TAB" id="STz-rA-7Ie"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pBQ-34-YM9">
@@ -527,6 +527,9 @@
                 <relationship kind="outlet" name="startNavCell" candidateClass="UITableViewCell"/>
             </relationships>
         </class>
+        <class className="CNNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavigationController.h"/>
+        </class>
         <class className="CNPOICell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOICell.h"/>
             <relationships>
@@ -549,7 +552,7 @@
         <class className="CNPOITableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOITableViewController.h"/>
         </class>
-        <class className="CNUserPOIViewController" superclassName="CNPOITableViewController">
+        <class className="CNUserPOIViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CNUserPOIViewController.h"/>
         </class>
     </classes>
@@ -559,7 +562,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2K4-xc-Qhx"/>
         <segue reference="1PZ-2n-1yH"/>
+        <segue reference="yJG-RD-QSD"/>
     </inferredMetricsTieBreakers>
 </document>

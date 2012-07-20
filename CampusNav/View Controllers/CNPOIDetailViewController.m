@@ -8,6 +8,7 @@
 
 #import "CNPOIDetailViewController.h"
 #import "CNNavConfigViewController.h"
+#import "CNUICustomize.h"
 
 #import "GGSystem.h"
 #import "CNUserProfile.h"
@@ -35,12 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	if (self.poi == nil) {
 		[self.navigationController popViewControllerAnimated:YES];
@@ -49,6 +44,8 @@
 	self.title = [NSString stringWithFormat:@"%@ %@", 
 				  self.poi.floorPlan.building.abbreviation, self.poi.roomNum];
 	self.mapImageView.layer.cornerRadius = 10;
+	
+	[CNUICustomize customizeViewController:self];
 }
 
 - (void)viewDidUnload

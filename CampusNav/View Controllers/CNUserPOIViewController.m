@@ -8,6 +8,8 @@
 
 #import "CNUserPOIViewController.h"
 #import "CNPOIDetailViewController.h"
+#import "CNUICustomize.h"
+
 #import "GGSystem.h"
 #import "CNUserProfile.h"
 
@@ -29,8 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 	
+	[CNUICustomize customizeViewController:self];
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 

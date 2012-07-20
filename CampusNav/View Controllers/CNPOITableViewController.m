@@ -8,6 +8,7 @@
 
 #import "CNPOITableViewController.h"
 #import "CNPOIDetailViewController.h"
+#import "CNUICustomize.h"
 
 #import "GGPOIPool.h"
 
@@ -24,6 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[CNUICustomize customizeViewController:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -8,6 +8,7 @@
 
 #import "CNNavConfigViewController.h"
 #import "CNPOICell.h"
+#import "CNUICustomize.h"
 
 NSString * const kCNNavConfigNotification = @"CNNavConfigNotification";
 NSString * const kCNNavConfigNotificationType = @"CNNavConfigNotificationType";
@@ -43,11 +44,7 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [CNUICustomize customizeViewController:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated

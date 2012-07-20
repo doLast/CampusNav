@@ -9,6 +9,7 @@
 #import "CNCategoryTableViewController.h"
 #import "CNPOITableViewController.h"
 #import "CNGeoGraphSelectionViewController.h"
+#import "CNUICustomize.h"
 
 #import "GGFloorPlanPool.h"
 #import "GGPOIPool.h"
@@ -41,17 +42,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	self.selectionViewController = [[CNGeoGraphSelectionViewController alloc] init];
 	self.selectionViewController.locateButton = self.locateButton;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewPOIPoolNotification:) name:kCNNewPOIPoolNotification object:self.selectionViewController];
+	
+	[CNUICustomize customizeViewController:self];
 }
 
 - (void)viewDidUnload
