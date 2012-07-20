@@ -114,19 +114,45 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNavConfigNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:kCNNavConfigTypeDestination, kCNNavConfigNotificationType, self.poi, kCNNavConfigNotificationData, nil]];
 }
 
+- (void)promptFavNameChange
+{
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Edit Favourite Name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+	alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+	[alert textFieldAtIndex:0].text = self.userPOI.displayName;
+	
+	[alert show];
+}
+
+#pragma mark - Alert View Delegate
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+		BOOL result = [[CNUserProfile sharedUserProfile] 
+					   changeUserPOI:self.userPOI 
+					   withDisplayName:[alertView textFieldAtIndex:0].text];
+		if (result) {
+			[self updateFavStatus];
+		}
+    }
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	if (indexPath.section == 1 && indexPath.row == 2) {
-		[self toggleFav:cell];
-	}
-	else if (indexPath.section == 1 && indexPath.row == 0) {
+	
+	if (indexPath.section == 1 && indexPath.row == 0) {
 		[self setAsSource:cell];
 	}
 	else if (indexPath.section == 1 && indexPath.row == 1) {
 		[self setAsDestination:cell];
+	}
+	else if (indexPath.section == 1 && indexPath.row == 2) {
+		[self toggleFav:cell];
+	}
+	else if (indexPath.section == 2 && indexPath.row == 0) {
+		[self promptFavNameChange];
 	}
 	cell.selected = NO;
 }
