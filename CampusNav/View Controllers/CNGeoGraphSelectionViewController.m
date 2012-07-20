@@ -88,7 +88,7 @@ enum FloorPlanPickerViewComponents {
 	closeButton.momentary = YES; 
 	closeButton.frame = CGRectMake(260, 7.0f, 50.0f, 30.0f);
 	closeButton.segmentedControlStyle = UISegmentedControlStyleBar;
-	closeButton.tintColor = [UIColor blueColor];
+	closeButton.tintColor = [UIColor colorWithRed:46.0/255 green:119.0/255 blue:173.0/255 alpha:0.0];
 	[closeButton addTarget:self action:@selector(dismissActionSheet:) forControlEvents:UIControlEventValueChanged];
 	
 	// Action sheet
