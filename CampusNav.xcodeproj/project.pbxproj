@@ -159,6 +159,8 @@
 		250B885515B74ABA00332392 /* Behind the Scene */ = {
 			isa = PBXGroup;
 			children = (
+				255FF04115B89C0D0033C98B /* CNPOICell.h */,
+				255FF04215B89C0D0033C98B /* CNPOICell.m */,
 				250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */,
 				250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */,
 			);
@@ -174,15 +176,6 @@
 				255FF02F15B7A3A60033C98B /* CNUserProfile.m */,
 			);
 			path = "User Profile";
-			sourceTree = "<group>";
-		};
-		255FF04015B89BCC0033C98B /* UI Components */ = {
-			isa = PBXGroup;
-			children = (
-				255FF04115B89C0D0033C98B /* CNPOICell.h */,
-				255FF04215B89C0D0033C98B /* CNPOICell.m */,
-			);
-			name = "UI Components";
 			sourceTree = "<group>";
 		};
 		2586974A15817CD300F79A1A = {
@@ -264,10 +257,9 @@
 		25FF0BB615B4A84000F5EE73 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				255FF04015B89BCC0033C98B /* UI Components */,
+				250B885515B74ABA00332392 /* Behind the Scene */,
 				250B885115B74A7900332392 /* CNUserPOIViewController.h */,
 				250B885215B74A7900332392 /* CNUserPOIViewController.m */,
-				250B885515B74ABA00332392 /* Behind the Scene */,
 				25FF0BB715B4A89C00F5EE73 /* CNCategoryTableViewController.h */,
 				25FF0BB815B4A89C00F5EE73 /* CNCategoryTableViewController.m */,
 				250B883315B615B200332392 /* CNPOITableViewController.h */,

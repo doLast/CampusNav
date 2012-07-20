@@ -8,6 +8,6 @@
 
 #import "CNPOITableViewController.h"
 
-@interface CNUserPOIViewController : CNPOITableViewController
+@interface CNUserPOIViewController : UITableViewController
 
 @end

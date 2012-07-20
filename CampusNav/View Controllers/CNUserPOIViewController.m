@@ -7,42 +7,22 @@
 //
 
 #import "CNUserPOIViewController.h"
+#import "CNPOIDetailViewController.h"
 #import "GGSystem.h"
 #import "CNUserProfile.h"
 
 @interface CNUserPOIViewController ()
-
-@property (nonatomic, strong, readonly) NSArray *pois;
-@property (nonatomic, weak) NSArray *userPOIs;
+@property (nonatomic, weak, readonly) NSArray *userPOIs;
 
 @end
 
 @implementation CNUserPOIViewController
 
 #pragma mark - Getter & Setter
-@synthesize pois = _pois;
-@synthesize userPOIs = _userPOIs;
-
-- (NSArray *)pois
+- (NSArray *)userPOIs
 {
-	// If user POI didn't change, return the last one
-	if (self.userPOIs == [CNUserProfile sharedUserProfile].userPOIs) {
-		return _pois;
-	}
-	
-	// Otherwise, reconstruct the pois
-	self.userPOIs = [CNUserProfile sharedUserProfile].userPOIs;
-	NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[self.userPOIs count]];
-	for (UserPOI *userPOI in self.userPOIs) {
-		GGPOI *poi = [GGPOI poiWithPId:userPOI.pId];
-		[pois addObject:poi];
-	}
-	
-	// Set it and return
-	_pois = pois;
-	return _pois;
+	return [CNUserProfile sharedUserProfile].userPOIs;
 }
-
 
 #pragma mark - View controller events
 
@@ -70,10 +50,7 @@
 		[[CNUserProfile sharedUserProfile] removeUserPOI:[self.userPOIs objectAtIndex:indexPath.row]];
 		// Delete the row from table
 		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	}   
-	else if (editingStyle == UITableViewCellEditingStyleInsert) {
-		// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-	}   
+	} 
 }
 
 /*
@@ -82,5 +59,42 @@
  {
  }
  */
+
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [self.userPOIs count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	// Dequeue a cell
+    static NSString *CellIdentifier = @"POICell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+	// Customize it with data
+	UserPOI *userPOI = [self.userPOIs objectAtIndex:indexPath.row];
+	GGPOI *poi = userPOI.poi;
+	
+	cell.textLabel.text = [userPOI.displayName copy];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", poi.floorPlan.building.abbreviation, poi.roomNum];
+    
+    return cell;
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([sender isKindOfClass:[UITableViewCell class]]) {
+		UITableViewCell *cell = (UITableViewCell *)sender;
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+		CNPOIDetailViewController *vc = segue.destinationViewController;
+		
+		vc.poi = ((UserPOI *)[self.userPOIs objectAtIndex:indexPath.row]).poi;
+	}
+}
 
 @end
