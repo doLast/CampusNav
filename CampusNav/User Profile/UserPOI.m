@@ -7,12 +7,17 @@
 //
 
 #import "UserPOI.h"
-
+#import "GGPOI.h"
 
 @implementation UserPOI
 
 @dynamic displayName;
 @dynamic pId;
 @dynamic order;
+
+- (GGPOI *)poi
+{
+	return [GGPOI poiWithPId:self.pId];
+}
 
 @end

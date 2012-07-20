@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class GGPOI;
 
 @interface UserPOI : NSManagedObject
 
 @property (nonatomic, retain) NSString * displayName;
 @property (nonatomic, retain) NSNumber * pId;
+@property (nonatomic, weak, readonly) GGPOI * poi;
 @property (nonatomic, retain) NSNumber * order;
 
 @end
