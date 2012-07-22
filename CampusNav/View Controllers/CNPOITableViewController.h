@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class GGPOIPool;
+
 @interface CNPOITableViewController : UITableViewController
-@property (nonatomic, strong) NSArray *pois;
+@property (nonatomic, strong) GGPOIPool *poiPool;
+@property (nonatomic, strong) IBOutlet CNPOITableViewController *searchResultTableDelegate;
 @property (nonatomic, weak) IBOutlet UIViewController *mainViewController;
 
 @end

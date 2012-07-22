@@ -144,7 +144,8 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
 	if ([searchString length] > 0) {
-		self.searchResultTableDelegate.pois = [self.poiPool poisLikeKeyword:searchString];
+		NSArray *pois = [self.poiPool poisLikeKeyword:searchString];
+		self.searchResultTableDelegate.poiPool = [GGPOIPool poiPoolWithPOIs:pois];
 		return YES;
 	}
 	return NO;
@@ -159,7 +160,7 @@
 		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 		CNPOITableViewController *vc = segue.destinationViewController;
 		
-		vc.pois = [self.poiPool poisWithinCategory:indexPath.row];
+		vc.poiPool = [GGPOIPool poiPoolWithPOIs:[self.poiPool poisWithinCategory:indexPath.row]];
 		vc.title = cell.textLabel.text;
 	}
 	else if ([sender isKindOfClass:[GGPOI class]]) {

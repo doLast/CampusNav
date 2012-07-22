@@ -19,7 +19,8 @@
 @implementation CNPOITableViewController
 
 #pragma mark - Getter & Setter
-@synthesize pois = _pois;
+@synthesize poiPool = _poiPool;
+@synthesize searchResultTableDelegate = _searchResultTableDelegate;
 @synthesize mainViewController = _mainViewController;
 
 #pragma mark - View controller events
@@ -40,7 +41,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.pois.count;
+    return [self.poiPool.items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -55,7 +56,7 @@
 	}
     
 	// Customize it with data
-	GGPOI *poi = [self.pois objectAtIndex:indexPath.row];
+	GGPOI *poi = [self.poiPool.items objectAtIndex:indexPath.row];
 	cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", poi.floorPlan.building.abbreviation, poi.roomNum];
 	cell.detailTextLabel.text = poi.description;
     
@@ -68,7 +69,20 @@
 {
 	[self.mainViewController 
 	 performSegueWithIdentifier:@"ShowSearchResultDetial" 
-	 sender:[self.pois objectAtIndex:indexPath.row]];
+	 sender:[self.poiPool.items objectAtIndex:indexPath.row]];
+}
+
+
+#pragma mark - Search Display Delegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+	if ([searchString length] > 0) {
+		NSArray *pois = [self.poiPool poisLikeKeyword:searchString];
+		self.searchResultTableDelegate.poiPool = [GGPOIPool poiPoolWithPOIs:pois];
+		return YES;
+	}
+	return NO;
 }
 
 #pragma mark - Segue
@@ -80,7 +94,7 @@
 		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 		CNPOIDetailViewController *vc = segue.destinationViewController;
 		
-		vc.poi = [self.pois objectAtIndex:indexPath.row];
+		vc.poi = [self.poiPool.items objectAtIndex:indexPath.row];
 	}
 	if ([sender isKindOfClass:[GGPOI class]]) {
 		CNPOIDetailViewController *vc = segue.destinationViewController;
