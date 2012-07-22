@@ -45,6 +45,9 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
     [super viewDidLoad];
 
     [CNUICustomize customizeViewController:self];
+	
+	[self.navSourceCell clearCellWithPrompt:@"Please choose a source point"];
+	[self.navDestinationCell clearCellWithPrompt:@"Please choose a destination point"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
