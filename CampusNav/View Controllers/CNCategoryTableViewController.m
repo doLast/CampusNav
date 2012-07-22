@@ -7,8 +7,9 @@
 //
 
 #import "CNCategoryTableViewController.h"
-#import "CNPOITableViewController.h"
 #import "CNGeoGraphSelectionViewController.h"
+#import "CNPOITableViewController.h"
+#import "CNPOIDetailViewController.h"
 #import "CNUICustomize.h"
 
 #import "GGFloorPlanPool.h"
@@ -28,6 +29,7 @@
 @synthesize selectionViewController = _selectionViewController;
 
 @synthesize locateButton = _locateButton;
+@synthesize searchResultTableDelegate = _searchResultTableDelegate;
 
 - (void)setPoiPool:(GGPOIPool *)poiPool
 {
@@ -42,7 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+		
 	self.selectionViewController = [[CNGeoGraphSelectionViewController alloc] init];
 	self.selectionViewController.locateButton = self.locateButton;
 	
@@ -124,45 +126,6 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -176,6 +139,17 @@
      */
 }
 
+#pragma mark - Search Display Delegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+	if ([searchString length] > 0) {
+		self.searchResultTableDelegate.pois = [self.poiPool poisLikeKeyword:searchString];
+		return YES;
+	}
+	return NO;
+}
+
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -187,6 +161,11 @@
 		
 		vc.pois = [self.poiPool poisWithinCategory:indexPath.row];
 		vc.title = cell.textLabel.text;
+	}
+	else if ([sender isKindOfClass:[GGPOI class]]) {
+		CNPOIDetailViewController *vc = segue.destinationViewController;
+		
+		vc.poi = sender;
 	}
 }
 

@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class GGPOIPool;
+@class CNPOITableViewController;
 
-@interface CNCategoryTableViewController : UITableViewController
+@interface CNCategoryTableViewController : UITableViewController <UISearchDisplayDelegate>
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *locateButton;
+@property (nonatomic, strong) IBOutlet CNPOITableViewController *searchResultTableDelegate;
 
 - (IBAction)startLocating:(id)sender;
 - (IBAction)chooseFloorPlan:(id)sender;

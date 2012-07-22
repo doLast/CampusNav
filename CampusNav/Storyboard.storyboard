@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="455" y="468"/>
         </scene>
-        <!--Category Table View Controller - BUILDING_AND_FLOOR-->
+        <!--Category Table View Controller - BUILDING_FLOOR-->
         <scene sceneID="zSf-jU-6ZN">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLw-pt-OiK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -36,9 +36,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="FzE-Qk-WNi">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="gB8-Wd-Z1p" id="gdW-Gc-5fJ"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CategoryCell" textLabel="pp4-9L-AdK" detailTextLabel="tS5-pM-mBA" style="IBUITableViewCellStyleValue1" id="VZf-wr-LJa">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -71,18 +79,37 @@
                             <outlet property="delegate" destination="gB8-Wd-Z1p" id="Qad-fM-mWY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="BUILDING_AND_FLOOR" id="XmA-YP-7Vh">
+                    <navigationItem key="navigationItem" title="BUILDING_FLOOR" id="XmA-YP-7Vh">
                         <barButtonItem key="rightBarButtonItem" title="Choose" id="4Fa-P1-IWf">
                             <connections>
                                 <action selector="chooseFloorPlan:" destination="gB8-Wd-Z1p" id="Syq-nX-0Ze"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="rzQ-KS-Ijl" id="ap0-L6-Krx"/>
+                        <outlet property="searchResultTableDelegate" destination="ZXp-av-f0T" id="4cW-9K-TxY"/>
+                        <segue destination="8aT-XG-sIG" kind="push" identifier="ShowSearchResultDetial" id="P1V-Bc-b7e"/>
+                    </connections>
                 </tableViewController>
+                <customObject id="ZXp-av-f0T" customClass="CNPOITableViewController">
+                    <connections>
+                        <outlet property="mainViewController" destination="gB8-Wd-Z1p" id="R65-OL-u6s"/>
+                    </connections>
+                </customObject>
+                <searchDisplayController id="rzQ-KS-Ijl">
+                    <connections>
+                        <outlet property="delegate" destination="gB8-Wd-Z1p" id="Qn9-cF-Xpd"/>
+                        <outlet property="searchBar" destination="FzE-Qk-WNi" id="Gyh-b5-T7J"/>
+                        <outlet property="searchContentsController" destination="gB8-Wd-Z1p" id="Jju-yg-Toc"/>
+                        <outlet property="searchResultsDataSource" destination="ZXp-av-f0T" id="WHb-5p-aU0"/>
+                        <outlet property="searchResultsDelegate" destination="ZXp-av-f0T" id="xvr-90-anM"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1519" y="468"/>
         </scene>
-        <!--Table View Controller - POI_CATEGORY_NAME-->
+        <!--Table View Controller - POI_CATEGORY-->
         <scene sceneID="Lnm-Gw-rGM">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaR-bC-rrH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,7 +144,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="8aT-XG-sIG" kind="push" id="0dy-GZ-aDq"/>
+                                    <segue destination="8aT-XG-sIG" kind="push" identifier="ShowPOIDetial" id="Nvz-ZO-cBT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -126,7 +153,7 @@
                             <outlet property="delegate" destination="GDP-B8-GHs" id="Dfz-EC-F2K"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="POI_CATEGORY_NAME" id="Py1-Bf-oJn"/>
+                    <navigationItem key="navigationItem" title="POI_CATEGORY" id="Py1-Bf-oJn"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="2045" y="468"/>
@@ -262,9 +289,9 @@
                     </connections>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2584" y="158"/>
+            <point key="canvasLocation" x="2045" y="-150"/>
         </scene>
-        <!--UserPOI View Controller - FAV_TITLE-->
+        <!--UserPOI View Controller - FAV-->
         <scene sceneID="eDJ-pn-BZ2">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xG3-GZ-V47" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -299,7 +326,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="8aT-XG-sIG" kind="push" id="1PZ-2n-1yH"/>
+                                    <segue destination="8aT-XG-sIG" kind="push" identifier="ShowPOIDetial" id="1PZ-2n-1yH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -308,7 +335,7 @@
                             <outlet property="delegate" destination="tgu-h6-ogu" id="1VS-HW-1FJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="FAV_TITLE" id="Jhg-mh-weB"/>
+                    <navigationItem key="navigationItem" title="FAV" id="Jhg-mh-weB"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1519" y="-150"/>
@@ -348,7 +375,7 @@
             </objects>
             <point key="canvasLocation" x="993" y="1101"/>
         </scene>
-        <!--Nav Config View Controller-->
+        <!--Nav Config View Controller - NAV_CONFIG-->
         <scene sceneID="QLo-mP-gY5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHT-Mb-BDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -480,7 +507,7 @@
                             <outlet property="delegate" destination="qv8-nG-9Vg" id="6wx-Ay-AaW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Z7U-nw-8ej"/>
+                    <navigationItem key="navigationItem" title="NAV_CONFIG" id="Z7U-nw-8ej"/>
                     <connections>
                         <outlet property="navDestinationCell" destination="AI7-vu-Di4" id="cMs-Gn-5vq"/>
                         <outlet property="navSourceCell" destination="nnN-qA-7s4" id="1QB-Iu-jcB"/>
@@ -510,59 +537,13 @@
             <point key="canvasLocation" x="993" y="468"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CNCategoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNCategoryTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="chooseFloorPlan:"/>
-                <relationship kind="action" name="startLocating:"/>
-                <relationship kind="outlet" name="locateButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="CNNavConfigViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavConfigViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="navDestinationCell" candidateClass="CNPOICell"/>
-                <relationship kind="outlet" name="navSourceCell" candidateClass="CNPOICell"/>
-                <relationship kind="outlet" name="startNavCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="CNNavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavigationController.h"/>
-        </class>
-        <class className="CNPOICell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOICell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="buildingName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="roomDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="roomNumber" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CNPOIDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOIDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="setAsDestination:" candidateClass="UITableViewCell"/>
-                <relationship kind="action" name="setAsSource:" candidateClass="UITableViewCell"/>
-                <relationship kind="action" name="toggleFav:" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="favNameCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="favToggleCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="mapImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="CNPOITableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOITableViewController.h"/>
-        </class>
-        <class className="CNUserPOIViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNUserPOIViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1PZ-2n-1yH"/>
         <segue reference="yJG-RD-QSD"/>
+        <segue reference="P1V-Bc-b7e"/>
     </inferredMetricsTieBreakers>
 </document>
