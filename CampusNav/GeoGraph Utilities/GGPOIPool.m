@@ -19,19 +19,21 @@
 
 @synthesize items = _items;
 
-+ (GGPOIPool *)poiPoolOfBuilding:(GGBuilding *)building
++ (GGPOIPool *)poiPoolWithPOIs:(NSArray *)pois
 {
 	GGPOIPool *pool = [[GGPOIPool alloc] init];
-	pool.items = [[GGSystem sharedGeoGraphSystem] poisInBuilding:building];
+	pool.items = pois;
 	return pool;
+}
+
++ (GGPOIPool *)poiPoolOfBuilding:(GGBuilding *)building
+{
+	return [GGPOIPool poiPoolWithPOIs:[[GGSystem sharedGeoGraphSystem] poisInBuilding:building]];
 }
 
 + (GGPOIPool *)poiPoolOfFloorPlan:(GGFloorPlan *)floorPlan
 {
-	GGPOIPool *pool = [[GGPOIPool alloc] init];
-	NSLog(@"Creating poi pool from floor plan %@", floorPlan.fId);
-	pool.items = [[GGSystem sharedGeoGraphSystem] poisOnFloorPlan:floorPlan];
-	return pool;
+	return [GGPOIPool poiPoolWithPOIs:[[GGSystem sharedGeoGraphSystem] poisOnFloorPlan:floorPlan]];
 }
 
 - (NSArray *)poisWithinCategory:(GGPOICategory)category

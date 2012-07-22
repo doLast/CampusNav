@@ -14,6 +14,7 @@
 
 @interface GGPOIPool : GGPool
 
++ (GGPOIPool *)poiPoolWithPOIs:(NSArray *)pois;
 + (GGPOIPool *)poiPoolOfBuilding:(GGBuilding *)building;
 + (GGPOIPool *)poiPoolOfFloorPlan:(GGFloorPlan *)floorPlan;
 
