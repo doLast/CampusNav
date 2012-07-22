@@ -14,6 +14,8 @@ typedef enum {
 	kGGElementTypeEnd
 } GGElementType;
 
+extern NSString *GGElementTypeText[kGGElementTypeEnd];
+
 @interface GGElement : GGPoint
 
 @property (nonatomic, readonly) GGElementType elementType;
@@ -22,5 +24,8 @@ typedef enum {
 					  onFloor:(NSNumber *)fId 
 				 atCoordinate:(GGCoordinate)coordinate 
 					   isType:(GGElementType)elementType;
+
++ (GGElementType)elementTypeOfText:(NSString *)text;
+
 
 @end

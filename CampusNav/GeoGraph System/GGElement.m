@@ -8,6 +8,11 @@
 
 #import "GGElement.h"
 
+NSString *GGElementTypeText[kGGElementTypeEnd] = {
+	@"node", 
+	@"portal"
+};
+
 @interface GGElement ()
 
 @property (nonatomic) NSNumber *pId;
@@ -39,6 +44,12 @@
 	element.coordinate = coordinate;
 	element.elementType = elementType;
 	return element;
+}
+
++ (GGElementType)elementTypeOfText:(NSString *)text
+{
+	NSArray *array = [NSArray arrayWithObjects:GGElementTypeText count:kGGElementTypeEnd];
+	return [array indexOfObject:text];
 }
 
 @end
