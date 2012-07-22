@@ -118,9 +118,17 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="vLj-8R-Y3o">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="GDP-B8-GHs" id="qFA-TN-NWR"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="POICell" textLabel="0kO-SM-EEB" detailTextLabel="8IG-0c-Po7" style="IBUITableViewCellStyleValue1" id="ilB-PO-4hD">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -154,7 +162,26 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="POI_CATEGORY" id="Py1-Bf-oJn"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="9Lw-wj-AVn" id="BN1-dy-Mb4"/>
+                        <outlet property="searchResultTableDelegate" destination="WL6-RO-KkJ" id="fIr-LX-58B"/>
+                        <segue destination="8aT-XG-sIG" kind="push" identifier="ShowSearchResultDetial" id="14n-tK-bkQ"/>
+                    </connections>
                 </tableViewController>
+                <customObject id="WL6-RO-KkJ" customClass="CNPOITableViewController">
+                    <connections>
+                        <outlet property="mainViewController" destination="GDP-B8-GHs" id="Vub-UX-CPY"/>
+                    </connections>
+                </customObject>
+                <searchDisplayController id="9Lw-wj-AVn">
+                    <connections>
+                        <outlet property="delegate" destination="GDP-B8-GHs" id="ud1-62-dCs"/>
+                        <outlet property="searchBar" destination="vLj-8R-Y3o" id="jIl-Fy-Koa"/>
+                        <outlet property="searchContentsController" destination="GDP-B8-GHs" id="sd4-hR-b2D"/>
+                        <outlet property="searchResultsDataSource" destination="WL6-RO-KkJ" id="49Q-rp-cvq"/>
+                        <outlet property="searchResultsDelegate" destination="WL6-RO-KkJ" id="OyS-ol-4jg"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2045" y="468"/>
         </scene>
@@ -537,6 +564,57 @@
             <point key="canvasLocation" x="993" y="468"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CNCategoryTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNCategoryTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chooseFloorPlan:"/>
+                <relationship kind="action" name="startLocating:"/>
+                <relationship kind="outlet" name="locateButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchResultTableDelegate" candidateClass="CNPOITableViewController"/>
+            </relationships>
+        </class>
+        <class className="CNNavConfigViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavConfigViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="navDestinationCell" candidateClass="CNPOICell"/>
+                <relationship kind="outlet" name="navSourceCell" candidateClass="CNPOICell"/>
+                <relationship kind="outlet" name="startNavCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="CNNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavigationController.h"/>
+        </class>
+        <class className="CNPOICell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOICell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buildingName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="roomDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="roomNumber" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CNPOIDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOIDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="setAsDestination:" candidateClass="UITableViewCell"/>
+                <relationship kind="action" name="setAsSource:" candidateClass="UITableViewCell"/>
+                <relationship kind="action" name="toggleFav:" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="favNameCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="favToggleCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="mapImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="CNPOITableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOITableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mainViewController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="searchResultTableDelegate" candidateClass="CNPOITableViewController"/>
+            </relationships>
+        </class>
+        <class className="CNUserPOIViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNUserPOIViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -544,6 +622,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="yJG-RD-QSD"/>
-        <segue reference="P1V-Bc-b7e"/>
+        <segue reference="Nvz-ZO-cBT"/>
     </inferredMetricsTieBreakers>
 </document>
