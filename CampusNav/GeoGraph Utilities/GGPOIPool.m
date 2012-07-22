@@ -1,5 +1,5 @@
 //
-//  GGFloorPlan.m
+//  GGPOIPool.m
 //  CampusNav
 //
 //  Created by Greg Wang on 12-7-16.
@@ -39,6 +39,21 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"category=%d", category];
 	NSArray *result = [self.items filteredArrayUsingPredicate:predicate];
 	return result;
+}
+
+- (NSArray *)poisLikeKeyword:(NSString *)keyword
+{
+	NSArray *components = [keyword componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	NSMutableArray *subpredicates = [NSMutableArray array];
+	
+	for (NSString *component in components) {
+		if([component length] == 0) { continue; }
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"roomNum contains[cd] %@ || description contains[cd] %@", component, component];
+		[subpredicates addObject:predicate];
+	}
+	
+	return [self.items filteredArrayUsingPredicate:
+			[NSCompoundPredicate andPredicateWithSubpredicates:subpredicates]];
 }
 
 @end

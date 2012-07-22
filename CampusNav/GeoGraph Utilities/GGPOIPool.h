@@ -1,5 +1,5 @@
 //
-//  GGFloorPlan.h
+//  GGPOIPool.h
 //  CampusNav
 //
 //  Created by Greg Wang on 12-7-16.
@@ -18,5 +18,6 @@
 + (GGPOIPool *)poiPoolOfFloorPlan:(GGFloorPlan *)floorPlan;
 
 - (NSArray *)poisWithinCategory:(GGPOICategory)category;
+- (NSArray *)poisLikeKeyword:(NSString *)keyword;
 
 @end
