@@ -10,5 +10,6 @@
 
 @interface CNPOITableViewController : UITableViewController
 @property (nonatomic, strong) NSArray *pois;
+@property (nonatomic, weak) IBOutlet UIViewController *mainViewController;
 
 @end

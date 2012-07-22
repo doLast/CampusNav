@@ -20,6 +20,7 @@
 
 #pragma mark - Getter & Setter
 @synthesize pois = _pois;
+@synthesize mainViewController = _mainViewController;
 
 #pragma mark - View controller events
 - (void)viewDidLoad
@@ -47,6 +48,11 @@
 	// Dequeue a cell
     static NSString *CellIdentifier = @"POICell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 
+									  reuseIdentifier:CellIdentifier];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
     
 	// Customize it with data
 	GGPOI *poi = [self.pois objectAtIndex:indexPath.row];
@@ -54,6 +60,15 @@
 	cell.detailTextLabel.text = poi.description;
     
     return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self.mainViewController 
+	 performSegueWithIdentifier:@"ShowSearchResultDetial" 
+	 sender:[self.pois objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - Segue
@@ -66,6 +81,11 @@
 		CNPOIDetailViewController *vc = segue.destinationViewController;
 		
 		vc.poi = [self.pois objectAtIndex:indexPath.row];
+	}
+	if ([sender isKindOfClass:[GGPOI class]]) {
+		CNPOIDetailViewController *vc = segue.destinationViewController;
+		
+		vc.poi = sender;
 	}
 }
 
