@@ -40,6 +40,9 @@
     
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar-active.png"]];
 	
+	UIColor* bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ipad-BG-pattern.png"]];
+	[[UITableView appearance] setBackgroundColor:bgColor];
+	
 }
 
 + (void)configureTabBar:(UITabBarController *)tabBarController
@@ -84,8 +87,8 @@
 
 + (void)customizeViewController:(UIViewController *)viewController
 {
-	UIColor* bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ipad-BG-pattern.png"]];
-	viewController.view.backgroundColor = bgColor;
+//	UIColor* bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ipad-BG-pattern.png"]];
+//	viewController.view.backgroundColor = bgColor;
 }
 
 + (CALayer *)createShadowWithFrame:(CGRect)frame
