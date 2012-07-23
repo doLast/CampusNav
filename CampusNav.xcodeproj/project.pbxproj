@@ -52,6 +52,9 @@
 		2586976C15817CD300F79A1A /* CNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2586976B15817CD300F79A1A /* CNAppDelegate.m */; };
 		2586976F15817CD300F79A1A /* CampusNav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2586976D15817CD300F79A1A /* CampusNav.xcdatamodeld */; };
 		25936C921582683D005D8924 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25936C911582683D005D8924 /* Storyboard.storyboard */; };
+		25E240EB15BC861000B70887 /* CNPathCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E240EA15BC861000B70887 /* CNPathCalculator.m */; };
+		25E240F615BCEF0900B70887 /* CNSameFloorPathCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E240F515BCEF0900B70887 /* CNSameFloorPathCalculator.m */; };
+		25E240F915BD052B00B70887 /* CNNavResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E240F815BD052B00B70887 /* CNNavResultViewController.m */; };
 		25E7944215B5C5D800E7B58C /* GGSystem+GGInternalSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E7944115B5C5D800E7B58C /* GGSystem+GGInternalSystem.m */; };
 		25FF0BAE15B4A6FC00F5EE73 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BA915B4A6FC00F5EE73 /* FMDatabase.m */; };
 		25FF0BAF15B4A6FC00F5EE73 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BAB15B4A6FC00F5EE73 /* FMDatabaseAdditions.m */; };
@@ -137,6 +140,12 @@
 		2586976B15817CD300F79A1A /* CNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNAppDelegate.m; sourceTree = "<group>"; };
 		2586976E15817CD300F79A1A /* CampusNav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CampusNav.xcdatamodel; sourceTree = "<group>"; };
 		25936C911582683D005D8924 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		25E240E915BC861000B70887 /* CNPathCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPathCalculator.h; sourceTree = "<group>"; };
+		25E240EA15BC861000B70887 /* CNPathCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPathCalculator.m; sourceTree = "<group>"; };
+		25E240F415BCEF0900B70887 /* CNSameFloorPathCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSameFloorPathCalculator.h; sourceTree = "<group>"; };
+		25E240F515BCEF0900B70887 /* CNSameFloorPathCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSameFloorPathCalculator.m; sourceTree = "<group>"; };
+		25E240F715BD052A00B70887 /* CNNavResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNNavResultViewController.h; sourceTree = "<group>"; };
+		25E240F815BD052B00B70887 /* CNNavResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNavResultViewController.m; sourceTree = "<group>"; };
 		25E7944015B5C5D800E7B58C /* GGSystem+GGInternalSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGSystem+GGInternalSystem.h"; sourceTree = "<group>"; };
 		25E7944115B5C5D800E7B58C /* GGSystem+GGInternalSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGSystem+GGInternalSystem.m"; sourceTree = "<group>"; };
 		25FF0BA815B4A6FC00F5EE73 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FMDatabase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -210,14 +219,14 @@
 		250B885515B74ABA00332392 /* Behind the Scene */ = {
 			isa = PBXGroup;
 			children = (
-				255FF04115B89C0D0033C98B /* CNPOICell.h */,
-				255FF04215B89C0D0033C98B /* CNPOICell.m */,
-				250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */,
-				250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */,
 				25373A7215B8F141000FECC4 /* CNUICustomize.h */,
 				25373A7315B8F141000FECC4 /* CNUICustomize.m */,
 				25373A7915B901F8000FECC4 /* CNNavigationController.h */,
 				25373A7A15B901F8000FECC4 /* CNNavigationController.m */,
+				255FF04115B89C0D0033C98B /* CNPOICell.h */,
+				255FF04215B89C0D0033C98B /* CNPOICell.m */,
+				250B883015B610AF00332392 /* CNGeoGraphSelectionViewController.h */,
+				250B883115B610AF00332392 /* CNGeoGraphSelectionViewController.m */,
 			);
 			name = "Behind the Scene";
 			sourceTree = "<group>";
@@ -298,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				25FF0BB615B4A84000F5EE73 /* View Controllers */,
+				25E240E815BC830800B70887 /* Path Calculation */,
 				25FF0BCD15B4ED9E00F5EE73 /* GeoGraph Utilities */,
 				25FF0BBA15B4B6CB00F5EE73 /* GeoGraph System */,
 				255FF01C15B789C50033C98B /* User Profile */,
@@ -322,6 +332,17 @@
 				2586976915817CD300F79A1A /* CampusNav-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25E240E815BC830800B70887 /* Path Calculation */ = {
+			isa = PBXGroup;
+			children = (
+				25E240E915BC861000B70887 /* CNPathCalculator.h */,
+				25E240EA15BC861000B70887 /* CNPathCalculator.m */,
+				25E240F415BCEF0900B70887 /* CNSameFloorPathCalculator.h */,
+				25E240F515BCEF0900B70887 /* CNSameFloorPathCalculator.m */,
+			);
+			path = "Path Calculation";
 			sourceTree = "<group>";
 		};
 		25FF0BA615B4A49B00F5EE73 /* FMDB */ = {
@@ -353,6 +374,8 @@
 				255FF02515B7959E0033C98B /* CNPOIDetailViewController.m */,
 				255FF03D15B89A1B0033C98B /* CNNavConfigViewController.h */,
 				255FF03E15B89A1B0033C98B /* CNNavConfigViewController.m */,
+				25E240F715BD052A00B70887 /* CNNavResultViewController.h */,
+				25E240F815BD052B00B70887 /* CNNavResultViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -502,6 +525,9 @@
 				255FF04315B89C0D0033C98B /* CNPOICell.m in Sources */,
 				25373A7415B8F141000FECC4 /* CNUICustomize.m in Sources */,
 				25373A7B15B901F8000FECC4 /* CNNavigationController.m in Sources */,
+				25E240EB15BC861000B70887 /* CNPathCalculator.m in Sources */,
+				25E240F615BCEF0900B70887 /* CNSameFloorPathCalculator.m in Sources */,
+				25E240F915BD052B00B70887 /* CNNavResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +596,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CampusNav/CampusNav-Prefix.pch";
 				INFOPLIST_FILE = "CampusNav/CampusNav-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -581,6 +608,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CampusNav/CampusNav-Prefix.pch";
 				INFOPLIST_FILE = "CampusNav/CampusNav-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
