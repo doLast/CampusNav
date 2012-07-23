@@ -78,7 +78,7 @@
 		// Create result set and data container
 		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
 								  @"SELECT * FROM edge as e \
-								  WHERE e.e_id = ;", eId];
+								  WHERE e.e_id = %@;", eId];
 		
 		if ([resultSet next]) {
 //			NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"e_id"]];
