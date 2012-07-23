@@ -34,6 +34,5 @@
 
 // Graph Generation
 - (GGGraph *)graphOfFloorPlan:(GGFloorPlan *)floorPlan;
-- (GGGraph *)graphFrom:(GGPoint *)source to:(GGPoint *)destination;
 
 @end

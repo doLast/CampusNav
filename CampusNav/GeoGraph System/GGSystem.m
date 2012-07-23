@@ -31,6 +31,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 @property (nonatomic, strong) NSMutableSet *buildingCacheIndicator;
 @property (nonatomic, strong) NSMutableSet *floorCacheIndicator;
 @property (nonatomic, strong) NSMutableSet *poiCacheIndicator;
+@property (nonatomic, strong) NSMutableSet *elementCacheIndicator;
 //@property (nonatomic, strong) NSMutableSet *edgeCacheIndicator;
 
 @end
@@ -49,6 +50,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 @synthesize buildingCacheIndicator = _buildingCacheIndicator;
 @synthesize floorCacheIndicator = _floorCacheIndicator;
 @synthesize poiCacheIndicator = _poiCacheIndicator;
+@synthesize elementCacheIndicator = _elementCacheIndicator;
 //@synthesize edgeCacheIndicator = _edgeCacheIndicator;
 
 #pragma mark - System Initialization
@@ -77,6 +79,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 		self.buildingCacheIndicator = [NSMutableSet set];
 		self.floorCacheIndicator = [NSMutableSet set];
 		self.poiCacheIndicator = [NSMutableSet set];
+		self.elementCacheIndicator = [NSMutableSet set];
 //		self.edgeCacheIndicator = [NSMutableSet set];
 	}
 	return self;
@@ -113,7 +116,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 //	}
 //}
 
-// Buildings
+#pragma mark - Building
 - (NSArray *)buildingsInCampus:(NSString *)campus
 {
 	// Currently, campus does not do anything
@@ -131,7 +134,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	return buildings;
 }
 
-// FloorPlans
+#pragma mark - FloorPlans
 - (NSArray *)floorPlansOfCampus:(NSString *)campus
 {
 	// Get buildings in the campus
@@ -190,7 +193,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	return floorPlans;
 }
 
-// POIs
+#pragma mark - POIs
 - (NSArray *)poisInBuilding:(GGBuilding *)building
 {
 	// Get floor plans for the building
@@ -261,15 +264,101 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	return pois;
 }
 
-// Graph Generation
-- (GGGraph *)graphOfFloorPlan:(GGFloorPlan *)floorPlan
+#pragma mark - Elements
+
+- (NSArray *)elementsOnFloorPlan:(GGFloorPlan *)floorPlan
 {
-	return nil;
+	// Get pois from cache if exists
+	if ([self.elementCacheIndicator containsObject:floorPlan.fId]) {
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:
+								  @"SELF isKindOfClass:%@ && floorPlan.fId = %@", 
+								  [GGElement class], floorPlan.fId];
+		NSArray *filtered = [[self.pointCache allValues] 
+							 filteredArrayUsingPredicate:predicate];
+		NSLog(@"Found %d Elements from cache", filtered.count);
+		return filtered;
+	}
+	
+	// Otherwise, get from data source
+	// data source must be valid
+	assert(self.dataSource);
+	
+	// Create result set and data container
+	FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+							  @"SELECT p.p_id, p.floor_plan, p.x, p.y, \
+							  t.e_type \
+							  FROM point AS p, point_element AS t  \
+							  WHERE p.floor_plan = %@ \
+							  AND t.p_id = p.p_id;", floorPlan.fId];
+	NSMutableArray *elements = [NSMutableArray array];
+	
+	// Build data
+	while ([resultSet next]) {
+		NSNumber *pId = [NSNumber numberWithInt:[resultSet intForColumn:@"p_id"]];
+		NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"floor_plan"]];
+		GGCoordinate coordinate = [GGPoint coordinateAtX:[resultSet intForColumn:@"x"]
+													andY:[resultSet intForColumn:@"y"]];
+		GGElementType eType = [GGElement elementTypeOfText:
+								  [resultSet stringForColumn:@"e_type"]];
+		
+		GGElement *element = [GGElement elementWithPId:pId 
+											   onFloor:fId 
+										  atCoordinate:coordinate 
+												isType:eType];
+		
+		[elements addObject:element];
+		[self.pointCache setObject:element forKey:element.pId];
+	}
+	
+	// Add current floor plan to cache indicator
+	[self.elementCacheIndicator addObject:floorPlan.fId];
+	
+	NSLog(@"Found %d Elements from data source", elements.count);
+	return elements;
 }
 
-- (GGGraph *)graphFrom:(GGPoint *)source to:(GGPoint *)destination
+#pragma mark - Graph Generation
+- (GGGraph *)graphOfFloorPlan:(GGFloorPlan *)floorPlan
 {
-	return nil;
+	// Pre-fetch POIs and Elements of the floorPlan
+//	if (![self.poiCacheIndicator containsObject:floorPlan.fId]) {
+//		[self poisOnFloorPlan:floorPlan];
+//	}
+	NSArray *elements = [self elementsOnFloorPlan:floorPlan];
+	
+	NSLog(@"count:%d", [elements count]);
+	
+	NSMutableDictionary *pointToEdges = 
+	[NSMutableDictionary dictionaryWithCapacity:[elements count]];
+	
+	for (GGElement *element in elements) {
+		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+								  @"SELECT * FROM edge as e \
+								  WHERE e.vertex_A = %@ \
+								  OR e.vertex_B = %@;", 
+								  element.pId, element.pId];
+		NSMutableSet *edges = [NSMutableSet set];
+		
+		while ([resultSet next]) {
+			NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"e_id"]];
+			NSNumber *vertexA = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_A"]];
+			NSNumber *vertexB = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_B"]];
+			NSInteger weight = [resultSet intForColumn:@"weight"];
+			
+			GGEdge *edge = [GGEdge edgeWithEId:eId 
+								 connectsPoint:vertexA 
+									  andPoint:vertexB 
+									haveWeight:weight];
+			[edges addObject:edge];
+		}
+		
+		[pointToEdges setObject:edges forKey:element.pId];
+	}
+	
+	NSLog(@"count:%d", [pointToEdges count]);
+	
+	GGGraph *graph = [GGGraph graphWithPointToEdges:pointToEdges];
+	return graph;
 }
 
 @end

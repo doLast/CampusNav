@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @class GGPOI;
-@class GGEdge;
 
 @interface GGGraph : NSObject
 
-@property (nonatomic, copy) GGPOI *source;
-@property (nonatomic, copy) GGPOI *destination;
-@property (nonatomic, strong, readonly) NSArray *edges;
-@property (nonatomic, strong, readonly) NSArray *elements;
+@property (nonatomic, strong, readonly) NSDictionary *pointToEdges;
 
-- (BOOL)addEdge:(GGEdge *)edge;
++ (GGGraph *)graphWithPointToEdges:(NSDictionary *)pointToEdges;
+
+- (BOOL)insertPOI:(GGPOI *)poi;
 
 @end

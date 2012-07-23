@@ -50,4 +50,9 @@
 	return edge;
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Edge:%@ from:%@ to:%@ weight:%d", self.eId, self.pIdA, self.pIdB, self.weight];
+}
+
 @end
