@@ -81,7 +81,7 @@
 								  WHERE e.e_id = %@;", eId];
 		
 		if ([resultSet next]) {
-//			NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"e_id"]];
+			NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"e_id"]];
 			NSNumber *vertexA = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_A"]];
 			NSNumber *vertexB = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_B"]];
 			NSInteger weight = [resultSet intForColumn:@"weight"];
@@ -90,6 +90,9 @@
 								 connectsPoint:vertexA 
 									  andPoint:vertexB 
 									haveWeight:weight];
+			
+			NSLog(@"No cached Edge, fetched");
+			
 			return edge;
 		}
 		
@@ -105,6 +108,36 @@
 - (GGElement *)getElement:(NSNumber *)pId
 {
 	GGElement *point = [self.pointCache objectForKey:pId];
+	if (point == nil) {
+		// data source must be valid
+		assert(self.dataSource);
+		
+		// Create result set and data container
+		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+								  @"SELECT p.p_id, p.floor_plan, p.x, p.y, \
+								  t.e_type \
+								  FROM point AS p, point_element AS t  \
+								  WHERE p.p_id = %@;", pId];
+		
+		// Build data
+		if ([resultSet next]) {
+			NSNumber *pId = [NSNumber numberWithInt:[resultSet intForColumn:@"p_id"]];
+			NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"floor_plan"]];
+			GGCoordinate coordinate = [GGPoint coordinateAtX:[resultSet intForColumn:@"x"]
+														andY:[resultSet intForColumn:@"y"]];
+			GGElementType eType = [GGElement elementTypeOfText:
+								   [resultSet stringForColumn:@"e_type"]];
+			
+			point = [GGElement elementWithPId:pId 
+									  onFloor:fId 
+								 atCoordinate:coordinate 
+									   isType:eType];
+		}
+		
+		NSLog(@"No cached Element, fetched");
+		
+		[self.pointCache setObject:point forKey:pId];
+	}
 	if ([point isKindOfClass:[GGElement class]]) {
 		return point;
 	}

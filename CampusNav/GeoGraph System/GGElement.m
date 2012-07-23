@@ -7,6 +7,7 @@
 //
 
 #import "GGElement.h"
+#import "GGSystem+GGInternalSystem.h"
 
 NSString *GGElementTypeText[kGGElementTypeEnd] = {
 	@"node", 
@@ -44,6 +45,11 @@ NSString *GGElementTypeText[kGGElementTypeEnd] = {
 	element.coordinate = coordinate;
 	element.elementType = elementType;
 	return element;
+}
+
++ (GGElement *)elementWithPId:(NSNumber *)pId
+{
+	return [[GGSystem sharedGeoGraphSystem] getElement:pId];
 }
 
 + (GGElementType)elementTypeOfText:(NSString *)text

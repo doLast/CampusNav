@@ -24,6 +24,7 @@ extern NSString *GGElementTypeText[kGGElementTypeEnd];
 					  onFloor:(NSNumber *)fId 
 				 atCoordinate:(GGCoordinate)coordinate 
 					   isType:(GGElementType)elementType;
++ (GGElement *)elementWithPId:(NSNumber *)pId;
 
 + (GGElementType)elementTypeOfText:(NSString *)text;
 
