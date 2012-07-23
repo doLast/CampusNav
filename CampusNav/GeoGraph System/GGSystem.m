@@ -325,9 +325,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 //		[self poisOnFloorPlan:floorPlan];
 //	}
 	NSArray *elements = [self elementsOnFloorPlan:floorPlan];
-	
-	NSLog(@"count:%d", [elements count]);
-	
+		
 	NSMutableDictionary *pointToEdges = 
 	[NSMutableDictionary dictionaryWithCapacity:[elements count]];
 	
@@ -354,8 +352,6 @@ static NSString * const kDataSourceName = @"GG_DATA";
 		
 		[pointToEdges setObject:edges forKey:element.pId];
 	}
-	
-	NSLog(@"count:%d", [pointToEdges count]);
 	
 	GGGraph *graph = [GGGraph graphWithPointToEdges:pointToEdges];
 	return graph;
