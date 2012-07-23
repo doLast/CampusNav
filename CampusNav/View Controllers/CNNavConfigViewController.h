@@ -27,4 +27,6 @@ extern NSString * const kCNNavConfigTypeDestination;
 @property (nonatomic, weak) IBOutlet CNPOICell *navDestinationCell;
 @property (nonatomic, weak) IBOutlet UITableViewCell *startNavCell;
 
+- (IBAction)startNav:(id)sender;
+
 @end

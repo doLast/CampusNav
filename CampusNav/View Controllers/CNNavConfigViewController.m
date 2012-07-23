@@ -7,8 +7,14 @@
 //
 
 #import "CNNavConfigViewController.h"
+#import "CNNavResultViewController.h"
+
 #import "CNPOICell.h"
 #import "CNUICustomize.h"
+
+#import "GGSystem.h"
+#import "CNPathCalculator.h"
+#import "CNSameFloorPathCalculator.h"
 
 NSString * const kCNNavConfigNotification = @"CNNavConfigNotification";
 NSString * const kCNNavConfigNotificationType = @"CNNavConfigNotificationType";
@@ -48,6 +54,8 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 	
 	[self.navSourceCell clearCellWithPrompt:@"Please choose a source point"];
 	[self.navDestinationCell clearCellWithPrompt:@"Please choose a destination point"];
+	
+	self.startNavCell.userInteractionEnabled = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -82,6 +90,10 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 	
 	[self.navigationController popToRootViewControllerAnimated:YES];
 	self.tabBarController.selectedViewController = self.navigationController;
+	
+	if (self.sourcePOI != nil && self.destinationPOI != nil) {
+		self.startNavCell.userInteractionEnabled = YES;
+	}
 }
 
 #pragma mark - Table view delegate
@@ -97,4 +109,42 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
      */
 }
 
+#pragma mark - Actions
+
+- (IBAction)startNav:(id)sender
+{
+	[self performSegueWithIdentifier:@"ShowNavResult" sender:sender];
+}
+
+#pragma mark - Segue
+
+- (NSArray *)navResultForCurrentConfig
+{
+	NSArray *result = nil;
+	if ([self.sourcePOI.edge.eId isEqualToNumber:self.destinationPOI.edge.eId]) {
+		// The destination is right accross the hall way
+		NSLog(@"Navigation over same edge");
+	}
+	else if ([self.sourcePOI.floorPlan.fId isEqualToNumber:self.destinationPOI.floorPlan.fId]) {
+		CNPathCalculator *calculator = [[CNSameFloorPathCalculator alloc] initFromPOI:self.sourcePOI toPOI:self.destinationPOI];
+		result = [calculator executeCalculation];
+	}
+	else if ([self.sourcePOI.floorPlan.building.name isEqualToString:self.destinationPOI.floorPlan.building.name]) {
+		NSLog(@"Navigation between different floor");
+	}
+	else {
+		NSLog(@"Navigation between different building");
+	}
+	return result;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"ShowNavResult"]) {
+		NSArray *result = [self navResultForCurrentConfig];
+		
+		CNNavResultViewController *vc = segue.destinationViewController;
+		vc.resultPoints = result;
+	}
+}
 @end

@@ -508,15 +508,15 @@
                             </tableViewSection>
                             <tableViewSection id="9rA-UG-AEG">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="lzi-nC-dK9" style="IBUITableViewCellStyleDefault" id="gqI-E0-eU6">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="lzi-nC-dK9" style="IBUITableViewCellStyleDefault" id="gqI-E0-eU6">
                                         <rect key="frame" x="0.0" y="290" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="START_NAVIGATION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lzi-nC-dK9">
-                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -525,6 +525,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="SeP-V0-qtA" kind="push" identifier="ShowNavResult" id="JvH-qm-xx0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -543,6 +546,52 @@
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1519" y="1101"/>
+        </scene>
+        <!--Nav Result View Controller-->
+        <scene sceneID="wFw-XC-YlG">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGa-Sy-Mmx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="SeP-V0-qtA" customClass="CNNavResultViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3iV-wH-fgF">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NavResultCell" textLabel="eSr-zq-IsQ" detailTextLabel="anw-V4-84r" style="IBUITableViewCellStyleSubtitle" id="6vd-1G-s9w">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eSr-zq-IsQ">
+                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="anw-V4-84r">
+                                            <rect key="frame" x="10" y="24" width="47" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SeP-V0-qtA" id="bgn-va-I0B"/>
+                            <outlet property="delegate" destination="SeP-V0-qtA" id="DK3-3W-rg2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="FVx-xV-a9f"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="2045" y="1101"/>
         </scene>
         <!--Navigation Controller - POI_TAB-->
         <scene sceneID="KVj-tg-fcA">
@@ -564,57 +613,6 @@
             <point key="canvasLocation" x="993" y="468"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CNCategoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNCategoryTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="chooseFloorPlan:"/>
-                <relationship kind="action" name="startLocating:"/>
-                <relationship kind="outlet" name="locateButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="searchResultTableDelegate" candidateClass="CNPOITableViewController"/>
-            </relationships>
-        </class>
-        <class className="CNNavConfigViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavConfigViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="navDestinationCell" candidateClass="CNPOICell"/>
-                <relationship kind="outlet" name="navSourceCell" candidateClass="CNPOICell"/>
-                <relationship kind="outlet" name="startNavCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="CNNavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavigationController.h"/>
-        </class>
-        <class className="CNPOICell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOICell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="buildingName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="roomDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="roomNumber" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CNPOIDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOIDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="setAsDestination:" candidateClass="UITableViewCell"/>
-                <relationship kind="action" name="setAsSource:" candidateClass="UITableViewCell"/>
-                <relationship kind="action" name="toggleFav:" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="favNameCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="favToggleCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="mapImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="CNPOITableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOITableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mainViewController" candidateClass="UIViewController"/>
-                <relationship kind="outlet" name="searchResultTableDelegate" candidateClass="CNPOITableViewController"/>
-            </relationships>
-        </class>
-        <class className="CNUserPOIViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNUserPOIViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
