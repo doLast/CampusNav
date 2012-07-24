@@ -10,26 +10,32 @@
 
 @interface GGBuilding ()
 
+@property (nonatomic, strong) NSNumber *bId;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) NSString *abbreviation;
+@property (nonatomic, strong) CLLocation *location;
 
 @end
 
 @implementation GGBuilding
 
 #pragma mark - Getter & Setter
+@synthesize bId = _bId;
 @synthesize name = _name;
-@synthesize location = _location;
 @synthesize abbreviation = _abbreviation;
+@synthesize location = _location;
 
 #pragma mark - Convenicent Constructor
-+ (GGBuilding *)buildingWithName:(NSString *)name withAbbreviation:(NSString *)abbreviation atLocation:(CLLocation *)location
++ (GGBuilding *)buildingWithBId:(NSNumber *)bId 
+					   withName:(NSString *)name 
+			   withAbbreviation:(NSString *)abbreviation 
+					 atLocation:(CLLocation *)location
 {
 	GGBuilding *building = [[GGBuilding alloc] init];
+	building.bId = bId;
 	building.name = name;
-	building.location = location;
 	building.abbreviation = abbreviation;
+	building.location = location;
 	return building;
 }
 

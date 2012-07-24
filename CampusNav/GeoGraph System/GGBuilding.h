@@ -10,11 +10,15 @@
 
 @interface GGBuilding : NSObject
 
+@property (nonatomic, strong, readonly) NSNumber *bId;
 @property (nonatomic, strong, readonly) NSString *name;
-@property (nonatomic, strong, readonly) CLLocation *location;
 @property (nonatomic, strong, readonly) NSString *abbreviation;
+@property (nonatomic, strong, readonly) CLLocation *location;
 
-+ (GGBuilding *)buildingWithName:(NSString *)name withAbbreviation:(NSString *)abbreviation atLocation:(CLLocation *)location;
++ (GGBuilding *)buildingWithBId:(NSNumber *)bId 
+					   withName:(NSString *)name 
+			   withAbbreviation:(NSString *)abbreviation 
+					 atLocation:(CLLocation *)location;
 
 - (CLLocationDistance)distanceFromLocation:(CLLocation *)location;
 

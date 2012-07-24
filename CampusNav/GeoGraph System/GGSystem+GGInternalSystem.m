@@ -29,14 +29,34 @@
 
 @implementation GGSystem (GGInternalSystem)
 
-- (GGBuilding *)getBuilding:(NSString *)name
+- (GGBuilding *)getBuilding:(NSNumber *)bId
 {
-	GGBuilding *building = [self.buildingCache objectForKey:name];
+	GGBuilding *building = [self.buildingCache objectForKey:bId];
 	if (building == nil) {
-		building = [GGBuilding buildingWithName:@"Mathmetics & Computer" withAbbreviation:@"MC" atLocation:[[CLLocation alloc] initWithLatitude:43.472113 longitude:-80.543912]];
+		// data source must be valid
+		assert(self.dataSource);
+		
+		// Create result set and data container
+		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+								  @"SELECT * FROM building AS b \
+								  WHERE b.b_id = %@;", bId];
+		
+		// Build data
+		if ([resultSet next]) {
+			NSNumber *bId = [NSNumber numberWithInt:[resultSet intForColumn:@"b_id"]];
+			CLLocation *location = [[CLLocation alloc] 
+									initWithLatitude:[resultSet doubleForColumn:@"latitude"] 
+									longitude:[resultSet doubleForColumn:@"longitude"]];
+			building = [GGBuilding buildingWithBId:bId 
+										  withName:[resultSet stringForColumn:@"name"] 
+								  withAbbreviation:[resultSet stringForColumn:@"abbr"] 
+										atLocation:location];
+			[self.buildingCache setObject:building forKey:building.bId];
+		}
+		
 		NSLog(@"No cached building, fetched");
 		
-		[self.buildingCache setObject:building forKey:name];
+		[self.buildingCache setObject:building forKey:bId];
 	}
 	return building;
 }
@@ -56,10 +76,12 @@
 		// Build data
 		if ([resultSet next]) {
 			NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"f_id"]];
+			NSNumber *bId = [NSNumber numberWithInt:[resultSet intForColumn:@"building"]];
 			floorPlan = [GGFloorPlan 
-						 floorPlanWithFid:fId
-						 inBuilding:[resultSet stringForColumn:@"building"] 
-						 onFloor:[resultSet intForColumn:@"floor"]];
+						 floorPlanWithFid:fId 
+						 inBuilding:bId
+						 onFloor:[resultSet intForColumn:@"floor"] 
+						 withDescription:[resultSet stringForColumn:@"description"]];
 		}
 		NSLog(@"No cached floor plan, fetched");
 		

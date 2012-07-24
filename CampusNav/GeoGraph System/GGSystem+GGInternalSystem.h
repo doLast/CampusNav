@@ -16,7 +16,7 @@
 
 @interface GGSystem (GGInternalSystem)
 
-- (GGBuilding *)getBuilding:(NSString *)name;
+- (GGBuilding *)getBuilding:(NSNumber *)bId;
 - (GGFloorPlan *)getFloorPlan:(NSNumber *)fId;
 - (GGEdge *)getEdge:(NSNumber *)eId;
 - (GGPoint *)getPoint:(NSNumber *)pId;

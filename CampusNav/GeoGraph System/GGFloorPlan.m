@@ -12,8 +12,9 @@
 @interface GGFloorPlan ()
 
 @property (nonatomic, strong) NSNumber *fId;
-@property (nonatomic, strong) NSString *buildingName;
+@property (nonatomic, strong) NSNumber *bId;
 @property (nonatomic) NSInteger floor;
+@property (nonatomic, strong) NSString *description;
 
 @end
 
@@ -21,23 +22,26 @@
 
 #pragma mark - Getter & Setter
 @synthesize fId = _fId;
-@synthesize buildingName = _buildingName;
+@synthesize bId = _bId;
 @synthesize floor = _floor;
+@synthesize description = _description;
 
 - (GGBuilding *)building
 {
-	return [[GGSystem sharedGeoGraphSystem] getBuilding:self.buildingName];
+	return [[GGSystem sharedGeoGraphSystem] getBuilding:self.bId];
 }
 
 #pragma mark - Convenicent Constructor
 + (GGFloorPlan *)floorPlanWithFid:(NSNumber *)fId 
-					   inBuilding:(NSString *)buildingName 
+					   inBuilding:(NSNumber *)bId 
 						  onFloor:(NSInteger)floor 
+				  withDescription:(NSString *)description
 {
 	GGFloorPlan *floorPlan = [[GGFloorPlan alloc] init];
 	floorPlan.fId = fId;
-	floorPlan.buildingName = buildingName;
+	floorPlan.bId = bId;
 	floorPlan.floor = floor;
+	floorPlan.description = description;
 	return floorPlan;
 }
 

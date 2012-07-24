@@ -15,9 +15,11 @@
 @property (nonatomic, strong, readonly) NSNumber *fId;
 @property (nonatomic, readonly) GGBuilding *building;
 @property (nonatomic, readonly) NSInteger floor;
+@property (nonatomic, strong, readonly) NSString *description;
 
 + (GGFloorPlan *)floorPlanWithFid:(NSNumber *)fId 
-					   inBuilding:(NSString *)buildingName 
-						  onFloor:(NSInteger)floor;
+					   inBuilding:(NSNumber *)bId 
+						  onFloor:(NSInteger)floor
+				  withDescription:(NSString *)description;
 
 @end

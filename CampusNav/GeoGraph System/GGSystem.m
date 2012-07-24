@@ -122,15 +122,37 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	// Currently, campus does not do anything
 	
 	// Get buildings from cache if exists
-	if ([self.buildingCache count] > 0) {
+	if ([self.buildingCacheIndicator containsObject:campus]) {
 		return [self.buildingCache allValues];
 	}
 	
-	GGBuilding *building = [GGBuilding buildingWithName:@"Mathmetics & Computer" withAbbreviation:@"MC" atLocation:[[CLLocation alloc] initWithLatitude:43.472113 longitude:-80.543912]];
-	[self.buildingCache setObject:building forKey:building.name];
-	NSArray *buildings = [NSArray arrayWithObject:building];
+	// Otherwise, get from data source
+	// data source must be valid
+	assert(self.dataSource);
 	
+	// Create result set and data container
+	FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+							  @"SELECT * FROM building AS b;"];
+	NSMutableArray *buildings = [NSMutableArray array];
+	
+	// Build data
+	while ([resultSet next]) {
+		NSNumber *bId = [NSNumber numberWithInt:[resultSet intForColumn:@"b_id"]];
+		CLLocation *location = [[CLLocation alloc] 
+								initWithLatitude:[resultSet doubleForColumn:@"latitude"] 
+								longitude:[resultSet doubleForColumn:@"longitude"]];
+		GGBuilding *building = [GGBuilding buildingWithBId:bId 
+												  withName:[resultSet stringForColumn:@"name"] 
+										  withAbbreviation:[resultSet stringForColumn:@"abbr"] 
+												atLocation:location];
+		[buildings addObject:building];
+		[self.buildingCache setObject:building forKey:building.bId];
+	}
+	
+	// Add current building to cache indicator
 	[self.buildingCacheIndicator addObject:campus];
+	
+	NSLog(@"Found %d buildings from data source", [buildings count]);
 	return buildings;
 }
 
@@ -151,9 +173,9 @@ static NSString * const kDataSourceName = @"GG_DATA";
 - (NSArray *)floorPlansOfBuilding:(GGBuilding *)building
 {
 	// Get floor plans from cache if exists
-	if ([self.floorCacheIndicator containsObject:building.name]) {
+	if ([self.floorCacheIndicator containsObject:building.bId]) {
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:
-								  @"building.name = %@", building.name];
+								  @"building.bId = %@", building.bId];
 		NSArray *filtered = [[self.floorPlanCache allValues] 
 							 filteredArrayUsingPredicate:predicate];
 		NSSortDescriptor *sortDescriptor = [NSSortDescriptor 
@@ -172,22 +194,24 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
 							  @"SELECT * FROM floor_plan AS f \
 							  WHERE f.building = %@ \
-							  ORDER BY f.floor ASC;", building.name];
+							  ORDER BY f.floor ASC;", building.bId];
 	NSMutableArray *floorPlans = [NSMutableArray array];
 	
 	// Build data
 	while ([resultSet next]) {
 		NSNumber *fId = [NSNumber numberWithInt:[resultSet intForColumn:@"f_id"]];
+		NSNumber *bId = [NSNumber numberWithInt:[resultSet intForColumn:@"building"]];
 		GGFloorPlan *floorPlan = [GGFloorPlan 
-								  floorPlanWithFid:fId
-								  inBuilding:[resultSet stringForColumn:@"building"] 
-								  onFloor:[resultSet intForColumn:@"floor"]];
+								  floorPlanWithFid:fId 
+								  inBuilding:bId
+								  onFloor:[resultSet intForColumn:@"floor"] 
+								  withDescription:[resultSet stringForColumn:@"description"]];
 		[floorPlans addObject:floorPlan];
 		[self.floorPlanCache setObject:floorPlan forKey:floorPlan.fId];
 	}
 	
 	// Add current building to cache indicator
-	[self.floorCacheIndicator addObject:building.name];
+	[self.floorCacheIndicator addObject:building.bId];
 	
 	NSLog(@"Found %d floor plans from data source", [floorPlans count]);
 	return floorPlans;
