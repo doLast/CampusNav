@@ -15,6 +15,7 @@
 @property (nonatomic, strong, readonly) NSDictionary *pointToEdges;
 
 + (GGGraph *)graphWithPointToEdges:(NSDictionary *)pointToEdges;
++ (GGGraph *)graphWithGraphs:(NSArray *)graphs;
 
 - (BOOL)insertPOI:(GGPOI *)poi;
 

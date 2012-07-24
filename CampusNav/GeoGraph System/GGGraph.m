@@ -61,6 +61,23 @@
 	return graph;
 }
 
++ (GGGraph *)graphWithGraphs:(NSArray *)graphs
+{
+	if (graphs == nil || [graphs count] == 0) {
+		return nil;
+	}
+	
+	GGGraph *graph = [[GGGraph alloc] init];
+	if (graph != nil) {
+		NSMutableDictionary *pointToEdges = [NSMutableDictionary dictionary];
+		for (GGGraph *subGraph in graphs) {
+			[pointToEdges addEntriesFromDictionary:subGraph.pointToEdges];
+		}
+		graph.pointToEdgesCopy = pointToEdges;
+	}
+	return graph;
+}
+
 + (NSInteger)weightBetweenCoordinate:(GGCoordinate)a andCoordinate:(GGCoordinate)b
 {
 	return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
