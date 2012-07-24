@@ -15,6 +15,7 @@
 #import "GGSystem.h"
 #import "CNPathCalculator.h"
 #import "CNSameFloorPathCalculator.h"
+#import "CNSameBuildingPathCalculator.h"
 
 NSString * const kCNNavConfigNotification = @"CNNavConfigNotification";
 NSString * const kCNNavConfigNotificationType = @"CNNavConfigNotificationType";
@@ -131,6 +132,8 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 	}
 	else if ([self.sourcePOI.floorPlan.building.name isEqualToString:self.destinationPOI.floorPlan.building.name]) {
 		NSLog(@"Navigation between different floor");
+		CNPathCalculator *calculator = [[CNSameBuildingPathCalculator alloc] initFromPOI:self.sourcePOI toPOI:self.destinationPOI];
+		result = [calculator executeCalculation];
 	}
 	else {
 		NSLog(@"Navigation between different building");
