@@ -64,6 +64,14 @@ NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
 	return [[GGSystem sharedGeoGraphSystem] getEdge:self.eId];
 }
 
+- (NSString *)description
+{
+	if (_description == nil) {
+		return [NSString stringWithFormat:@"%@", GGPOICategoryNames[self.category]];
+	}
+	return _description;
+}
+
 #pragma mark - Convenivent Constructor
 + (GGPOI *)poiWithPId:(NSNumber *)pId 
 			  onFloor:(NSNumber *)fId 

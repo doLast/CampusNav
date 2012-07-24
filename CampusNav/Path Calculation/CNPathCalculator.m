@@ -7,6 +7,7 @@
 //
 
 #import "CNPathCalculator.h"
+#import "CNPathNode.h"
 #import "GGSystem.h"
 
 @interface CNPathCalculator ()
@@ -134,7 +135,38 @@
 
 - (NSArray *)parseCalculationResult:(NSDictionary *)result
 {
-	return nil;
+	NSMutableArray *path = [NSMutableArray array];
+	
+	// Prepare variables
+	NSNumber *pId = self.destination.pId;
+	GGPoint *next = nil;
+	GGPoint *current = [GGPOI poiWithPId:pId];
+	GGPoint *previous = nil;
+	
+	// Add all GGElement(s) in between to path
+	for (pId = [result objectForKey:pId]; 
+		 pId != nil && pId != self.source.pId; 
+		 pId = [result objectForKey:pId]) {
+		
+		previous = [GGElement elementWithPId:pId];
+		[path addObject:[CNPathNode nodeAt:current withPrevious:previous andNext:next]];
+		
+		next = current;
+		current = previous;
+		previous = nil;
+	}
+	// Add Last GGElement to Path
+	previous = [GGPOI poiWithPId:pId];
+	[path addObject:[CNPathNode nodeAt:current withPrevious:previous andNext:next]];
+	
+	// Add Source's GGPOI to path
+	next = current;
+	current = previous;
+	previous = nil;
+	[path addObject:[CNPathNode nodeAt:current withPrevious:previous andNext:next]];
+	
+	// Return reversed result
+	return [[path reverseObjectEnumerator] allObjects];
 }
 
 @end

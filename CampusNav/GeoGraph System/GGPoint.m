@@ -35,4 +35,10 @@
 	return coordinate;
 }
 
+- (NSString *)description
+{
+	NSString *str = [NSString stringWithFormat:@"point at %d, %d", self.coordinate.x, self.coordinate.y];
+	return str;
+}
+
 @end

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CNNavResultViewController : UITableViewController
+@interface CNNavResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) IBOutlet UIImageView *floorPlanView;
+@property (nonatomic, strong) IBOutlet UIScrollView *floorPlanScrollView;
 
 @property (nonatomic, strong) NSArray *resultPoints;
 

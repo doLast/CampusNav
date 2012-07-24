@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GGPoint.h"
 
 @class GGPOI;
 
@@ -16,6 +17,8 @@
 
 + (GGGraph *)graphWithPointToEdges:(NSDictionary *)pointToEdges;
 + (GGGraph *)graphWithGraphs:(NSArray *)graphs;
+
++ (NSInteger)weightBetweenCoordinate:(GGCoordinate)a andCoordinate:(GGCoordinate)b;
 
 - (BOOL)insertPOI:(GGPOI *)poi;
 

@@ -7,7 +7,9 @@
 //
 
 #import "CNNavResultViewController.h"
-#import "GGSystem.h"
+#import "CNPathNode.h"
+
+#import <QuartzCore/QuartzCore.h>
 
 @interface CNNavResultViewController ()
 
@@ -16,6 +18,8 @@
 @implementation CNNavResultViewController
 
 #pragma mark - Getter & Setter
+@synthesize floorPlanView = _floorPlanView;
+@synthesize floorPlanScrollView = _floorPlanScrollView;
 @synthesize resultPoints = _resultPoints;
 
 #pragma mark - View controller events
@@ -42,18 +46,37 @@
     static NSString *CellIdentifier = @"NavResultCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
-	GGPoint *point = [self.resultPoints objectAtIndex:indexPath.row];
+	CNPathNode *node = [self.resultPoints objectAtIndex:indexPath.row];
 	
-	if ([point isKindOfClass:[GGPOI class]]) {
-		GGPOI *poi = (GGPOI *)point;
-		cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", poi.floorPlan.building.abbreviation, poi.roomNum];
+	switch (node.type) {
+		case kCNPathNodeTypeSource:
+			cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"source" ofType:@"png"]];
+			break;
+		case kCNPathNodeTypeDestination:
+			cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"destination" ofType:@"png"]];
+			break;
+		case kCNPathNodeTypeStraight:
+			cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"straight" ofType:@"png"]];
+			break;
+		case kCNPathNodeTypeLeft:
+			cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"left" ofType:@"png"]];
+			break;
+		case kCNPathNodeTypeRight:
+			cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"right" ofType:@"png"]];
+			break;
+		case kCNPathNodeTypeUpStairs:
+			cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"up" ofType:@"png"]];
+			break;
+		case kCNPathNodeTypeDownStairs:
+			cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"down" ofType:@"png"]];
+			break;
+		default:
+			break;
 	}
-	else if ([point isKindOfClass:[GGElement class]]) {
-		GGElement *element = (GGElement *)point;
-		cell.textLabel.text = [NSString stringWithFormat:@"%@ #%@", GGElementTypeText[element.elementType], element.pId];
-	}
+	cell.imageView.backgroundColor = [UIColor colorWithRed:50.0/255 green:130.0/255 blue:200.0/255 alpha:1];
 	
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %d floor", point.floorPlan.building.abbreviation, point.floorPlan.floor];
+	cell.textLabel.text = node.description;
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Distance from previous: %dpx", node.distance];
 	
     return cell;
 }

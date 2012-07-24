@@ -58,4 +58,9 @@ NSString *GGElementTypeText[kGGElementTypeEnd] = {
 	return [array indexOfObject:text];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"%@ #%@", GGElementTypeText[self.elementType], self.pId];
+}
+
 @end
