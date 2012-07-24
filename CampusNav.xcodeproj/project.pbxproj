@@ -55,6 +55,7 @@
 		25E240EB15BC861000B70887 /* CNPathCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E240EA15BC861000B70887 /* CNPathCalculator.m */; };
 		25E240F615BCEF0900B70887 /* CNSameFloorPathCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E240F515BCEF0900B70887 /* CNSameFloorPathCalculator.m */; };
 		25E240F915BD052B00B70887 /* CNNavResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E240F815BD052B00B70887 /* CNNavResultViewController.m */; };
+		25E240FC15BE486F00B70887 /* CNSameBuildingPathCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E240FB15BE486F00B70887 /* CNSameBuildingPathCalculator.m */; };
 		25E7944215B5C5D800E7B58C /* GGSystem+GGInternalSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E7944115B5C5D800E7B58C /* GGSystem+GGInternalSystem.m */; };
 		25FF0BAE15B4A6FC00F5EE73 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BA915B4A6FC00F5EE73 /* FMDatabase.m */; };
 		25FF0BAF15B4A6FC00F5EE73 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 25FF0BAB15B4A6FC00F5EE73 /* FMDatabaseAdditions.m */; };
@@ -146,6 +147,8 @@
 		25E240F515BCEF0900B70887 /* CNSameFloorPathCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSameFloorPathCalculator.m; sourceTree = "<group>"; };
 		25E240F715BD052A00B70887 /* CNNavResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNNavResultViewController.h; sourceTree = "<group>"; };
 		25E240F815BD052B00B70887 /* CNNavResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNavResultViewController.m; sourceTree = "<group>"; };
+		25E240FA15BE486F00B70887 /* CNSameBuildingPathCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNSameBuildingPathCalculator.h; sourceTree = "<group>"; };
+		25E240FB15BE486F00B70887 /* CNSameBuildingPathCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNSameBuildingPathCalculator.m; sourceTree = "<group>"; };
 		25E7944015B5C5D800E7B58C /* GGSystem+GGInternalSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GGSystem+GGInternalSystem.h"; sourceTree = "<group>"; };
 		25E7944115B5C5D800E7B58C /* GGSystem+GGInternalSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GGSystem+GGInternalSystem.m"; sourceTree = "<group>"; };
 		25FF0BA815B4A6FC00F5EE73 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FMDatabase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -341,6 +344,8 @@
 				25E240EA15BC861000B70887 /* CNPathCalculator.m */,
 				25E240F415BCEF0900B70887 /* CNSameFloorPathCalculator.h */,
 				25E240F515BCEF0900B70887 /* CNSameFloorPathCalculator.m */,
+				25E240FA15BE486F00B70887 /* CNSameBuildingPathCalculator.h */,
+				25E240FB15BE486F00B70887 /* CNSameBuildingPathCalculator.m */,
 			);
 			path = "Path Calculation";
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				25E240EB15BC861000B70887 /* CNPathCalculator.m in Sources */,
 				25E240F615BCEF0900B70887 /* CNSameFloorPathCalculator.m in Sources */,
 				25E240F915BD052B00B70887 /* CNNavResultViewController.m in Sources */,
+				25E240FC15BE486F00B70887 /* CNSameBuildingPathCalculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
