@@ -12,6 +12,7 @@
 + (void)configureTabBar:(UITabBarController *)tabBarController;
 
 + (void)dropShadowForView:(UIView *)view;
++ (void)dropShadowFromCeilingForView:(UIView *)view;
 + (void)customizeViewController:(UIViewController *)viewController;
 
 @end

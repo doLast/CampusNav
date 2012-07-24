@@ -121,10 +121,9 @@ enum FloorPlanPickerViewComponents {
 	}
 	else {
 		poiPool = [GGPOIPool poiPoolOfFloorPlan:[self.floorPlanPool.items objectAtIndex:self.selectedFloorPlan]];
-		floor = [NSString stringWithFormat:@"%d", 
-				 ((GGFloorPlan *)[self.floorPlanPool.items objectAtIndex:self.selectedFloorPlan]).floor];
+		floor = ((GGFloorPlan *)[self.floorPlanPool.items objectAtIndex:self.selectedFloorPlan]).description;
 	}
-	NSString *title = [NSString stringWithFormat:@"%@ %@ floor", 
+	NSString *title = [NSString stringWithFormat:@"%@ %@", 
 					   ((GGBuilding *)[self.buildingPool.items objectAtIndex:self.selectedBuilding]).abbreviation, floor];
 	
 	// Boradcase the update
@@ -232,7 +231,7 @@ enum FloorPlanPickerViewComponents {
 			return [NSString stringWithFormat:@"All"];
 		}
 		GGFloorPlan *floorPlan = [self.floorPlanPool.items objectAtIndex:row - 1];
-		return [NSString stringWithFormat:@"%d", floorPlan.floor];
+		return [NSString stringWithFormat:@"%@", floorPlan.description];
 	}
 	return nil;
 }

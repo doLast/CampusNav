@@ -11,7 +11,7 @@
 
 NSString * CNPathNodeTypeText[kCNPathNodeTypeEnd] = {
 	@"Start from", 
-	@"Reach destination", 
+	@"Reach", 
 	@"Go pass the", 
 	@"Turn left at", 
 	@"Turn right at", 
@@ -87,10 +87,10 @@ NSString * CNPathNodeTypeText[kCNPathNodeTypeEnd] = {
 				node.type = kCNPathNodeTypeStraight;
 			}
 			else if (tan > 0) {
-				node.type = kCNPathNodeTypeRight;
+				node.type = kCNPathNodeTypeLeft;
 			}
 			else {
-				node.type = kCNPathNodeTypeLeft;
+				node.type = kCNPathNodeTypeRight;
 			}
 		}
 	}

@@ -85,6 +85,14 @@
 	view.clipsToBounds = NO;
 }
 
++ (void)dropShadowFromCeilingForView:(UIView *)view
+{
+	CALayer* shadowLayer = [self createShadowWithFrame:CGRectMake(0, 0, view.frame.size.width, 5)];
+	
+	[view.layer addSublayer:shadowLayer];
+	view.clipsToBounds = NO;
+}
+
 + (void)customizeViewController:(UIViewController *)viewController
 {
 //	UIColor* bgColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"ipad-BG-pattern.png"]];

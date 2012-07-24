@@ -53,8 +53,8 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 
     [CNUICustomize customizeViewController:self];
 	
-	[self.navSourceCell clearCellWithPrompt:@"Please choose a source point"];
-	[self.navDestinationCell clearCellWithPrompt:@"Please choose a destination point"];
+	[self.navSourceCell clearCellWithPrompt:@"Please choose one"];
+	[self.navDestinationCell clearCellWithPrompt:@"Please choose one"];
 	
 	self.startNavCell.userInteractionEnabled = NO;
 }
@@ -147,7 +147,7 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 		NSArray *result = [self navResultForCurrentConfig];
 		
 		CNNavResultViewController *vc = segue.destinationViewController;
-		vc.resultPoints = result;
+		vc.pathNodes = result;
 	}
 }
 @end

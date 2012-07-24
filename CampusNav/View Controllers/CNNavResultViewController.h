@@ -10,9 +10,11 @@
 
 @interface CNNavResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) IBOutlet UIImageView *floorPlanView;
-@property (nonatomic, strong) IBOutlet UIScrollView *floorPlanScrollView;
+@property (nonatomic, weak) IBOutlet UIImageView *floorPlanView;
+@property (nonatomic, weak) IBOutlet UIScrollView *floorPlanScrollView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UIView *tableViewBacklay;
 
-@property (nonatomic, strong) NSArray *resultPoints;
+@property (nonatomic, strong) NSArray *pathNodes;
 
 @end
