@@ -104,11 +104,13 @@
 - (void)setAsSource:(UITableViewCell *)sender
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNavConfigNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:kCNNavConfigTypeSource, kCNNavConfigNotificationType, self.poi, kCNNavConfigNotificationData, nil]];
+	[self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)setAsDestination:(UITableViewCell *)sender
 {
 	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNavConfigNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:kCNNavConfigTypeDestination, kCNNavConfigNotificationType, self.poi, kCNNavConfigNotificationData, nil]];
+	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void)promptFavNameChange
