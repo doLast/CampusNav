@@ -101,7 +101,7 @@ NSString * CNPathNodeTypeText[kCNPathNodeTypeEnd] = {
 			double cos = [CNPathNode cornerCosFrom:previous.coordinate 
 											  pass:current.coordinate 
 												to:next.coordinate];
-			if (fabs(tan) < 0.6) {
+			if (cos > 0.85) {
 				node.type = kCNPathNodeTypeStraight;
 			}
 			else if (tan > 0) {
