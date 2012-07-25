@@ -176,7 +176,7 @@
 		// Create result set and data container
 		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
 								  @"SELECT p.p_id, p.floor_plan, p.x, p.y, \
-								  i.room_number, i.category, i.edge \
+								  i.room_number, i.category, i.edge, i.description \
 								  FROM point AS p, point_poi AS i  \
 								  WHERE p.p_id = %@ \
 								  AND i.p_id = p.p_id;", pId];
@@ -191,7 +191,7 @@
 									  [resultSet stringForColumn:@"category"]];
 			NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"edge"]];
 			NSString *roomNum = [resultSet stringForColumn:@"room_number"];
-			NSString *description = nil; // [resultSet stringForColumn:@"description"];
+			NSString *description = [resultSet stringForColumn:@"description"];
 			
 			point = [GGPOI poiWithPId:pId 
 							  onFloor:fId 

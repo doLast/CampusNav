@@ -251,7 +251,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	// Create result set and data container
 	FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
 							  @"SELECT p.p_id, p.floor_plan, p.x, p.y, \
-							  i.room_number, i.category, i.edge \
+							  i.room_number, i.category, i.edge, i.description \
 							  FROM point AS p, point_poi AS i  \
 							  WHERE p.floor_plan = %@ \
 							  AND i.p_id = p.p_id;", floorPlan.fId];
@@ -267,7 +267,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 								  [resultSet stringForColumn:@"category"]];
 		NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"edge"]];
 		NSString *roomNum = [resultSet stringForColumn:@"room_number"];
-		NSString *description = nil; // [resultSet stringForColumn:@"description"];
+		NSString *description = [resultSet stringForColumn:@"description"];
 		
 		GGPOI *poi = [GGPOI poiWithPId:pId 
 							   onFloor:fId 
