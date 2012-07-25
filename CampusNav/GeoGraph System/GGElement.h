@@ -11,6 +11,9 @@
 typedef enum {
 	kGGNode = 0, 
 	kGGPortal,
+	kGGCorner, 
+	kGGIntersection, 
+	kGGExit, 
 	kGGElementTypeEnd
 } GGElementType;
 

@@ -11,7 +11,10 @@
 
 NSString *GGElementTypeText[kGGElementTypeEnd] = {
 	@"node", 
-	@"portal"
+	@"portal", 
+	@"corner", 
+	@"intersection", 
+	@"exit"
 };
 
 @interface GGElement ()

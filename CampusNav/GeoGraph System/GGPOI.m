@@ -66,7 +66,7 @@ NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd] = {
 
 - (NSString *)description
 {
-	if (_description == nil) {
+	if (_description == nil || [_description isEqualToString:@"NULL"]) {
 		return [NSString stringWithFormat:@"%@", GGPOICategoryNames[self.category]];
 	}
 	return _description;
