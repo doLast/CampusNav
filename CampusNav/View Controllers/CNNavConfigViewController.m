@@ -45,6 +45,9 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 	[super awakeFromNib];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNavConfigNotification:) name:kCNNavConfigNotification object:nil];
+	
+	self.sourcePOI = nil;
+	self.destinationPOI = nil;
 }
 
 - (void)viewDidLoad
@@ -53,9 +56,6 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 
     [CNUICustomize customizeViewController:self];
 	
-	[self.navSourceCell clearCellWithPrompt:@"Please choose one"];
-	[self.navDestinationCell clearCellWithPrompt:@"Please choose one"];
-	
 	self.startNavCell.userInteractionEnabled = NO;
 }
 
@@ -63,17 +63,18 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 {
 	[super viewWillAppear:animated];
 	
-	if (self.sourcePOI != nil) {
-		[self.navSourceCell fillCellWithPOI:self.sourcePOI];
-	}
-	if (self.destinationPOI != nil) {
-		[self.navDestinationCell fillCellWithPOI:self.destinationPOI];
-	}
+	[self updateNavCells];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)updateNavCells
+{
+	[self.navSourceCell fillCellWithPOI:self.sourcePOI];
+	[self.navDestinationCell fillCellWithPOI:self.destinationPOI];
 }
 
 - (void)handleNavConfigNotification:(NSNotification *)notification
@@ -115,6 +116,14 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 - (IBAction)startNav:(id)sender
 {
 	[self performSegueWithIdentifier:@"ShowNavResult" sender:sender];
+}
+
+- (IBAction)swapPOIs:(id)sender
+{
+	GGPOI *temp = self.sourcePOI;
+	self.sourcePOI = self.destinationPOI;
+	self.destinationPOI = temp;
+	[self updateNavCells];
 }
 
 #pragma mark - Segue

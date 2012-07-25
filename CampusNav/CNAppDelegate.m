@@ -27,6 +27,8 @@
 	
 	[CNUICustomize customizeTheme];
 	
+	[CNUICustomize configureTabBar:(UITabBarController *)self.window.rootViewController];
+	
     return YES;
 }
 

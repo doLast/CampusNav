@@ -48,19 +48,19 @@
 + (void)configureTabBar:(UITabBarController *)tabBarController
 {	
     UIViewController *controller1 = [[tabBarController viewControllers] objectAtIndex:0];
-    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon1.png" andText:@"Elements" forViewController:controller1];
+    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon4.png" andText:@"Favorites" forViewController:controller1];
     
     
     UIViewController *controller2 = [[tabBarController viewControllers] objectAtIndex:1];
-    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon2.png" andText:@"Elements" forViewController:controller2];
+    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon2.png" andText:@"Browse" forViewController:controller2];
     
     
     UIViewController *controller3 = [[tabBarController viewControllers] objectAtIndex:2];
-    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon3.png" andText:@"Other" forViewController:controller3];
+    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon3.png" andText:@"Navigation" forViewController:controller3];
     
     
-    UIViewController *controller4 = [[tabBarController viewControllers] objectAtIndex:3];
-    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon4.png" andText:@"Other" forViewController:controller4];
+//    UIViewController *controller4 = [[tabBarController viewControllers] objectAtIndex:3];
+//    [CNUICustomize configureTabBarItemWithImageName:@"tab-icon4.png" andText:@"Other" forViewController:controller4];
     
 }
 

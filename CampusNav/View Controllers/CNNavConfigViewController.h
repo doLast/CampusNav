@@ -28,5 +28,6 @@ extern NSString * const kCNNavConfigTypeDestination;
 @property (nonatomic, weak) IBOutlet UITableViewCell *startNavCell;
 
 - (IBAction)startNav:(id)sender;
+- (IBAction)swapPOIs:(id)sender;
 
 @end

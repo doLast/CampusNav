@@ -35,7 +35,7 @@
 - (void)fillCellWithPOI:(GGPOI *)poi
 {
 	if (poi == nil) {
-		[self clearCellWithPrompt:@"Please select a POI"];
+		[self clearCellWithPrompt:@"Please choose one"];
 		return;
 	}
 	if (self.roomNumber != nil) {

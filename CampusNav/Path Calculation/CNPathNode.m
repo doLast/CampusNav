@@ -54,9 +54,23 @@ NSString * CNPathNodeTypeText[kCNPathNodeTypeEnd] = {
 	// Check zero
 	
 	double tan = (kBA - kCB) / (1 - denominatorTan);
-	NSLog(@"fenzi: %f", kBA - kCB);
-	NSLog(@"fenmu: %f", 1 - denominatorTan);
 	return tan;
+}
+
++ (double)cornerCosFrom:(GGCoordinate)a 
+				   pass:(GGCoordinate)b 
+					 to:(GGCoordinate)c
+{
+	double xAB = b.x - a.x;
+	double yAB = b.y - a.y;
+	
+	double xBC = c.x - b.x;
+	double yBC = c.y - b.y;
+	
+	double cos = (xAB * xBC + yAB * yBC) / 
+	(sqrt(pow(xAB, 2) + pow(yAB, 2)) * 
+	 sqrt(pow(xBC, 2) + pow(yBC, 2)));
+	return cos;
 }
 
 + (CNPathNode *)nodeAt:(GGPoint *)current 
@@ -81,16 +95,31 @@ NSString * CNPathNodeTypeText[kCNPathNodeTypeEnd] = {
 			node.type = previous.floorPlan.floor > next.floorPlan.floor ? kCNPathNodeTypeDownStairs : kCNPathNodeTypeUpStairs;
 		}
 		else {
-			double tan = [CNPathNode cornerTanFrom:previous.coordinate pass:current.coordinate to:next.coordinate];
-			NSLog(@"tan: %f", tan);
+			double tan = [CNPathNode cornerTanFrom:previous.coordinate 
+											  pass:current.coordinate 
+												to:next.coordinate];
+			double cos = [CNPathNode cornerCosFrom:previous.coordinate 
+											  pass:current.coordinate 
+												to:next.coordinate];
 			if (fabs(tan) < 0.6) {
 				node.type = kCNPathNodeTypeStraight;
 			}
 			else if (tan > 0) {
-				node.type = kCNPathNodeTypeLeft;
+				if (cos > 0) {
+					node.type = kCNPathNodeTypeLeft;
+				}
+				else {
+					node.type = kCNPathNodeTypeRight;
+				}
+				
 			}
 			else {
-				node.type = kCNPathNodeTypeRight;
+				if (cos > 0) {
+					node.type = kCNPathNodeTypeRight;
+				}
+				else {
+					node.type = kCNPathNodeTypeLeft;
+				}
 			}
 		}
 	}

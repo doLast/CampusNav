@@ -230,7 +230,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="SET_AS_SOURCE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PbJ-Cn-LdT">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Set as Navigation Source" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PbJ-Cn-LdT">
                                                     <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -248,7 +248,7 @@
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="SET_AS_DESTINATION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="10H-MK-Wii">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Set as Navigation Destination" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="10H-MK-Wii">
                                                     <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -266,7 +266,7 @@
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="ADD_POI_TO_FAV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ygx-qU-NQi">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Add This POI to Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ygx-qU-NQi">
                                                     <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -325,7 +325,7 @@
             </objects>
             <point key="canvasLocation" x="2045" y="-150"/>
         </scene>
-        <!--UserPOI View Controller - FAV-->
+        <!--UserPOI View Controller - Favorites-->
         <scene sceneID="eDJ-pn-BZ2">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xG3-GZ-V47" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,17 +369,17 @@
                             <outlet property="delegate" destination="tgu-h6-ogu" id="1VS-HW-1FJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="FAV" id="Jhg-mh-weB"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="Jhg-mh-weB"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1519" y="-150"/>
         </scene>
-        <!--Navigation Controller - FAV_TAB-->
+        <!--Navigation Controller - Favorites-->
         <scene sceneID="Tfm-M9-h5C">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRy-y1-qn8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="FavNavigation" id="MBO-mb-Jnt" customClass="CNNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="FAV_TAB" id="ehw-6s-u7Y"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="tab-icon4" id="ehw-6s-u7Y"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LoQ-mq-HI7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -393,12 +393,12 @@
             </objects>
             <point key="canvasLocation" x="993" y="-150"/>
         </scene>
-        <!--Navigation Controller - NAV_TAB-->
+        <!--Navigation Controller - Navigation-->
         <scene sceneID="sJV-i8-Uel">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKg-EX-oZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="NavNavigation" definesPresentationContext="YES" id="R4i-VL-i4F" customClass="CNNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="NAV_TAB" id="Te8-sp-6FA"/>
+                    <tabBarItem key="tabBarItem" title="Navigation" image="tab-icon3" id="Te8-sp-6FA"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="5oV-Gc-5ZY">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -409,7 +409,7 @@
             </objects>
             <point key="canvasLocation" x="993" y="1101"/>
         </scene>
-        <!--Nav Config View Controller - NAV_CONFIG-->
+        <!--Nav Config View Controller - Navigation Config-->
         <scene sceneID="QLo-mP-gY5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gHT-Mb-BDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -431,7 +431,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ROOM_NUMBER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="qQ7-hd-0aF">
                                                     <rect key="frame" x="44" y="9" width="236" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -446,7 +446,7 @@
                                                     <rect key="frame" x="44" y="67" width="236" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" id="EyL-fA-kB4">
@@ -504,7 +504,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ROOM_NUMBER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="XKe-Zh-weu">
                                                     <rect key="frame" x="44" y="9" width="236" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
@@ -519,7 +519,7 @@
                                                     <rect key="frame" x="44" y="67" width="236" height="52"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" id="7b9-aQ-ruz">
@@ -564,7 +564,7 @@
                                             <rect key="frame" x="10" y="1" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="START_NAVIGATION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lzi-nC-dK9">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Start Navigation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lzi-nC-dK9">
                                                     <rect key="frame" x="10" y="0.0" width="260" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -586,7 +586,13 @@
                             <outlet property="delegate" destination="qv8-nG-9Vg" id="6wx-Ay-AaW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="NAV_CONFIG" id="Z7U-nw-8ej"/>
+                    <navigationItem key="navigationItem" title="Navigation Config" id="Z7U-nw-8ej">
+                        <barButtonItem key="rightBarButtonItem" title="Swap" id="d8d-Al-L22">
+                            <connections>
+                                <action selector="swapPOIs:" destination="qv8-nG-9Vg" id="Lsh-rM-Nfv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="navDestinationCell" destination="AI7-vu-Di4" id="cMs-Gn-5vq"/>
                         <outlet property="navSourceCell" destination="nnN-qA-7s4" id="1QB-Iu-jcB"/>
@@ -672,12 +678,12 @@
             </objects>
             <point key="canvasLocation" x="2045" y="1101"/>
         </scene>
-        <!--Navigation Controller - POI_TAB-->
+        <!--Navigation Controller - Browse-->
         <scene sceneID="KVj-tg-fcA">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIN-PM-O0x" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="BrowseNavigation" id="Tn4-gB-gbx" customClass="CNNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="POI_TAB" id="STz-rA-7Ie"/>
+                    <tabBarItem key="tabBarItem" title="Browse" image="tab-icon2" id="STz-rA-7Ie"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pBQ-34-YM9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -692,13 +698,81 @@
             <point key="canvasLocation" x="993" y="468"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab-icon2" width="16" height="16"/>
+        <image name="tab-icon3" width="16" height="16"/>
+        <image name="tab-icon4" width="16" height="16"/>
+    </resources>
+    <classes>
+        <class className="CNCategoryTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNCategoryTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chooseFloorPlan:"/>
+                <relationship kind="action" name="startLocating:"/>
+                <relationship kind="outlet" name="locateButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchResultTableDelegate" candidateClass="CNPOITableViewController"/>
+            </relationships>
+        </class>
+        <class className="CNNavConfigViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavConfigViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="startNav:"/>
+                <relationship kind="action" name="swapPOIs:"/>
+                <relationship kind="outlet" name="navDestinationCell" candidateClass="CNPOICell"/>
+                <relationship kind="outlet" name="navSourceCell" candidateClass="CNPOICell"/>
+                <relationship kind="outlet" name="startNavCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="CNNavResultViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavResultViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="floorPlanScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="floorPlanView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tableViewBacklay" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="CNNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNNavigationController.h"/>
+        </class>
+        <class className="CNPOICell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOICell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="buildingName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="roomDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="roomNumber" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CNPOIDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOIDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="setAsDestination:" candidateClass="UITableViewCell"/>
+                <relationship kind="action" name="setAsSource:" candidateClass="UITableViewCell"/>
+                <relationship kind="action" name="toggleFav:" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="favNameCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="favToggleCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="floorPlanScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="floorPlanView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="CNPOITableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNPOITableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mainViewController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="searchResultTableDelegate" candidateClass="CNPOITableViewController"/>
+            </relationships>
+        </class>
+        <class className="CNUserPOIViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNUserPOIViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2K4-xc-Qhx"/>
-        <segue reference="Nvz-ZO-cBT"/>
+        <segue reference="1PZ-2n-1yH"/>
+        <segue reference="1Sm-1C-EA2"/>
     </inferredMetricsTieBreakers>
 </document>

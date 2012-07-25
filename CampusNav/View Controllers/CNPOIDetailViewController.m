@@ -88,13 +88,13 @@
 	self.userPOI = [[CNUserProfile sharedUserProfile] userPOIbyId:self.poi.pId];
 	
 	if (self.userPOI != nil) {
-		self.favToggleCell.textLabel.text = @"REMOVE_POI_FROM_FAV";
+		self.favToggleCell.textLabel.text = @"Remove This POI from Favorites";
 		
 		self.favNameCell.detailTextLabel.text = self.userPOI.displayName;
 		self.favNameCell.hidden = NO;
 	}
 	else {
-		self.favToggleCell.textLabel.text = @"ADD_POI_TO_FAV";
+		self.favToggleCell.textLabel.text = @"Add This POI to Favorites";
 		self.favNameCell.hidden = YES;
 	}
 }

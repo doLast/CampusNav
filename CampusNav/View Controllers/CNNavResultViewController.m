@@ -90,6 +90,18 @@
 	self.floorPlanToImage = floorPlanToImage;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	if ([self.pathNodes count] > 0) {
+		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+		[self.tableView selectRowAtIndexPath:indexPath 
+									animated:animated 
+							  scrollPosition:UITableViewScrollPositionTop];
+		[self.tableView.delegate tableView:self.tableView 
+				   didSelectRowAtIndexPath:indexPath];
+	}
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
