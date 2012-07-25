@@ -81,7 +81,7 @@
 	GGPOI *poi = userPOI.poi;
 	
 	cell.textLabel.text = [userPOI.displayName copy];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", poi.floorPlan.building.abbreviation, poi.roomNum];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", poi.description];
     
     return cell;
 }
