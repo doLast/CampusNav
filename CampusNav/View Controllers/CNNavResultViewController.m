@@ -170,6 +170,7 @@
 		self.floorPlanView.image = image;
 		[self.floorPlanView sizeToFit];
 		self.floorPlanScrollView.contentSize = image.size;
+		self.title = [NSString stringWithFormat:@"%@ %@", floorPlan.building.abbreviation, floorPlan.description];
 	}
 	
 	CGFloat	width = self.floorPlanScrollView.bounds.size.width;
