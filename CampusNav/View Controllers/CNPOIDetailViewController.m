@@ -25,7 +25,8 @@
 
 #pragma mark - Getter & Setter
 @synthesize poi = _poi;
-@synthesize mapImageView = _mapImageView;
+@synthesize floorPlanView = _floorPlanView;
+@synthesize floorPlanScrollView = _floorPlanScrollView;
 @synthesize favToggleCell = _favToggleCell;
 @synthesize favNameCell = _favNameCell;
 
@@ -43,7 +44,22 @@
 	
 	self.title = [NSString stringWithFormat:@"%@ %@", 
 				  self.poi.floorPlan.building.abbreviation, self.poi.roomNum];
-	self.mapImageView.layer.cornerRadius = 10;
+	self.floorPlanScrollView.layer.cornerRadius = 10;
+	
+	// Load floor plan image
+	NSString *imageFilename = [NSString stringWithFormat:@"%@_%02dFLR", 
+							   self.poi.floorPlan.building.abbreviation, 
+							   self.poi.floorPlan.floor];
+	UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageFilename ofType:@"png"]];
+	self.floorPlanView.image = image;
+	[self.floorPlanView sizeToFit];
+	self.floorPlanScrollView.contentSize = image.size;
+
+	CGFloat	width = self.floorPlanScrollView.bounds.size.width;
+	CGFloat height = self.floorPlanScrollView.bounds.size.height;
+	CGFloat x = self.poi.coordinate.x - width / 2;
+	CGFloat y = self.poi.coordinate.y - height / 2;
+	[self.floorPlanScrollView scrollRectToVisible:CGRectMake(x, y, width, height) animated:YES];
 	
 	[CNUICustomize customizeViewController:self];
 }

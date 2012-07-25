@@ -13,7 +13,8 @@
 @interface CNPOIDetailViewController : UITableViewController
 
 @property (nonatomic, strong) GGPOI *poi;
-@property (nonatomic, weak) IBOutlet UIImageView *mapImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *floorPlanView;
+@property (nonatomic, weak) IBOutlet UIScrollView *floorPlanScrollView;
 @property (nonatomic, weak) IBOutlet UITableViewCell *favToggleCell;
 @property (nonatomic, strong) IBOutlet UITableViewCell *favNameCell;
 
