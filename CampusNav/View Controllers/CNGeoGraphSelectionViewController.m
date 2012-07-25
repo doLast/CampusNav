@@ -43,7 +43,7 @@ enum FloorPlanPickerViewComponents {
 @synthesize selectedBuilding = _selectedBuilding;
 @synthesize selectedFloorPlan = _selectedFloorPlan;
 
-@synthesize locateButton = _locateButton;
+//@synthesize locateButton = _locateButton;
 @synthesize pickerActionSheet = _pickerActionSheet;
 @synthesize pickerView = _pickerView;
 
@@ -133,12 +133,12 @@ enum FloorPlanPickerViewComponents {
 - (IBAction)startLocating:(id)sender
 {
 	// Setup the activity indicator
-	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-	[activityIndicatorView startAnimating];
+//	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//	[activityIndicatorView startAnimating];
 	
-	self.locateButton.customView = activityIndicatorView;
-	self.locateButton.customView.frame = CGRectMake(10, 0, 25, 25);
-	self.locateButton.customView.hidden = NO;
+//	self.locateButton.customView = activityIndicatorView;
+//	self.locateButton.customView.frame = CGRectMake(10, 0, 25, 25);
+//	self.locateButton.customView.hidden = NO;
 	
 	// Start locating, may prompt the user for previlege if is the first time
 	[self.locationManager startUpdatingLocation];
@@ -151,21 +151,35 @@ enum FloorPlanPickerViewComponents {
 	}
 	else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
 		[self stopLocating:self];
-		self.locateButton.enabled = NO;
+//		self.locateButton.enabled = NO;
 	}
 	
 }
 
 - (IBAction)stopLocating:(id)sender
 {
-	self.locateButton.customView = nil;
+//	self.locateButton.customView = nil;
 	
 	[self.locationManager stopUpdatingLocation];
+	CLLocation *location = self.locationManager.location;
+	CLLocationDistance distance = DBL_MAX;
+	GGBuilding *nearest = nil;
+	
+	for (GGBuilding *building in self.buildingPool.items) {
+		CLLocationDistance tempDistance = [building distanceFromLocation:location];
+		if (tempDistance < distance) {
+			distance = tempDistance;
+			nearest = building;
+		}
+	}
+	NSInteger row = [self.buildingPool.items indexOfObject:nearest] + 1;
+	
+	[self.pickerView selectRow:row inComponent:0 animated:YES];
 }
 
 - (IBAction)chooseFloorPlan:(id)sender
 {
-	[self.pickerView selectRow:self.selectedBuilding inComponent:kFloorPlanPickerViewBuilding animated:NO];
+	[self.pickerView selectRow:self.selectedBuilding + 1 inComponent:kFloorPlanPickerViewBuilding animated:NO];
 	[self.pickerView selectRow:self.selectedFloorPlan + 1 inComponent:kFloorPlanPickerViewFloor animated:NO];
 	[self.pickerActionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
 	[self.pickerActionSheet setBounds:CGRectMake(0, 0, 320, 470)];
@@ -183,7 +197,10 @@ enum FloorPlanPickerViewComponents {
 		   fromLocation:(CLLocation *)oldLocation
 {
 	NSLog(@"User Location Update to %@", newLocation);
-	if (newLocation.horizontalAccuracy < 100) {
+	self.pickerActionSheet.title = [NSString stringWithFormat:@"You are at: %.4f, %.4f", 
+									newLocation.coordinate.latitude, 
+									newLocation.coordinate.longitude];
+	if (newLocation.horizontalAccuracy < 200) {
 		[self stopLocating:manager];
 	}
 }
@@ -199,7 +216,7 @@ enum FloorPlanPickerViewComponents {
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
 	if (component == kFloorPlanPickerViewBuilding) {
-		return [self.buildingPool.items count];
+		return [self.buildingPool.items count] + 1;
 	}
 	else if (component == kFloorPlanPickerViewFloor) {
 		return [self.floorPlanPool.items count] + 1;
@@ -211,8 +228,12 @@ enum FloorPlanPickerViewComponents {
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-	if (component == kFloorPlanPickerViewBuilding) {
-		self.selectedBuilding = row;
+	if (component == kFloorPlanPickerViewBuilding && row == 0) {
+		[self startLocating:pickerView];
+		return;
+	}
+	else if (component == kFloorPlanPickerViewBuilding) {
+		self.selectedBuilding = row - 1;
 	}
 	else if (component == kFloorPlanPickerViewFloor) {
 		self.selectedFloorPlan = row - 1;
@@ -223,7 +244,10 @@ enum FloorPlanPickerViewComponents {
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
 	if (component == kFloorPlanPickerViewBuilding) {
-		GGBuilding *building = [self.buildingPool.items objectAtIndex:row];
+		if (row == 0) {
+			return [NSString stringWithFormat:@"Nearest Building"];
+		}
+		GGBuilding *building = [self.buildingPool.items objectAtIndex:row - 1];
 		return [NSString stringWithFormat:@"%@ - %@", building.abbreviation, building.name];
 	}
 	else if (component == kFloorPlanPickerViewFloor) {

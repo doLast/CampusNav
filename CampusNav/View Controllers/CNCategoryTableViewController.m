@@ -46,7 +46,7 @@
     [super viewDidLoad];
 		
 	self.selectionViewController = [[CNGeoGraphSelectionViewController alloc] init];
-	self.selectionViewController.locateButton = self.locateButton;
+//	self.selectionViewController.locateButton = self.locateButton;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewPOIPoolNotification:) name:kCNNewPOIPoolNotification object:self.selectionViewController];
 	

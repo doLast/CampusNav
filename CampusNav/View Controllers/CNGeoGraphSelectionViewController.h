@@ -16,7 +16,7 @@ extern NSString * const kCNNewPOIPoolNotificationData;
 <CLLocationManagerDelegate, UIActionSheetDelegate, 
 UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic, weak) IBOutlet UIBarButtonItem *locateButton;
+//@property (nonatomic, weak) IBOutlet UIBarButtonItem *locateButton;
 
 - (IBAction)updateSelection:(id)sender;
 - (IBAction)startLocating:(id)sender;
