@@ -22,6 +22,7 @@
 @synthesize userPOIs = _userPOIs;
 @synthesize managedObjectContext = _managedObjectContext;
 
+#pragma mark - System Initialization
 - (CNUserProfile *)init
 {
 	self = [super init];
@@ -43,6 +44,7 @@
 	return userProfile;
 }
 
+#pragma mark - Common helpers
 - (void)updateUserPOIs
 {
 	NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"UserPOI"];

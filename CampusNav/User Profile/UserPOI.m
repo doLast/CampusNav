@@ -7,7 +7,7 @@
 //
 
 #import "UserPOI.h"
-#import "GGPOI.h"
+#import "GGSystem.h"
 
 @implementation UserPOI
 
