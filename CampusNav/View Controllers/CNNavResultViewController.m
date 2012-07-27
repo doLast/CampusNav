@@ -93,6 +93,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	if ([self.pathNodes count] > 0) {
+		// Select the first row in the tableView to start navigation
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 		[self.tableView selectRowAtIndexPath:indexPath 
 									animated:animated 
@@ -119,6 +120,7 @@
     static NSString *CellIdentifier = @"NavResultCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
+	// Config the cell according to the node
 	CNPathNode *node = [self.pathNodes objectAtIndex:indexPath.row];
 	
 	switch (node.type) {
@@ -158,14 +160,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	// Find the corresponding node
 	CNPathNode *node = [self.pathNodes objectAtIndex:indexPath.row];
 	GGFloorPlan *floorPlan = node.current.floorPlan;
+	
+	// If is going up or down, use the next node's floor plan
 	if (node.type == kCNPathNodeTypeUpStairs || node.type == kCNPathNodeTypeDownStairs) {
 		floorPlan = node.next.floorPlan;
 	}
 	
+	// Find the floor's image
 	UIImage *image = [self.floorPlanToImage objectForKey:floorPlan.fId];
 	assert(image != nil);
+	
+	// Replace the image if is not the same one
 	if (self.floorPlanView.image != image) {
 		self.floorPlanView.image = image;
 		[self.floorPlanView sizeToFit];
@@ -173,11 +181,11 @@
 		self.title = [NSString stringWithFormat:@"%@ %@", floorPlan.building.abbreviation, floorPlan.description];
 	}
 	
+	// Scroll the image to the node's coordinate
 	CGFloat	width = self.floorPlanScrollView.bounds.size.width;
 	CGFloat height = self.floorPlanScrollView.bounds.size.height;
 	CGFloat x = node.current.coordinate.x - width / 2;
 	CGFloat y = node.current.coordinate.y - height / 2;
-//	NSLog(@"Scrolling to x:%f y:%f w:%f h:%f", x, y, width, height);
 	[self.floorPlanScrollView scrollRectToVisible:CGRectMake(x, y, width, height) animated:YES];
 }
 

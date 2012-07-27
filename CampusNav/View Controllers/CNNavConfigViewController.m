@@ -44,6 +44,7 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 {
 	[super awakeFromNib];
 	
+	// Subscribe to kCNNavConfigNotification
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNavConfigNotification:) name:kCNNavConfigNotification object:nil];
 	
 	self.sourcePOI = nil;
@@ -56,6 +57,7 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 
     [CNUICustomize customizeViewController:self];
 	
+	// Disable start at the beginning
 	self.startNavCell.userInteractionEnabled = NO;
 }
 
@@ -79,10 +81,12 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 
 - (void)handleNavConfigNotification:(NSNotification *)notification
 {
+	// Obtain the informations
 	NSDictionary *info = notification.userInfo;
 	NSString *type = [info objectForKey:kCNNavConfigNotificationType];
 	GGPOI *poi = [info objectForKey:kCNNavConfigNotificationData];
 	
+	// Save the poi as source or destination
 	if (type == kCNNavConfigTypeSource) {
 		self.sourcePOI = poi;
 	}
@@ -90,9 +94,11 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 		self.destinationPOI = poi;
 	}
 	
+	// Prompt itself to the front
 	[self.navigationController popToRootViewControllerAnimated:YES];
 	self.tabBarController.selectedViewController = self.navigationController;
 	
+	// Enable the start if both source and destination is set
 	if (self.sourcePOI != nil && self.destinationPOI != nil) {
 		self.startNavCell.userInteractionEnabled = YES;
 	}
@@ -120,6 +126,7 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 
 - (IBAction)swapPOIs:(id)sender
 {
+	// Swap the source and destination
 	GGPOI *temp = self.sourcePOI;
 	self.sourcePOI = self.destinationPOI;
 	self.destinationPOI = temp;
@@ -131,20 +138,32 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 - (NSArray *)navResultForCurrentConfig
 {
 	NSArray *result = nil;
+	// Do not call calculator if is on the same edge
 	if ([self.sourcePOI.edge.eId isEqualToNumber:self.destinationPOI.edge.eId]) {
 		// The destination is right accross the hall way
+		// TODO: represent this on the map
 		NSLog(@"Navigation over same edge");
 	}
-	else if ([self.sourcePOI.floorPlan.fId isEqualToNumber:self.destinationPOI.floorPlan.fId]) {
-		CNPathCalculator *calculator = [[CNSameFloorPathCalculator alloc] initFromPOI:self.sourcePOI toPOI:self.destinationPOI];
+	// If on the same floor
+	else if ([self.sourcePOI.floorPlan.fId 
+			  isEqualToNumber:self.destinationPOI.floorPlan.fId]) {
+		CNPathCalculator *calculator = [[CNSameFloorPathCalculator alloc] 
+										initFromPOI:self.sourcePOI 
+										toPOI:self.destinationPOI];
 		result = [calculator executeCalculation];
 	}
-	else if ([self.sourcePOI.floorPlan.building.name isEqualToString:self.destinationPOI.floorPlan.building.name]) {
+	// If in the same building
+	else if ([self.sourcePOI.floorPlan.building.name 
+			  isEqualToString:self.destinationPOI.floorPlan.building.name]) {
 		NSLog(@"Navigation between different floor");
-		CNPathCalculator *calculator = [[CNSameBuildingPathCalculator alloc] initFromPOI:self.sourcePOI toPOI:self.destinationPOI];
+		CNPathCalculator *calculator = [[CNSameBuildingPathCalculator alloc] 
+										initFromPOI:self.sourcePOI 
+										toPOI:self.destinationPOI];
 		result = [calculator executeCalculation];
 	}
+	// If is between building
 	else {
+		// Not implemented yet
 		NSLog(@"Navigation between different building");
 	}
 	return result;
@@ -153,6 +172,7 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"ShowNavResult"]) {
+		// Calculate the navigation result
 		NSArray *result = [self navResultForCurrentConfig];
 		
 		CNNavResultViewController *vc = segue.destinationViewController;

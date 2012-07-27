@@ -42,6 +42,7 @@
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 	
+	// Set title and adjust the views
 	self.title = [NSString stringWithFormat:@"%@ %@", 
 				  self.poi.floorPlan.building.abbreviation, self.poi.roomNum];
 	self.floorPlanScrollView.layer.cornerRadius = 10;
@@ -54,7 +55,8 @@
 	self.floorPlanView.image = image;
 	[self.floorPlanView sizeToFit];
 	self.floorPlanScrollView.contentSize = image.size;
-
+	
+	// Center the current POI on the image
 	CGFloat	width = self.floorPlanScrollView.bounds.size.width;
 	CGFloat height = self.floorPlanScrollView.bounds.size.height;
 	CGFloat x = self.poi.coordinate.x - width / 2;
@@ -64,17 +66,11 @@
 	[CNUICustomize customizeViewController:self];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
+	// Check whether is a fav on everytime appears
 	[self updateFavStatus];
 }
 
@@ -85,14 +81,17 @@
 
 - (void)updateFavStatus
 {
+	// Looking for this POI in favorites
 	self.userPOI = [[CNUserProfile sharedUserProfile] userPOIbyId:self.poi.pId];
 	
+	// If is in fav
 	if (self.userPOI != nil) {
 		self.favToggleCell.textLabel.text = @"Remove from Favorites";
 		
 		self.favNameCell.detailTextLabel.text = self.userPOI.displayName;
 		self.favNameCell.hidden = NO;
 	}
+	// If is not
 	else {
 		self.favToggleCell.textLabel.text = @"Add to Favorites";
 		self.favNameCell.hidden = YES;
@@ -104,14 +103,18 @@
 - (void)toggleFav:(UITableViewCell *)sender
 {
 	BOOL result = NO;
+	// If is in favorites, remove it
 	if (self.userPOI != nil) {
 		result = [[CNUserProfile sharedUserProfile] removeUserPOI:self.userPOI];
 	}
+	// Otherwize, add it
 	else {
 		NSString *displayName = [NSString stringWithFormat:@"%@ %@", self.poi.floorPlan.building.abbreviation, self.poi.roomNum];
 		result = [[CNUserProfile sharedUserProfile] 
 				  addPOI:self.poi.pId withDisplayName:displayName];
 	}
+	
+	// If successfully changed, update the view
 	if (result) {
 		[self updateFavStatus];
 	}
@@ -119,18 +122,33 @@
 
 - (void)setAsSource:(UITableViewCell *)sender
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNavConfigNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:kCNNavConfigTypeSource, kCNNavConfigNotificationType, self.poi, kCNNavConfigNotificationData, nil]];
+	// Post a notification
+	[[NSNotificationCenter defaultCenter] 
+	 postNotificationName:kCNNavConfigNotification 
+	 object:self 
+	 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+			   kCNNavConfigTypeSource, kCNNavConfigNotificationType, 
+			   self.poi, kCNNavConfigNotificationData, nil]];
+	// Pop the current navigation stack to the previous one
 	[self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)setAsDestination:(UITableViewCell *)sender
 {
-	[[NSNotificationCenter defaultCenter] postNotificationName:kCNNavConfigNotification object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:kCNNavConfigTypeDestination, kCNNavConfigNotificationType, self.poi, kCNNavConfigNotificationData, nil]];
+	// Post a notification
+	[[NSNotificationCenter defaultCenter] 
+	 postNotificationName:kCNNavConfigNotification 
+	 object:self 
+	 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+			   kCNNavConfigTypeDestination, kCNNavConfigNotificationType, 
+			   self.poi, kCNNavConfigNotificationData, nil]];
+	// Pop the current navigation stack to root
 	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void)promptFavNameChange
 {
+	// Pop an alert view for changing the fav name
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Edit Favourite Name" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
 	alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 	[alert textFieldAtIndex:0].text = self.userPOI.displayName;
@@ -141,10 +159,13 @@
 #pragma mark - Alert View Delegate
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+	// If user clicked save
     if (buttonIndex == 1) {
+		// Save it to user profile
 		BOOL result = [[CNUserProfile sharedUserProfile] 
 					   changeUserPOI:self.userPOI 
 					   withDisplayName:[alertView textFieldAtIndex:0].text];
+		// If successfully changed, update the view
 		if (result) {
 			[self updateFavStatus];
 		}
@@ -157,6 +178,7 @@
 {
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	
+	// Invoke cooresponding methods upon selection
 	if (indexPath.section == 1 && indexPath.row == 0) {
 		[self setAsSource:cell];
 	}

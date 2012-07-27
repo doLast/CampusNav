@@ -43,16 +43,14 @@
 {
     [super viewDidLoad];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewPOIPoolNotification:) name:kCNNewPOIPoolNotification object:self.selectionViewController];
+	// Subscribe to the floorPlan selection changes
+	[[NSNotificationCenter defaultCenter] 
+	 addObserver:self 
+	 selector:@selector(handleNewPOIPoolNotification:) 
+	 name:kCNNewPOIPoolNotification 
+	 object:self.selectionViewController];
 	
 	[CNUICustomize customizeViewController:self];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -69,22 +67,17 @@
 
 - (void)handleNewPOIPoolNotification:(NSNotification *)notification
 {
+	// Update title for the new poi pool
 	NSString *title = [notification.userInfo objectForKey:kCNNewPOIPoolNotificationTitle];
 	self.title = title;
 	
+	// Save the pool
 	GGPOIPool *pool = [notification.userInfo objectForKey:kCNNewPOIPoolNotificationData];
 	self.poiPool = pool;
 	[self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 1;
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

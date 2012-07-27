@@ -67,9 +67,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self.mainViewController 
-	 performSegueWithIdentifier:@"ShowSearchResultDetial" 
-	 sender:[self.poiPool.items objectAtIndex:indexPath.row]];
+	// If did select a search result
+	if (self.tableView != tableView) {
+		[self.mainViewController 
+		 performSegueWithIdentifier:@"ShowSearchResultDetial" 
+		 sender:[self.poiPool.items objectAtIndex:indexPath.row]];
+	}
 }
 
 
@@ -78,7 +81,9 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
 	if ([searchString length] > 0) {
+		// Perform search in the pool
 		NSArray *pois = [self.poiPool poisLikeKeyword:searchString];
+		// Save it to the delegate
 		self.searchResultTableDelegate.poiPool = [GGPOIPool poiPoolWithPOIs:pois];
 		return YES;
 	}
@@ -96,7 +101,7 @@
 		
 		vc.poi = [self.poiPool.items objectAtIndex:indexPath.row];
 	}
-	if ([sender isKindOfClass:[GGPOI class]]) {
+	else if ([sender isKindOfClass:[GGPOI class]]) {
 		CNPOIDetailViewController *vc = segue.destinationViewController;
 		
 		vc.poi = sender;
