@@ -17,8 +17,10 @@
 
 @implementation GGBuildingPool
 
+#pragma mark - Getter & Setter
 @synthesize items = _items;
 
+#pragma mark - Convenient constructors
 + (GGBuildingPool *)buildingPoolOfCampus:(NSString *)campus
 {
 	GGBuildingPool *pool = [[GGBuildingPool alloc] init];

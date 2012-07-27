@@ -29,27 +29,7 @@
 	return self.pointToEdgesCopy;
 }
 
-#pragma mark
-//+ (GGGraph *)graphWithEdges:(NSSet *)edges
-//{
-//	GGGraph *graph = [[GGGraph alloc] init];
-//	if (graph != nil) {
-//		NSMutableDictionary *edgesDic = 
-//		[NSMutableDictionary dictionaryWithCapacity:[edges count]];
-//		NSMutableDictionary *pointsDic = [NSMutableDictionary dictionary];
-//		
-//		for (GGEdge *edge in edges) {
-//			[edgesDic setObject:edge forKey:edge.eId];
-//			[pointsDic setObject:edge.vertexA forKey:edge.vertexA.pId];
-//			[pointsDic setObject:edge.vertexB forKey:edge.vertexB.pId];
-//		}
-//		
-//		graph.edgesDic = edgesDic;
-//		graph.pointsDic = pointsDic;
-//		graph.pois = [NSMutableSet set];
-//	}
-//	return graph;
-//}
+#pragma mark - Convenicent Constructor
 
 + (GGGraph *)graphWithPointToEdges:(NSDictionary *)pointToEdges
 {
@@ -78,11 +58,13 @@
 	return graph;
 }
 
+#pragma mark - Common helpers
 + (NSInteger)weightBetweenCoordinate:(GGCoordinate)a andCoordinate:(GGCoordinate)b
 {
 	return sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2));
 }
 
+#pragma mark - Methods
 - (BOOL)insertPOI:(GGPOI *)poi
 {
 	// Check whether this poi has been insert before
@@ -90,6 +72,9 @@
 		// Already in 
 		return NO;
 	}
+	
+	// Insert into POI Ids
+	[self.poiIds addObject:poi.pId];
 	
 	// Construct edges
 	NSInteger baseId = 0 - [self.poiIds count] - 1;
@@ -115,9 +100,6 @@
 	// Insert new poiWithEdges
 	NSMutableSet *edges = [NSMutableSet setWithObjects:edgeA, edgeB, nil];
 	[self.pointToEdgesCopy setObject:edges forKey:poi.pId];
-	
-	// Insert into POI Ids
-	[self.poiIds addObject:poi.pId];
 	
 	return YES;
 }

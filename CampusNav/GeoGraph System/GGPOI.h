@@ -31,7 +31,6 @@ extern NSString *GGPOICategoryAbbreviations[kGGPOICategoryEnd];
 @property (nonatomic, readonly) GGPOICategory category;
 @property (nonatomic, readonly) GGEdge *edge;
 @property (nonatomic, strong, readonly) NSString *roomNum;
-@property (nonatomic, strong, readonly) NSString *description;
 
 + (GGPOI *)poiWithPId:(NSNumber *)pId 
 			  onFloor:(NSNumber *)fId 

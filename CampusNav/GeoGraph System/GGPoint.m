@@ -26,6 +26,12 @@
 	return [[GGSystem sharedGeoGraphSystem] getFloorPlan:self.fId];
 }
 
+- (NSString *)description
+{
+	NSString *str = [NSString stringWithFormat:@"point at %d, %d", self.coordinate.x, self.coordinate.y];
+	return str;
+}
+
 #pragma mark - Coordinate Constructor
 + (GGCoordinate)coordinateAtX:(NSInteger)x andY:(NSInteger)y
 {
@@ -33,12 +39,6 @@
 	coordinate.x = x;
 	coordinate.y = y;
 	return coordinate;
-}
-
-- (NSString *)description
-{
-	NSString *str = [NSString stringWithFormat:@"point at %d, %d", self.coordinate.x, self.coordinate.y];
-	return str;
 }
 
 @end

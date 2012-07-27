@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+/*
+ * Include all interface required for upper layer usage
+ * Since this is a fecade interface
+ */
 #import "GGBuilding.h"
 #import "GGFloorPlan.h"
 #import "GGPoint.h"

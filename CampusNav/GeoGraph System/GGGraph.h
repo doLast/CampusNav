@@ -13,6 +13,7 @@
 
 @interface GGGraph : NSObject
 
+// Immutable readonly access to pointToEdges
 @property (nonatomic, strong, readonly) NSDictionary *pointToEdges;
 
 + (GGGraph *)graphWithPointToEdges:(NSDictionary *)pointToEdges;
@@ -20,6 +21,8 @@
 
 + (NSInteger)weightBetweenCoordinate:(GGCoordinate)a andCoordinate:(GGCoordinate)b;
 
+// Insert a POI to the graph
+// Can be either source or destination
 - (BOOL)insertPOI:(GGPOI *)poi;
 
 @end

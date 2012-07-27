@@ -17,10 +17,10 @@
 
 @implementation GGFloorPlanPool
 
-#pragma mark - getter & setter
+#pragma mark - Getter & Setter
 @synthesize items = _items;
 
-#pragma mark - convenient constructors
+#pragma mark - Convenient constructors
 + (GGFloorPlanPool *)floorPlanPoolOfCampus:(NSString *)campus
 {
 	GGFloorPlanPool *pool = [[GGFloorPlanPool alloc] init];

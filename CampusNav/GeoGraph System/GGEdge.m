@@ -36,6 +36,11 @@
 	return [[GGSystem sharedGeoGraphSystem] getPoint:self.pIdB];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"Edge:%@ from:%@ to:%@ weight:%d", self.eId, self.pIdA, self.pIdB, self.weight];
+}
+
 #pragma mark - Convenicent Constructor
 + (GGEdge *)edgeWithEId:(NSNumber *)eId 
 		  connectsPoint:(NSNumber *)pIdA 
@@ -50,9 +55,5 @@
 	return edge;
 }
 
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"Edge:%@ from:%@ to:%@ weight:%d", self.eId, self.pIdA, self.pIdB, self.weight];
-}
 
 @end

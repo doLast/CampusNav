@@ -16,6 +16,8 @@
 
 @interface GGSystem (GGInternalSystem)
 
+// These methods can only be called within GeoGraph System
+// Not part of public interface
 - (GGBuilding *)getBuilding:(NSNumber *)bId;
 - (GGFloorPlan *)getFloorPlan:(NSNumber *)fId;
 - (GGEdge *)getEdge:(NSNumber *)eId;

@@ -26,13 +26,12 @@ static NSString * const kDataSourceName = @"GG_DATA";
 @property (nonatomic, strong) NSMutableDictionary *buildingCache;
 @property (nonatomic, strong) NSMutableDictionary *floorPlanCache;
 @property (nonatomic, strong) NSMutableDictionary *pointCache;
-//@property (nonatomic, strong) NSMutableDictionary *edgeCache;
+// We do not cache edges because they are only used in graph generation
 
 @property (nonatomic, strong) NSMutableSet *buildingCacheIndicator;
 @property (nonatomic, strong) NSMutableSet *floorCacheIndicator;
 @property (nonatomic, strong) NSMutableSet *poiCacheIndicator;
 @property (nonatomic, strong) NSMutableSet *elementCacheIndicator;
-//@property (nonatomic, strong) NSMutableSet *edgeCacheIndicator;
 
 @end
 
@@ -41,17 +40,14 @@ static NSString * const kDataSourceName = @"GG_DATA";
 
 #pragma mark - Getter & Setter
 @synthesize dataSource = _dataSource;
-
 @synthesize buildingCache = _buildingCache;
 @synthesize floorPlanCache = _floorPlanCache;
 @synthesize pointCache = _pointCache;
-//@synthesize edgeCache = _edgeCache;
 
 @synthesize buildingCacheIndicator = _buildingCacheIndicator;
 @synthesize floorCacheIndicator = _floorCacheIndicator;
 @synthesize poiCacheIndicator = _poiCacheIndicator;
 @synthesize elementCacheIndicator = _elementCacheIndicator;
-//@synthesize edgeCacheIndicator = _edgeCacheIndicator;
 
 #pragma mark - System Initialization
 - (GGSystem *)initWithSqliteResource:(NSString *)resource
@@ -63,6 +59,7 @@ static NSString * const kDataSourceName = @"GG_DATA";
 																 ofType:@"sqlite"];
 		FMDatabase *dataSource = [FMDatabase databaseWithPath:resourcePath];
 		if (![dataSource open]) {
+			// If cannot locate the database, we can do nothing, just abort.
 			NSLog(@"Failed to open data source at: %@", resourcePath);
 			abort();
 		}
@@ -74,13 +71,11 @@ static NSString * const kDataSourceName = @"GG_DATA";
 		self.buildingCache = [NSMutableDictionary dictionary];
 		self.floorPlanCache = [NSMutableDictionary dictionary];
 		self.pointCache = [NSMutableDictionary dictionary];
-//		self.edgeCache = [NSMutableDictionary dictionary]; 
 		
 		self.buildingCacheIndicator = [NSMutableSet set];
 		self.floorCacheIndicator = [NSMutableSet set];
 		self.poiCacheIndicator = [NSMutableSet set];
 		self.elementCacheIndicator = [NSMutableSet set];
-//		self.edgeCacheIndicator = [NSMutableSet set];
 	}
 	return self;
 }
@@ -93,28 +88,6 @@ static NSString * const kDataSourceName = @"GG_DATA";
 	}
 	return system;
 }
-
-#pragma mark - Data fetching methods
-
-//- (void) executeQuery:(NSString *)query 
-//		withArguments:(NSArray *)arguments 
-//  andSaveEachByMethod:(SEL)method
-//{
-//	// data source must be valid
-//	assert(self.dataSource);
-//	
-//	// Create result set and data container
-//	FMResultSet *resultSet = [self.dataSource executeQuery:query withArgumentsInArray:arguments];
-//	
-//	// Build data
-//	while ([resultSet next]) {
-//		NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:method]];
-//		invocation.target = self;
-//		invocation.selector = method;
-//		[invocation setArgument:&resultSet atIndex:0];
-//		[invocation invoke];
-//	}
-//}
 
 #pragma mark - Building
 - (NSArray *)buildingsInCampus:(NSString *)campus

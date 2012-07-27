@@ -92,34 +92,31 @@
 
 - (GGEdge *)getEdge:(NSNumber *)eId
 {
-//	GGEdge *edge = [self.edgeCache objectForKey:eId];
-//	if (edge == nil) {
-		// data source must be valid
-		assert(self.dataSource);
+	// data source must be valid
+	assert(self.dataSource);
+	
+	// Create result set and data container
+	FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
+							  @"SELECT * FROM edge as e \
+							  WHERE e.e_id = %@;", eId];
+	
+	if ([resultSet next]) {
+		NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"e_id"]];
+		NSNumber *vertexA = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_A"]];
+		NSNumber *vertexB = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_B"]];
+		NSInteger weight = [resultSet intForColumn:@"weight"];
 		
-		// Create result set and data container
-		FMResultSet *resultSet = [self.dataSource executeQueryWithFormat:
-								  @"SELECT * FROM edge as e \
-								  WHERE e.e_id = %@;", eId];
+		GGEdge *edge = [GGEdge edgeWithEId:eId 
+							 connectsPoint:vertexA 
+								  andPoint:vertexB 
+								haveWeight:weight];
 		
-		if ([resultSet next]) {
-			NSNumber *eId = [NSNumber numberWithInt:[resultSet intForColumn:@"e_id"]];
-			NSNumber *vertexA = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_A"]];
-			NSNumber *vertexB = [NSNumber numberWithInt:[resultSet intForColumn:@"vertex_B"]];
-			NSInteger weight = [resultSet intForColumn:@"weight"];
-			
-			GGEdge *edge = [GGEdge edgeWithEId:eId 
-								 connectsPoint:vertexA 
-									  andPoint:vertexB 
-									haveWeight:weight];
-			
-			NSLog(@"No cached Edge, fetched");
-			
-			return edge;
-		}
+		NSLog(@"No cached Edge, fetched");
 		
-		return nil;
-//	}
+		return edge;
+	}
+	
+	return nil;
 }
 
 - (GGPoint *)getPoint:(NSNumber *)pId

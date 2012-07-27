@@ -36,6 +36,11 @@ NSString *GGElementTypeText[kGGElementTypeEnd] = {
 
 @synthesize elementType = _elementType;
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"%@ #%@", GGElementTypeText[self.elementType], self.pId];
+}
+
 #pragma mark - Convenicent Constructor
 + (GGElement *)elementWithPId:(NSNumber *)pId 
 					  onFloor:(NSNumber *)fId 
@@ -61,9 +66,5 @@ NSString *GGElementTypeText[kGGElementTypeEnd] = {
 	return [array indexOfObject:text];
 }
 
-- (NSString *)description
-{
-	return [NSString stringWithFormat:@"%@ #%@", GGElementTypeText[self.elementType], self.pId];
-}
 
 @end

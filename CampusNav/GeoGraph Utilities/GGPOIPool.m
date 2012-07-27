@@ -17,8 +17,10 @@
 
 @implementation GGPOIPool
 
+#pragma mark - Getter & Setter
 @synthesize items = _items;
 
+#pragma mark - Convenient constructors
 + (GGPOIPool *)poiPoolWithPOIs:(NSArray *)pois
 {
 	GGPOIPool *pool = [[GGPOIPool alloc] init];
@@ -36,6 +38,7 @@
 	return [GGPOIPool poiPoolWithPOIs:[[GGSystem sharedGeoGraphSystem] poisOnFloorPlan:floorPlan]];
 }
 
+#pragma mark - Utility methods
 - (NSArray *)poisWithinCategory:(GGPOICategory)category
 {
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"category=%d", category];
