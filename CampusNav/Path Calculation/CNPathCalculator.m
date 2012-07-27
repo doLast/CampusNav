@@ -54,9 +54,10 @@
 	NSMutableDictionary *distances = [NSMutableDictionary dictionaryWithCapacity:[pIds count]];
 	NSMutableDictionary *previous = [NSMutableDictionary dictionaryWithCapacity:[pIds count]];
 	
-	// Distance from source to source
+	// Distance from source to source is 0
 	[distances setObject:[NSNumber numberWithInteger:0] forKey:source.pId];
 	
+	// While there is not visited points
 	while ([pIds count] > 0) {
 		// Find the vertex with smallest distance in pIds
 		NSNumber *uDistance = nil;
@@ -80,11 +81,11 @@
 			break;
 		}
 		
-		// Remove u from pIds
+		// Remove `u` from pIds
 		[pIds removeObject:uId];
 		NSLog(@"pId %@ removed", uId);
 		
-		// 
+		// For each edge connected to `u`
 		NSSet *edges = [graph.pointToEdges objectForKey:uId];
 		for (GGEdge *edge in edges) {
 			// Find the neighbour
@@ -110,8 +111,8 @@
 				[previous setObject:uId forKey:vId];
 				NSLog(@"Setting point %@, previous to %@, distance to %d", vId, uId, alterDistance);
 			}
-		}
-	}
+		} // for
+	} // while
 	
 	return previous;
 }
@@ -133,6 +134,8 @@
 	return nil;
 }
 
+#pragma mark - common methods
+
 - (NSArray *)parseCalculationResult:(NSDictionary *)result
 {
 	NSMutableArray *path = [NSMutableArray array];
@@ -149,7 +152,9 @@
 		 pId = [result objectForKey:pId]) {
 		
 		previous = [GGElement elementWithPId:pId];
-		[path addObject:[CNPathNode nodeAt:current withPrevious:previous andNext:next]];
+		[path addObject:[CNPathNode nodeAt:current 
+							  withPrevious:previous 
+								   andNext:next]];
 		
 		next = current;
 		current = previous;
