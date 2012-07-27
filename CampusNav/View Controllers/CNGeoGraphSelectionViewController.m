@@ -43,7 +43,6 @@ enum FloorPlanPickerViewComponents {
 @synthesize selectedBuilding = _selectedBuilding;
 @synthesize selectedFloorPlan = _selectedFloorPlan;
 
-//@synthesize locateButton = _locateButton;
 @synthesize pickerActionSheet = _pickerActionSheet;
 @synthesize pickerView = _pickerView;
 
@@ -131,15 +130,7 @@ enum FloorPlanPickerViewComponents {
 }
 
 - (IBAction)startLocating:(id)sender
-{
-	// Setup the activity indicator
-//	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//	[activityIndicatorView startAnimating];
-	
-//	self.locateButton.customView = activityIndicatorView;
-//	self.locateButton.customView.frame = CGRectMake(10, 0, 25, 25);
-//	self.locateButton.customView.hidden = NO;
-	
+{	
 	// Start locating, may prompt the user for previlege if is the first time
 	[self.locationManager startUpdatingLocation];
 	
@@ -151,15 +142,12 @@ enum FloorPlanPickerViewComponents {
 	}
 	else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
 		[self stopLocating:self];
-//		self.locateButton.enabled = NO;
 	}
 	
 }
 
 - (IBAction)stopLocating:(id)sender
-{
-//	self.locateButton.customView = nil;
-	
+{	
 	[self.locationManager stopUpdatingLocation];
 	CLLocation *location = self.locationManager.location;
 	CLLocationDistance distance = DBL_MAX;
