@@ -82,16 +82,18 @@
                     <navigationItem key="navigationItem" title="BUILDING_FLOOR" id="XmA-YP-7Vh">
                         <barButtonItem key="rightBarButtonItem" title="Choose" id="4Fa-P1-IWf">
                             <connections>
-                                <action selector="chooseFloorPlan:" destination="gB8-Wd-Z1p" id="Syq-nX-0Ze"/>
+                                <action selector="chooseFloorPlan:" destination="Edt-jT-edg" id="8pB-S4-A7N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="rzQ-KS-Ijl" id="ap0-L6-Krx"/>
                         <outlet property="searchResultTableDelegate" destination="ZXp-av-f0T" id="4cW-9K-TxY"/>
+                        <outlet property="selectionViewController" destination="Edt-jT-edg" id="etu-6x-Luk"/>
                         <segue destination="8aT-XG-sIG" kind="push" identifier="ShowSearchResultDetial" id="P1V-Bc-b7e"/>
                     </connections>
                 </tableViewController>
+                <customObject id="Edt-jT-edg" customClass="CNGeoGraphSelectionViewController"/>
                 <customObject id="ZXp-av-f0T" customClass="CNPOITableViewController">
                     <connections>
                         <outlet property="mainViewController" destination="gB8-Wd-Z1p" id="R65-OL-u6s"/>
@@ -709,8 +711,20 @@
             <relationships>
                 <relationship kind="action" name="chooseFloorPlan:"/>
                 <relationship kind="action" name="startLocating:"/>
-                <relationship kind="outlet" name="locateButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="searchResultTableDelegate" candidateClass="CNPOITableViewController"/>
+                <relationship kind="outlet" name="selectionViewController" candidateClass="CNGeoGraphSelectionViewController"/>
+            </relationships>
+        </class>
+        <class className="CNGeoGraphSelectionViewController" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CNGeoGraphSelectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="chooseFloorPlan:"/>
+                <relationship kind="action" name="dismissActionSheet:"/>
+                <relationship kind="action" name="startLocating:"/>
+                <relationship kind="action" name="stopLocating:"/>
+                <relationship kind="action" name="updateSelection:"/>
+                <relationship kind="outlet" name="pickerActionSheet" candidateClass="UIActionSheet"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
             </relationships>
         </class>
         <class className="CNNavConfigViewController" superclassName="UITableViewController">
@@ -772,7 +786,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="1PZ-2n-1yH"/>
         <segue reference="1Sm-1C-EA2"/>
+        <segue reference="P1V-Bc-b7e"/>
     </inferredMetricsTieBreakers>
 </document>

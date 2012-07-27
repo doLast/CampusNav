@@ -18,7 +18,6 @@
 @interface CNCategoryTableViewController ()
 // private attributes
 @property (nonatomic, strong) GGPOIPool *poiPool;
-@property (nonatomic, strong) CNGeoGraphSelectionViewController *selectionViewController;
 
 @end
 
@@ -28,7 +27,6 @@
 @synthesize poiPool = _poiPool;
 @synthesize selectionViewController = _selectionViewController;
 
-@synthesize locateButton = _locateButton;
 @synthesize searchResultTableDelegate = _searchResultTableDelegate;
 
 - (void)setPoiPool:(GGPOIPool *)poiPool
@@ -44,9 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-		
-	self.selectionViewController = [[CNGeoGraphSelectionViewController alloc] init];
-//	self.selectionViewController.locateButton = self.locateButton;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNewPOIPoolNotification:) name:kCNNewPOIPoolNotification object:self.selectionViewController];
 	
@@ -80,17 +75,6 @@
 	GGPOIPool *pool = [notification.userInfo objectForKey:kCNNewPOIPoolNotificationData];
 	self.poiPool = pool;
 	[self.tableView reloadData];
-}
-
-#pragma mark - Actions
-- (IBAction)startLocating:(id)sender
-{
-	[self.selectionViewController startLocating:sender];
-}
-
-- (IBAction)chooseFloorPlan:(id)sender
-{
-	[self.selectionViewController chooseFloorPlan:sender];
 }
 
 #pragma mark - Table view data source
