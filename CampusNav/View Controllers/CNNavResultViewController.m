@@ -7,6 +7,8 @@
 //
 
 #import "CNNavResultViewController.h"
+#import "YRDropdownView.h"
+
 #import "CNUICustomize.h"
 #import "CNPathNode.h"
 #import "GGSystem.h"
@@ -178,7 +180,14 @@
 		self.floorPlanView.image = image;
 		[self.floorPlanView sizeToFit];
 		self.floorPlanScrollView.contentSize = image.size;
-		self.title = [NSString stringWithFormat:@"%@ %@", floorPlan.building.abbreviation, floorPlan.description];
+		NSString * floorName = [NSString stringWithFormat:@"%@ %@", floorPlan.building.abbreviation, floorPlan.description];
+		// Show notification
+		[YRDropdownView showDropdownInView:self.view
+									 title:[NSString stringWithFormat:@"You are now on %@ floor", floorName]
+									detail:nil
+									 image:nil
+								  animated:YES
+								 hideAfter:1];
 	}
 	
 	// Scroll the image to the node's coordinate

@@ -53,6 +53,9 @@
 		255FF03015B7A3A60033C98B /* CNUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF02F15B7A3A60033C98B /* CNUserProfile.m */; };
 		255FF03F15B89A1C0033C98B /* CNNavConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF03E15B89A1B0033C98B /* CNNavConfigViewController.m */; };
 		255FF04315B89C0D0033C98B /* CNPOICell.m in Sources */ = {isa = PBXBuildFile; fileRef = 255FF04215B89C0D0033C98B /* CNPOICell.m */; };
+		257C9F0415E9CFE1004AF278 /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 257C9F0015E9CFE1004AF278 /* bg-yellow.png */; };
+		257C9F0515E9CFE1004AF278 /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 257C9F0115E9CFE1004AF278 /* bg-yellow@2x.png */; };
+		257C9F0615E9CFE1004AF278 /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C9F0315E9CFE1004AF278 /* YRDropdownView.m */; };
 		2586975A15817CD300F79A1A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975915817CD300F79A1A /* UIKit.framework */; };
 		2586975C15817CD300F79A1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975B15817CD300F79A1A /* Foundation.framework */; };
 		2586975E15817CD300F79A1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2586975D15817CD300F79A1A /* CoreGraphics.framework */; };
@@ -149,6 +152,10 @@
 		255FF03E15B89A1B0033C98B /* CNNavConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNNavConfigViewController.m; sourceTree = "<group>"; };
 		255FF04115B89C0D0033C98B /* CNPOICell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPOICell.h; sourceTree = "<group>"; };
 		255FF04215B89C0D0033C98B /* CNPOICell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPOICell.m; sourceTree = "<group>"; };
+		257C9F0015E9CFE1004AF278 /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow.png"; sourceTree = "<group>"; };
+		257C9F0115E9CFE1004AF278 /* bg-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow@2x.png"; sourceTree = "<group>"; };
+		257C9F0215E9CFE1004AF278 /* YRDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDropdownView.h; sourceTree = "<group>"; };
+		257C9F0315E9CFE1004AF278 /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDropdownView.m; sourceTree = "<group>"; };
 		2586975515817CD300F79A1A /* CampusNav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusNav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2586975915817CD300F79A1A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2586975B15817CD300F79A1A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -243,6 +250,7 @@
 		250B885515B74ABA00332392 /* Behind the Scene */ = {
 			isa = PBXGroup;
 			children = (
+				257C9EFF15E9CFE1004AF278 /* YRDropdownView */,
 				25373A7215B8F141000FECC4 /* CNUICustomize.h */,
 				25373A7315B8F141000FECC4 /* CNUICustomize.m */,
 				25373A7915B901F8000FECC4 /* CNNavigationController.h */,
@@ -325,6 +333,17 @@
 				255FF02F15B7A3A60033C98B /* CNUserProfile.m */,
 			);
 			path = "User Profile";
+			sourceTree = "<group>";
+		};
+		257C9EFF15E9CFE1004AF278 /* YRDropdownView */ = {
+			isa = PBXGroup;
+			children = (
+				257C9F0015E9CFE1004AF278 /* bg-yellow.png */,
+				257C9F0115E9CFE1004AF278 /* bg-yellow@2x.png */,
+				257C9F0215E9CFE1004AF278 /* YRDropdownView.h */,
+				257C9F0315E9CFE1004AF278 /* YRDropdownView.m */,
+			);
+			path = YRDropdownView;
 			sourceTree = "<group>";
 		};
 		2586974A15817CD300F79A1A = {
@@ -554,6 +573,8 @@
 				2514552B15BF3DCB004C2931 /* source.png in Resources */,
 				2514553115BF402E004C2931 /* MC_02FLR.png in Resources */,
 				2514553215BF402E004C2931 /* MC_03FLR.png in Resources */,
+				257C9F0415E9CFE1004AF278 /* bg-yellow.png in Resources */,
+				257C9F0515E9CFE1004AF278 /* bg-yellow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +621,7 @@
 				25E240F915BD052B00B70887 /* CNNavResultViewController.m in Sources */,
 				25E240FC15BE486F00B70887 /* CNSameBuildingPathCalculator.m in Sources */,
 				2514551715BF0693004C2931 /* CNPathNode.m in Sources */,
+				257C9F0615E9CFE1004AF278 /* YRDropdownView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
