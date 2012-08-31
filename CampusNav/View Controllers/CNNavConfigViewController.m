@@ -135,9 +135,9 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 
 #pragma mark - Segue
 
-- (NSArray *)navResultForCurrentConfig
+- (CNPathCalculator *)pathCalculatorForCurrentConfig
 {
-	NSArray *result = nil;
+	CNPathCalculator *calculator = nil;
 	// Do not call calculator if is on the same edge
 	if ([self.sourcePOI.edge.eId isEqualToNumber:self.destinationPOI.edge.eId]) {
 		// The destination is right accross the hall way
@@ -145,38 +145,32 @@ NSString * const kCNNavConfigTypeDestination = @"CNNavConfigTypeDestination";
 		NSLog(@"Navigation over same edge");
 	}
 	// If on the same floor
-	else if ([self.sourcePOI.floorPlan.fId 
+	else if ([self.sourcePOI.floorPlan.fId
 			  isEqualToNumber:self.destinationPOI.floorPlan.fId]) {
-		CNPathCalculator *calculator = [[CNSameFloorPathCalculator alloc] 
-										initFromPOI:self.sourcePOI 
-										toPOI:self.destinationPOI];
-		result = [calculator executeCalculation];
+		calculator = [[CNSameFloorPathCalculator alloc] initFromPOI:self.sourcePOI toPOI:self.destinationPOI];
 	}
 	// If in the same building
-	else if ([self.sourcePOI.floorPlan.building.name 
+	else if ([self.sourcePOI.floorPlan.building.name
 			  isEqualToString:self.destinationPOI.floorPlan.building.name]) {
 		NSLog(@"Navigation between different floor");
-		CNPathCalculator *calculator = [[CNSameBuildingPathCalculator alloc] 
-										initFromPOI:self.sourcePOI 
-										toPOI:self.destinationPOI];
-		result = [calculator executeCalculation];
+		calculator = [[CNSameBuildingPathCalculator alloc] initFromPOI:self.sourcePOI toPOI:self.destinationPOI];
 	}
 	// If is between building
 	else {
 		// Not implemented yet
 		NSLog(@"Navigation between different building");
 	}
-	return result;
+	return calculator;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	if ([segue.identifier isEqualToString:@"ShowNavResult"]) {
-		// Calculate the navigation result
-		NSArray *result = [self navResultForCurrentConfig];
+		// Obtain the path calculator
+		CNPathCalculator *calculator = [self pathCalculatorForCurrentConfig];
 		
 		CNNavResultViewController *vc = segue.destinationViewController;
-		vc.pathNodes = result;
+		vc.pathCalculator = calculator;
 	}
 }
 @end

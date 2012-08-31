@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class CNPathCalculator;
+
 @interface CNNavResultViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UIImageView *floorPlanView;
@@ -15,6 +17,6 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UIView *tableViewBacklay;
 
-@property (nonatomic, strong) NSArray *pathNodes;
+@property (nonatomic, strong) CNPathCalculator *pathCalculator;
 
 @end

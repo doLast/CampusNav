@@ -10,6 +10,7 @@
 #import "YRDropdownView.h"
 
 #import "CNUICustomize.h"
+#import "CNPathCalculator.h"
 #import "CNPathNode.h"
 #import "GGSystem.h"
 
@@ -17,19 +18,24 @@
 
 @interface CNNavResultViewController ()
 
+@property (nonatomic, strong) NSArray *pathNodes;
 @property (nonatomic, strong) NSDictionary *floorPlanToImage;
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @end
 
 @implementation CNNavResultViewController
 
 #pragma mark - Getter & Setter
+@synthesize pathNodes = _pathNodes;
 @synthesize floorPlanToImage = _floorPlanToImage;
+@synthesize operationQueue = _operationQueue;
+
 @synthesize floorPlanView = _floorPlanView;
 @synthesize floorPlanScrollView = _floorPlanScrollView;
 @synthesize tableView = _tableView;
 @synthesize tableViewBacklay = _tableViewBacklay;
-@synthesize pathNodes = _pathNodes;
+@synthesize pathCalculator = _pathCalculator;
 
 #pragma mark - View controller events
 
@@ -37,13 +43,45 @@
 {
     [super viewDidLoad];
 	
+	[CNUICustomize dropShadowFromCeilingForView:self.tableViewBacklay];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[activityIndicator startAnimating];
+	[YRDropdownView showDropdownInView:self.view title:@"Calculating Path" detail:nil accessoryView:activityIndicator animated:animated hideAfter:0.0f];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	if (self.pathCalculator == nil) {
+		[self.navigationController popViewControllerAnimated:YES];
+		return;
+	}
+	
+	NSOperation *initialization = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(initializeData) object:nil];
+	
+	self.operationQueue = [[NSOperationQueue alloc] init];
+	[self.operationQueue addOperation:initialization];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)initializeData
+{
+	NSArray *pathNodes = [self.pathCalculator executeCalculation];
+	
 	// Prepare floorPlans Image
 	NSMutableDictionary *floorPlanToImage = [NSMutableDictionary dictionary];
-	for (CNPathNode *node in self.pathNodes) {
+	for (CNPathNode *node in pathNodes) {
 		GGFloorPlan *floorPlan = node.current.floorPlan;
 		if ([floorPlanToImage objectForKey:floorPlan.fId] == nil) {
-			NSString *imageFilename = [NSString stringWithFormat:@"%@_%02dFLR", 
-									   floorPlan.building.abbreviation, 
+			NSString *imageFilename = [NSString stringWithFormat:@"%@_%02dFLR",
+									   floorPlan.building.abbreviation,
 									   floorPlan.floor];
 			UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageFilename ofType:@"png"]];
 			NSLog(@"Image loaded from %@ as %@", imageFilename, image);
@@ -52,10 +90,10 @@
 	}
 	
 	// Drew path on images
-	for (CNPathNode *node in self.pathNodes) {
+	for (CNPathNode *node in pathNodes) {
 		GGPoint *from = node.current;
 		GGPoint *to = node.next;
-
+		
 		if (from != nil && to != nil) {
 			NSLog(@"Drawing from: %d, %d to: %d, %d", from.coordinate.x, from.coordinate.y , to.coordinate.x, to.coordinate.y);
 			GGFloorPlan *floorPlan = from.floorPlan;
@@ -63,7 +101,7 @@
 			if (node.type == kCNPathNodeTypeUpStairs || node.type == kCNPathNodeTypeDownStairs) {
 				floorPlan = to.floorPlan;
 			}
-
+			
 			UIImage *image = [floorPlanToImage objectForKey:floorPlan.fId];
 			
 			UIGraphicsBeginImageContext(image.size);
@@ -87,27 +125,26 @@
 		}
 	}
 	
-	[CNUICustomize dropShadowFromCeilingForView:self.tableViewBacklay];
-	
 	self.floorPlanToImage = floorPlanToImage;
+	self.pathNodes = pathNodes;
+	
+	[self performSelectorOnMainThread:@selector(refreshData) withObject:nil waitUntilDone:NO];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)refreshData
 {
 	if ([self.pathNodes count] > 0) {
+//		[YRDropdownView hideDropdownInView:self.view animated:YES];
+		
+		[self.tableView reloadData];
 		// Select the first row in the tableView to start navigation
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-		[self.tableView selectRowAtIndexPath:indexPath 
-									animated:animated 
+		[self.tableView selectRowAtIndexPath:indexPath
+									animated:YES
 							  scrollPosition:UITableViewScrollPositionTop];
-		[self.tableView.delegate tableView:self.tableView 
+		[self.tableView.delegate tableView:self.tableView
 				   didSelectRowAtIndexPath:indexPath];
 	}
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source
@@ -173,7 +210,7 @@
 	
 	// Find the floor's image
 	UIImage *image = [self.floorPlanToImage objectForKey:floorPlan.fId];
-	assert(image != nil);
+	NSAssert(image != nil, @"Failed to load floor plan image");
 	
 	// Replace the image if is not the same one
 	if (self.floorPlanView.image != image) {
