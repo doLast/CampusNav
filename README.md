@@ -2,6 +2,8 @@
 
 [https://github.com/campusnav/CampusNav](https://github.com/campusnav/CampusNav)
 
+![combine_images](https://f.cloud.github.com/assets/510089/1526980/4ed8916a-4bed-11e3-9f98-fb7a540c245d.png)
+
 ## Notes
 
 - This is a private group project for school, for academic purpose. 
